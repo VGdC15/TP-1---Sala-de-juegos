@@ -1,0 +1,17 @@
+<h2>Quién soy?</h2> 
+
+<!-- Sección de datos Github-->
+<section [hidden]="!datos" class="d-flex justify-content-center mt-4">
+    <div class="card text-center shadow-sm" style="width: 22rem;">
+      <img [src]="datos?.avatar_url" class="card-img-top rounded-circle mx-auto mt-3" style="width: 100px; height: 100px; object-fit: cover;" />
+      <div class="card-body">
+        <p class="card-text"><strong>Usuario:</strong> {{ datos?.login }}</p>
+        <p class="card-text"><strong>Nombre:</strong> {{ datos?.name }}</p>
+        <p class="card-text"><strong>Bio:</strong> {{ datos?.bio }}</p>
+        <p class="card-text"><strong>Repos públicos:</strong> {{ datos?.public_repos }}</p>
+      </div>
+    </div>
+  </section>
+
+
+

@@ -1,0 +1,48 @@
+# Query: pasword
+# ContextLines: 1
+
+17 results - 4 files
+
+tp-1\src\app\components\login\login.component.html:
+  14          <div>
+  15:             <label>password:</label>
+  16:             <input type="password" formControlName="password"/>
+  17:             <p>{{ getErrorMensaje('password', 'required') }}</p>
+  18:             <p>{{ getErrorMensaje('password', 'minlength') }}</p>
+  19:             <p>{{ getErrorMensaje('password', 'maxlength') }}</p>
+  20          </div>
+
+tp-1\src\app\components\login\login.component.ts:
+  22          email: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  23:         password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]),
+  24        });
+
+  36      async login() {
+  37:       const { email, password } = this.formulario.value;
+  38      
+
+  48          email,
+  49:         password: password
+  50        });
+
+tp-1\src\app\components\registro\registro.component.html:
+  36          <div>
+  37:             <label>password:</label>
+  38:             <input type="text" formControlName="password"/>
+  39:             <p>{{ getErrorMensaje('password', 'required') }}</p>
+  40:             <p>{{ getErrorMensaje('password', 'minlength') }}</p>
+  41:             <p>{{ getErrorMensaje('password', 'maxlength') }}</p>
+  42          </div>
+
+tp-1\src\app\components\registro\registro.component.ts:
+  33        edad: new FormControl("", {validators: [Validators.min(4), Validators.maxLength(70), Validators.required ]}),
+  34:       password: new FormControl("", {validators: [Validators.minLength(4), Validators.maxLength(15), Validators.required ]}),
+  35  
+
+  56        email: this.email?.value,
+  57:       password: this.password?.value 
+  58      });
+
+  85    get edad() { return this.formulario?.get('edad'); }
+  86:   get password() { return this.formulario?.get('password'); }
+  87  

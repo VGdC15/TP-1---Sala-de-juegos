@@ -1,0 +1,18 @@
+<h1>Sala de Juegos</h1>
+<nav>
+  <button routerLink="/home">Home</button>
+
+  @if (!isLoggedIn()) {
+    <button routerLink="/login">Login</button>
+    <button routerLink="/registro">Registro</button>
+  }
+
+  @if (isLoggedIn()) {
+    <button routerLink="/quien-soy">Acerca de mí</button>
+    <button (click)="logout()">Cerrar sesión</button>
+    <span>{{ auth.usuario()?.email }}</span>
+  }
+</nav>
+
+<router-outlet />
+

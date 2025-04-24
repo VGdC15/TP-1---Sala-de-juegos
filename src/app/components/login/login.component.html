@@ -1,0 +1,36 @@
+<h1>Ingresa a tu cuenta</h1>
+
+@if(formulario !== undefined){
+
+    <form [formGroup]="this.formulario">
+        <div>
+            <label>E-mail:</label>
+            <input type="text" formControlName="email"/>
+            @if (formulario.get('email')?.touched && formulario.get('email')?.errors) {
+                <div style="color: red; font-size: 0.9rem;">
+                  {{ getErrorMensaje('email', 'required') }}
+                  {{ getErrorMensaje('email', 'minlength') }}
+                  {{ getErrorMensaje('email', 'maxlength') }}
+                </div>
+            }         
+        </div> 
+        
+        <div>
+            <label>Password:</label>
+            <input type="password" formControlName="password"/>
+            @if (formulario.get('password')?.touched && formulario.get('password')?.errors) {
+                <div style="color: red; font-size: 0.9rem;">
+                  {{ getErrorMensaje('password', 'required') }}
+                  {{ getErrorMensaje('password', 'minlength') }}
+                </div>
+            }
+        </div>
+        <p>
+            ¿Todavía no estás registrado?
+            <a routerLink="/registro">Registrate acá</a>
+          </p>
+        <button (click)="borrarForm()">Borrar</button>
+        <button>Auto Completar</button>
+        <button type="button" (click)="login()">Login</button>
+    </form>
+} 
