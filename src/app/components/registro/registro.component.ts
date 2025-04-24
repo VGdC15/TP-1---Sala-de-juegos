@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { Usuario } from '../../clase/usuario';
 import { FormValidaBorra } from '../../clase/form-valida-borra';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -17,6 +18,8 @@ export class RegistroComponent implements OnInit{
 
   //inyectar db
   db = inject(DatabaseService);
+
+  router = inject(Router);
 
   agregarUsuarioDb(usuario : Usuario){
     this.db.crearUsuario(usuario);
@@ -52,6 +55,8 @@ export class RegistroComponent implements OnInit{
     );
   
     this.agregarUsuarioDb(usuario);
+    this.borrarForm();
+    this.router.navigate(['/home']);
   }
 
   getErrorMensaje(campo: string, tipo: string) {
