@@ -10,7 +10,7 @@
   @if (isLoggedIn()) {
     <button routerLink="/quien-soy">Acerca de mí</button>
     <button (click)="logout()">Cerrar sesión</button>
-    <span>{{ auth.usuario()?.email }}</span>
+    <span>Bienvenido/a {{ auth.usuario()?.email }}</span>
   }
 </nav>
 
