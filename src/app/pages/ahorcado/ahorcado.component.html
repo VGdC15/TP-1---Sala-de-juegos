@@ -1,1 +1,43 @@
-<p>ahorcado works!</p>
+<h1>Juego del Ahorcado</h1>
+<div>
+    <h2>¿Cómo se juega?</h2>
+    <p>
+      - Tenés que adivinar la palabra oculta letra por letra.<br>
+      - Cada vez que aciertes, la letra aparecerá en su lugar.<br>
+      - Cada error suma una parte del dibujo del ahorcado.<br>
+      - Ganás si completás la palabra antes de perder.<br>
+      - ¡Pensá bien cada letra y mucha suerte!
+    </p>
+</div>
+
+<div class="palabra">
+    @for (letra of palabraSecreta().split(''); track letra) {
+      <span>
+        @if (letrasAdivinadas().has(letra)) {
+          {{ letra }}
+        } @else {
+          _
+        }
+      </span>
+    }
+  </div>
+  
+  <div class="letras">
+    @for (letra of abecedario; track letra) {
+      <button 
+        (click)="seleccionarLetra(letra)"
+        [disabled]="letrasAdivinadas().has(letra) || letrasErradas().has(letra)"
+      >
+        {{ letra }}
+      </button>
+    }
+  </div>
+  
+  <div class="estado-juego">
+    @if (estadoJuego() === 'ganado') {
+      <p>¡Ganaste! 🎉</p>
+    } @else if (estadoJuego() === 'perdido') {
+      <p>¡Perdiste! 😭</p>
+    }
+  </div>
+  
