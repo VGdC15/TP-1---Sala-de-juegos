@@ -9,7 +9,9 @@ import { PreguntadosComponent } from './pages/preguntados/preguntados.component'
 import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 
 export const routes: Routes = [
-        {"path": "home", component : HomeComponent,
+        {"path": "home", 
+                loadComponent: () => import("./components/home/home.component").then((modulo) => modulo.HomeComponent),
+                //lazy loading
                 children:[
                         {"path": "preguntados", component: PreguntadosComponent},
                         {"path": "ahorcado", component : AhorcadoComponent},
@@ -19,7 +21,10 @@ export const routes: Routes = [
         },
         {"path": "login", component : LoginComponent},  
         {"path": "registro", component : RegistroComponent},
-        {"path": "quien-soy", component : QuienSoyComponent},
+        {"path": "quien-soy", 
+                //lazy loading
+                loadComponent: () => import("./components/quien-soy/quien-soy.component").then((modulo) => modulo.QuienSoyComponent),
+        },
         
         
         {"path": '', redirectTo: 'home', pathMatch: 'full' },
