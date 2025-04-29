@@ -1,26 +1,28 @@
 <h1>Bienvenido a la Sala de Juegos</h1>
 
 <div class="cards-container">
-    <a class="card" [routerLink]="'/ahorcado'">
+    <a class="card" [routerLink]="'ahorcado'">
       <img src="assets/juegos/juego1.jpg" alt="Ahorcado">
       <h4>Ahorcado</h4>
     </a>
   
-    <a class="card" [routerLink]="'/mayor-menor'">
+    <a class="card" [routerLink]="'mayor-menor'">
       <img src="assets/juegos/juego2.jpg" alt="Mayor & Menor">
       <h4>Mayor & Menor</h4>
     </a>
   
-    <a class="card" [routerLink]="'/preguntados'">
+    <a class="card" [routerLink]="'preguntados'">
       <img src="assets/juegos/juego3.jpg" alt="Preguntados">
       <h4>Preguntados</h4>
     </a>
 
-    <a class="card" [routerLink]="'/juego-propio'">
+    <a class="card" [routerLink]="'juego-propio'">
         <img src="assets/juegos/juego3.jpg" alt="juego-propio">
         <h4>Juego Propio</h4>
     </a>
   
 </div>
+
+<router-outlet/>
 
 

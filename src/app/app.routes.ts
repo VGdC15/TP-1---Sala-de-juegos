@@ -9,14 +9,17 @@ import { PreguntadosComponent } from './pages/preguntados/preguntados.component'
 import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 
 export const routes: Routes = [
-        {"path": "home", component : HomeComponent},
+        {"path": "home", component : HomeComponent,
+                children:[
+                        {"path": "preguntados", component: PreguntadosComponent},
+                        {"path": "ahorcado", component : AhorcadoComponent},
+                        {"path": "mayor-menor", component: MayorMenorComponent},
+                        {"path": "juego-propio", component: JuegoPropioComponent},
+                ]
+        },
         {"path": "login", component : LoginComponent},  
         {"path": "registro", component : RegistroComponent},
         {"path": "quien-soy", component : QuienSoyComponent},
-        {"path": "preguntados", component: PreguntadosComponent},
-        {"path": "ahorcado", component : AhorcadoComponent},
-        {"path": "mayor-menor", component: MayorMenorComponent},
-        {"path": "juego-propio", component: JuegoPropioComponent},
         
         
         {"path": '', redirectTo: 'home', pathMatch: 'full' },
