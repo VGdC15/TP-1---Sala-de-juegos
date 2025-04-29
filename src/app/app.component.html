@@ -6,7 +6,7 @@
     <button routerLink="/login">Login</button>
     <button routerLink="/registro">Registro</button>
   }
-
+ 
   @if (isLoggedIn()) {
     <button routerLink="/quien-soy">Acerca de mí</button>
     <button (click)="logout()">Cerrar sesión</button>

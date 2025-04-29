@@ -3,6 +3,8 @@ import { DatabaseService } from '../../services/database.service';
 import { FormValidaBorra } from '../../clase/form-valida-borra';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
 import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,8 @@ import { RouterLink, Router } from '@angular/router';
 export class LoginComponent {
     //inyectar db
     db = inject(DatabaseService);
+
+    auth = inject(AuthService);
 
 
     formulario!: FormGroup;
@@ -35,22 +39,13 @@ export class LoginComponent {
     constructor(private router: Router) {}
     async login() {
       const { email, password } = this.formulario.value;
-  
     
-      //login con Supabase Auth
-      const { data, error } = await this.db.supabase.auth.signInWithPassword({
-        email,
-        password: password
-      });
-    
-      if (error) {
-        alert('Error de login: Contraseña incorrecta.');
-        return;
+      try {
+        await this.auth.login(email, password);
+        this.router.navigate(['/home']);
+      } catch (error) {
+        alert('Error de login: Usuario o contraseña incorrectos.');
       }
-    
-      //redirige al home
-      this.router.navigate(['/home']);
     }
     
-
 }

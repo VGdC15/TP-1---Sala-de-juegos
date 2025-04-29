@@ -7,7 +7,7 @@ import { createClient } from '@supabase/supabase-js';
 })
 export class AuthService {
   private supabase: SupabaseClient;
-
+ 
   usuario = signal<User | null>(null);
 
   // para saber si hay sesión iniciada
