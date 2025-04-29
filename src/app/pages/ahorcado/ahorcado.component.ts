@@ -8,8 +8,20 @@ import { Component, signal } from '@angular/core';
 })
 export class AhorcadoComponent {
   abecedario = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+  palabrasDisponibles = [
+    'INCREÍBLE', 'PRIMAVERA', 'CASCADA', 'AVENTURA', 'EXPERIENCIA', 'ENIGMA', 'MISTERIO',
+    'JARDÍN', 'ADIVINANZA', 'GALAXIA', 'COORDINAR', 'QUÍMICA',
+    'CONQUISTA', 'DIVERSIÓN', 'INVISIBLE', 'DESAFÍO', 'HORIZONTE',
+    'CONEXIÓN', 'NAVEGAR', 'ESPEJISMO', 'IMAGINAR', 'DESTINO', 'BIBLIOTECA', 'RUMOROSO',
+    'TURBULENCIA', 'CÉFALO', 'SORPRENDENTE', 'FANTASÍA', 'EXPERIMENTO', 'VIRTUALIDAD',
+    'APRENDIZAJE', 'TEMPESTAD', 'SOMBRERO', 'INTELIGENTE', 'FUSIÓN', 'ANÁLISIS',
+    'FOTOGRAFÍA', 'CIENCIA', 'HIPÓTESIS', 'RAÍZ', 'LUMINOSO', 'LABERINTO', 'MARIPOSA',
+    'CREATIVO', 'BÚSQUEDA', 'CONSTANTE', 'CURIOSIDAD', 'VIAJE', 'COMUNICAR', 'NAVEGANTE',
+    'DINÁMICO', 'PATRIMONIO', 'CULTURA', 'IMAGEN', 'RUTA', 'ESCOLHA'
+  ];  
   
-  palabraSecreta = signal('ANGULAR'); // Después HACERLO RANDOMMMM
+  palabraSecreta = signal(this.elegirPalabraRandom());
   letrasAdivinadas = signal<Set<string>>(new Set());
   letrasErradas = signal<Set<string>>(new Set());
   errores = signal(0);
@@ -49,6 +61,12 @@ export class AhorcadoComponent {
   guardarResultado() {
     console.log('Guardando resultado...');
   }
+
+  elegirPalabraRandom() {
+    const indice = Math.floor(Math.random() * this.palabrasDisponibles.length);
+    return this.palabrasDisponibles[indice];
+  }
+
 }
 
 

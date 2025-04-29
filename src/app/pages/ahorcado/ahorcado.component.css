@@ -1,0 +1,164 @@
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .instrucciones{
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .contenedor-juego {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px; 
+    margin-top: 30px;
+  }
+  
+  .palabra {
+    margin-right: 20%;
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 8px;
+  }
+  
+  .letras {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 9 letras por fila => 3 filas */
+    gap: 10px;
+    max-width: 600px;
+    margin: 30px auto;
+    justify-items: center;
+  }
+  
+  .letras button {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .letras button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .letras button:hover:not(:disabled) {
+    background-color: #45a049;
+  }
+  
+  .estado-juego {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 30px;
+  }
+
+  /*DIBUJO DE AHORCADO*/
+  .ahorcado {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin-left: 20%;
+  }
+  
+  .poste {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 10px;
+    height: 300px;
+    background-color: #333;
+  }
+  
+  .cuerda {
+    position: absolute;
+    top: 0;
+    left: 55px;
+    width: 100px;
+    height: 10px;
+    background-color: #333;
+  }
+  
+  .cabeza {
+    position: absolute;
+    top: 10px;
+    left: 120px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 5px solid #333;
+  }
+  
+  .torso {
+    position: absolute;
+    top: 50px;
+    left: 137px;
+    width: 5px;
+    height: 70px;
+    background-color: #333;
+  }
+  
+  .brazo-izquierdo {
+    position: absolute;
+    top: 60px;
+    left: 137px;
+    width: 40px;
+    height: 5px;
+    background-color: #333;
+    transform: rotate(-30deg);
+    transform-origin: left center;
+  }
+  
+  .brazo-derecho {
+    position: absolute;
+    top: 60px;
+    left: 102px;
+    width: 40px;
+    height: 5px;
+    background-color: #333;
+    transform: rotate(30deg);
+    transform-origin: right center;
+  }
+  
+  .pierna-izquierda {
+    position: absolute;
+    top: 120px;
+    left: 137px;
+    width: 40px;
+    height: 5px;
+    background-color: #333;
+    transform: rotate(30deg);
+    transform-origin: left center;
+  }
+  
+  .pierna-derecha {
+    position: absolute;
+    top: 120px;
+    left: 102px;
+    width: 40px;
+    height: 5px;
+    background-color: #333;
+    transform: rotate(-30deg);
+    transform-origin: right center;
+  }
+  
+  
