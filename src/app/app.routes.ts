@@ -12,8 +12,8 @@ import { authGuard } from './guards/auth.guard';
 export const routes: Routes = [
         {"path": "home", 
                 canActivateChild:[authGuard],
-                loadComponent: () => import("./components/home/home.component").then((modulo) => modulo.HomeComponent),
                 //lazy loading
+                loadComponent: () => import("./components/home/home.component").then((modulo) => modulo.HomeComponent),       
                 children:[
                         {"path": '', redirectTo: 'home', pathMatch: 'full' },
                         {"path": "preguntados", component: PreguntadosComponent},

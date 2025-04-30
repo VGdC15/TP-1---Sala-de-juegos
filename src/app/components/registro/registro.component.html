@@ -12,6 +12,12 @@
                   {{ getErrorMensaje('email', 'minlength') }}
                   {{ getErrorMensaje('email', 'maxlength') }}
                 </div>
+            }  
+
+            @if (this.seIntentoGuardar && this.errorRegistro) {
+                <div style="color: red; font-size: 0.9rem;">
+                  {{ this.errorRegistro }}
+                </div>
             }                        
         </div>
 
@@ -51,7 +57,7 @@
             }
         </div>
 
-        <div>
+        <div> 
             <label>Password:</label>
             <input type="password" formControlName="password"/>
             @if (formulario.get('password')?.touched && formulario.get('password')?.errors) {

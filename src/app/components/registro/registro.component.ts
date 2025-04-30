@@ -5,6 +5,7 @@ import { DatabaseService } from '../../services/database.service';
 import { Usuario } from '../../clase/usuario';
 import { FormValidaBorra } from '../../clase/form-valida-borra';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-registro',
@@ -18,8 +19,12 @@ export class RegistroComponent implements OnInit{
 
   //inyectar db
   db = inject(DatabaseService);
-
   router = inject(Router);
+  changeDetector = inject(ChangeDetectorRef);
+
+  errorRegistro: string = '';
+  seIntentoGuardar: boolean = false;
+
 
   agregarUsuarioDb(usuario : Usuario){
     this.db.crearUsuario(usuario);
@@ -39,6 +44,8 @@ export class RegistroComponent implements OnInit{
     })
   }
   async guardarUsuario() {
+    this.seIntentoGuardar = true;
+
     if (!this.formulario?.valid) return;
     const {email, nombre, apellido, edad, password} = this.formulario.value;
 
@@ -48,15 +55,23 @@ export class RegistroComponent implements OnInit{
       apellido,
       edad,
     );
+
+    this.errorRegistro = '';
+
+    try {
+      const respuesta = await this.auth.guardarUsuarioAuth(email, password);
+      this.agregarUsuarioDb(usuario);
+      this.borrarForm();
+      this.router.navigate(['/home']);
+    } catch (error: any) {
+      if (error.message?.includes("User already registered") || error.code === '23505') {
+        this.errorRegistro = 'El usuario ya se encuentra registrado.';
+      } else {
+        this.errorRegistro = 'Error al registrar usuario: ' + error.message;
+      }
+      this.changeDetector.detectChanges();
+    }
   
-    const respuesta = await this.auth.guardarUsuarioAuth(
-      email,
-      password,
-    );
-  
-    this.agregarUsuarioDb(usuario);
-    this.borrarForm();
-    this.router.navigate(['/home']);
   }
 
   getErrorMensaje(campo: string, tipo: string) {
@@ -64,6 +79,7 @@ export class RegistroComponent implements OnInit{
   }
   
   borrarForm() {
+    this.seIntentoGuardar = false;
     FormValidaBorra.borrarFormulario(this.formulario);
   }
 
