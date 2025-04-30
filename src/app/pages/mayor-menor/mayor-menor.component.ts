@@ -110,6 +110,6 @@ export class MayorMenorComponent implements OnInit {
     this.resultado.set('');
     this.vidas.set(3);
     this.sacarCartaInicial();
-  }
+  } 
   
 }
