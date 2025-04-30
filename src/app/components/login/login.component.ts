@@ -47,5 +47,15 @@ export class LoginComponent {
         alert('Error de login: Usuario o contraseña incorrectos.');
       }
     }
+
+    autocompletar() {
+      const emailPredeterminado = "seba@gmail.com";
+      const passwordPredeterminado = "111111";
+
+      this.formulario.patchValue({
+        email: emailPredeterminado,
+        password: passwordPredeterminado
+      });
+    }
     
 }
