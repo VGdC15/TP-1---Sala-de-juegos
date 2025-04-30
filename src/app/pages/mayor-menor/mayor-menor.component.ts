@@ -15,6 +15,7 @@ export class MayorMenorComponent implements OnInit {
   puntaje = signal(0);
   resultado = signal('');
   private previousValue = 0;
+  vidas = signal(3);
 
   ngOnInit() {
     this.cartasService.crearBaraja().subscribe(res => {
@@ -40,9 +41,10 @@ export class MayorMenorComponent implements OnInit {
       if (igual) {
         if (nuevoValor === this.previousValue) {
           this.resultado.set('¡Correcto! ¡Igual!');
-          this.puntaje.update(p => p * 2); 
+          this.puntaje.update(p => p * 2);
         } else {
           this.resultado.set('Incorrecto :(');
+          this.vidas.update(v => v - 1);
         }
       } else {
         if ((mayor && nuevoValor > this.previousValue) || (!mayor && nuevoValor < this.previousValue)) {
@@ -50,8 +52,26 @@ export class MayorMenorComponent implements OnInit {
           this.puntaje.update(p => p + 1);
         } else {
           this.resultado.set('Incorrecto :(');
+          this.vidas.update(v => v - 1);
         }
       }
+      
+
+      // if (igual) {
+      //   if (nuevoValor === this.previousValue) {
+      //     this.resultado.set('¡Correcto! ¡Igual!');
+      //     this.puntaje.update(p => p * 2); 
+      //   } else {
+      //     this.resultado.set('Incorrecto :(');
+      //   }
+      // } else {
+      //   if ((mayor && nuevoValor > this.previousValue) || (!mayor && nuevoValor < this.previousValue)) {
+      //     this.resultado.set('¡Correcto!');
+      //     this.puntaje.update(p => p + 1);
+      //   } else {
+      //     this.resultado.set('Incorrecto :(');
+      //   }
+      // }
 
       this.previousValue = nuevoValor;
     });
@@ -84,4 +104,12 @@ export class MayorMenorComponent implements OnInit {
       default: return 0;
     }
   }
+
+  reiniciarJuego() {
+    this.puntaje.set(0);
+    this.resultado.set('');
+    this.vidas.set(3);
+    this.sacarCartaInicial();
+  }
+  
 }

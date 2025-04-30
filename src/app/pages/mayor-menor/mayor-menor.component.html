@@ -15,6 +15,14 @@
           - ¡Buena suerte!
         </p>
     </div>
+
+    <p>Vidas:
+      <span>{{ vidas() >= 1 ? '❤️' : '' }}</span>
+      <span>{{ vidas() >= 2 ? '❤️' : '' }}</span>
+      <span>{{ vidas() >= 3 ? '❤️' : '' }}</span>
+    </p>
+    
+      
   
     <div [hidden]="!imagen()">
       <img [src]="imagen()" alt="Carta actual">
@@ -22,13 +30,20 @@
   
     <p>Puntaje: {{ puntaje() }}</p>
   
-    <div class="botones">
+    <div class="botones" [hidden]="vidas() <= 0">
       <button (click)="adivinar(true)">Mayor</button>
       <button (click)="adivinar(true, true)">Igual</button>
       <button (click)="adivinar(false)">Menor</button>
     </div>
   
     <p>{{ resultado() }}</p>
+
+    <div [hidden]="vidas() !== 0" class="fin-juego">
+      <h2>PERDISTE 😢</h2>
+      <p>Puntaje final: {{ puntaje() }}</p>
+      <button (click)="reiniciarJuego()">Volver a jugar</button>
+    </div>
+    
   </div>
   
 
