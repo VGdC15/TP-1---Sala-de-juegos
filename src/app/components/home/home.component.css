@@ -1,0 +1,34 @@
+.home-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+}
+  
+.portada-retro {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../../public/home 1.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+  
+.titulo {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 250%;
+    background-image: url('../../../../public/saladejuegos.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10;
+}
+  
