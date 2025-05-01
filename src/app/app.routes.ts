@@ -8,12 +8,14 @@ import { MayorMenorComponent } from './pages/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './pages/preguntados/preguntados.component';
 import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 import { authGuard } from './guards/auth.guard';
+import { JuegosComponent } from './components/juegos/juegos.component';
 
 export const routes: Routes = [
-        {"path": "home", 
+        {"path": "home", component: HomeComponent},
+        {"path": "juegos", 
                 canActivateChild:[authGuard],
                 //lazy loading
-                loadComponent: () => import("./components/home/home.component").then((modulo) => modulo.HomeComponent),       
+                loadComponent: () => import("./components/juegos/juegos.component").then((modulo) => modulo.JuegosComponent),       
                 children:[
                         {"path": '', redirectTo: 'home', pathMatch: 'full' },
                         {"path": "preguntados", component: PreguntadosComponent},

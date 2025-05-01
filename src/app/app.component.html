@@ -8,6 +8,7 @@
   }
  
   @if (isLoggedIn()) {
+    <button routerLink="/juegos">Juegos</button>
     <button routerLink="/quien-soy">Acerca de mí</button>
     <button (click)="logout()">Cerrar sesión</button>
     <span>Bienvenido/a {{ auth.usuario()?.email }}</span>

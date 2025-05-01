@@ -55,44 +55,11 @@ export class MayorMenorComponent implements OnInit {
           this.vidas.update(v => v - 1);
         }
       }
-      
-
-      // if (igual) {
-      //   if (nuevoValor === this.previousValue) {
-      //     this.resultado.set('¡Correcto! ¡Igual!');
-      //     this.puntaje.update(p => p * 2); 
-      //   } else {
-      //     this.resultado.set('Incorrecto :(');
-      //   }
-      // } else {
-      //   if ((mayor && nuevoValor > this.previousValue) || (!mayor && nuevoValor < this.previousValue)) {
-      //     this.resultado.set('¡Correcto!');
-      //     this.puntaje.update(p => p + 1);
-      //   } else {
-      //     this.resultado.set('Incorrecto :(');
-      //   }
-      // }
 
       this.previousValue = nuevoValor;
     });
   }
-
-  // adivinar(mayor: boolean) {
-  //   this.cartasService.sacarCarta().subscribe(res => {
-  //     const carta = res.cards[0];
-  //     const nuevoValor = this.valorNumerico(carta.value);
-  //     this.imagen.set(carta.image);
-
-  //     if ((mayor && nuevoValor > this.previousValue) || (!mayor && nuevoValor < this.previousValue)) {
-  //       this.resultado.set('¡Correcto!');
-  //       this.puntaje.update(p => p + 1);
-  //     } else {
-  //       this.resultado.set('Incorrecto :(');
-  //     }
-
-  //     this.previousValue = nuevoValor;
-  //   });
-  // }
+  
 
   valorNumerico(valor: string): number {
     if (!isNaN(Number(valor))) return Number(valor);

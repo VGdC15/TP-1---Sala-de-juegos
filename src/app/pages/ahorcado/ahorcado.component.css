@@ -39,7 +39,7 @@ h1 {
   
   .letras {
     display: grid;
-    grid-template-columns: repeat(9, 1fr); /* 9 letras por fila => 3 filas */
+    grid-template-columns: repeat(9, 1fr); 
     gap: 10px;
     max-width: 600px;
     margin: 30px auto;
