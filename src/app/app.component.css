@@ -1,3 +1,10 @@
 .ocultar {
     display: none !important;
 }
+
+nav {
+    position: relative;
+    z-index: 3;
+}
+  
+  

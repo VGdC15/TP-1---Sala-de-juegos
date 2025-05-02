@@ -1,0 +1,133 @@
+.login-container {
+    background-image: url('../../../../public/home\ 1.jpg'); 
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Sombra*/
+    z-index: 1;
+}
+  
+/* Contenedor */
+.login-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgb(200, 27, 253);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+  
+.titulo-neon {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(250, 250, 250);
+    text-shadow:
+      0 0 5px rgb(200, 27, 253),
+      0 0 10px rgb(200, 27, 253),
+      0 0 20px rgb(200, 27, 253);
+    margin-bottom: 20px;
+}
+  
+/* Estilo de los campos */
+.form-group {
+    margin-bottom: 20px;
+}
+  
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #faf9f9;
+    color: rgb(200, 27, 253);
+    box-shadow: 0 0 5px rgba(200, 27, 253, 0.5) inset;
+}
+  
+/* Error */
+.error-msg {
+    color: #ff4dff;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+  
+  /* Link de registro */
+.registro-link {
+    font-size: 0.9rem;
+    margin: 10px 0;
+    text-align: center;
+}
+  
+.registro-link a {
+    color: rgb(200, 27, 253);
+    text-decoration: underline;
+}
+  
+  /* Botones */
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+  
+button {
+    background-color: transparent;
+    border: 2px solid rgb(200, 27, 253);
+    color: rgb(200, 27, 253);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 2px rgb(200, 27, 253);
+}
+  
+button:hover {
+    background-color: rgb(200, 27, 253);
+    color: #ffffff;
+    box-shadow: 0 0 5px rgb(200, 27, 253), 0 0 8px rgb(200, 27, 253);
+}
+
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .password-wrapper input {
+    padding-right: 40px; /* espacio para el botón */
+  }
+  
+  .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgb(200, 27, 253);
+    font-size: 1.1rem;
+  }
+  
+  

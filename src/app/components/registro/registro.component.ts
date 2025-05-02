@@ -6,10 +6,11 @@ import { Usuario } from '../../clase/usuario';
 import { FormValidaBorra } from '../../clase/form-valida-borra';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registro',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })

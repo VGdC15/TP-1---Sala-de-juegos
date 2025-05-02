@@ -4,58 +4,59 @@ import { FormValidaBorra } from '../../clase/form-valida-borra';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
-    //inyectar db
-    db = inject(DatabaseService);
+  //inyectar db
+  db = inject(DatabaseService);
 
-    auth = inject(AuthService);
+  auth = inject(AuthService);
 
+  formulario!: FormGroup;
 
-    formulario!: FormGroup;
+  ngOnInit() {
+    this.formulario = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
+    });
+  }
 
-    ngOnInit() {
-      this.formulario = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
-      });
+  getErrorMensaje(campo: string, tipo: string) {
+    return FormValidaBorra.getErrorMensaje(this.formulario, campo, tipo);
+  }
+  
+  borrarForm() {
+    FormValidaBorra.borrarFormulario(this.formulario);
+  }
+
+  constructor(private router: Router) {}
+  async login() {
+    const { email, password } = this.formulario.value;
+  
+    try {
+      await this.auth.login(email, password);
+      this.router.navigate(['/juegos']);
+    } catch (error) {
+      alert('Error de login: Usuario o contraseña incorrectos.');
     }
+  }
 
-    getErrorMensaje(campo: string, tipo: string) {
-      return FormValidaBorra.getErrorMensaje(this.formulario, campo, tipo);
-    }
-    
-    borrarForm() {
-      FormValidaBorra.borrarFormulario(this.formulario);
-    }
+  autocompletar() {
+    const emailPredeterminado = "seba@gmail.com";
+    const passwordPredeterminado = "111111";
 
-    constructor(private router: Router) {}
-    async login() {
-      const { email, password } = this.formulario.value;
-    
-      try {
-        await this.auth.login(email, password);
-        this.router.navigate(['/juegos']);
-      } catch (error) {
-        alert('Error de login: Usuario o contraseña incorrectos.');
-      }
-    }
-
-    autocompletar() {
-      const emailPredeterminado = "seba@gmail.com";
-      const passwordPredeterminado = "111111";
-
-      this.formulario.patchValue({
-        email: emailPredeterminado,
-        password: passwordPredeterminado
-      });
-    }
+    this.formulario.patchValue({
+      email: emailPredeterminado,
+      password: passwordPredeterminado
+    });
+  }
     
 }
