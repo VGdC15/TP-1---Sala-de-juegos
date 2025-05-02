@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  
 }
 
 .juegos-container .overlay {
@@ -18,20 +19,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* sombra */
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
 .juegos-card {
   padding: 40px;
-  margin: 50%;
   width: 90%;
   max-width: 1000px;
   color: #fff;
-  position: absolute;
+  position: relative;
   z-index: 2;
 
-  /* Estilo para alinear cards */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -81,4 +80,32 @@
   margin: 10px 0;
   font-size: 1.1rem;
   text-shadow: 0 0 3px rgb(200, 27, 253);
+}
+
+/* Breakpoints */
+
+/* Pantallas pequeñas: 1 card por fila */
+@media (max-width: 576px) {
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+  .juegos-container {
+    padding-top: 100%; 
+    overflow-y: auto;
+  }
+}
+
+/* Pantallas medianas: 2x2 */
+@media (min-width: 577px) and (max-width: 991px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+/* Pantallas grandes: todas en fila */
+@media (min-width: 992px) {
+  .card {
+    width: calc(25% - 20px);
+  }
 }
