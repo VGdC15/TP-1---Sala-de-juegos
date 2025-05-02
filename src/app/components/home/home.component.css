@@ -260,6 +260,83 @@ strong {
 @media (max-width: 576px) {
   .titulo {
     width: 90%;
+    height: 35vh;
+    top: 47%;
+  }
+
+  .ingresa {
+    width: 80%;
+    height: 30vh;
+    top: 34%;
+  }
+
+  .centralizados {
+    top: 58%;
+  }
+
+  .btn {
+    width: 11rem;
+    height: 3.1rem;
+    margin-left: -5rem;
+  }
+}
+
+/* Pantallas medianas: tablets entre 577px y 992px */
+@media (min-width: 577px) and (max-width: 992px) {
+  .titulo {
+    width: 85%;
+    height: 50vh;
+    top: 40%;
+  }
+
+  .ingresa {
+    width: 70%;
+    height: 45vh;
+    top: 21%;
+  }
+
+  .centralizados {
+    top: 55%;
+  }
+
+  .btn {
+    width: 14rem;
+    height: 4rem;
+    margin-left: -7rem;
+  }
+}
+
+/* Pantallas grandes: desktops desde 993px en adelante */
+@media (min-width: 993px) {
+  .titulo {
+    width: 80%;
+    height: 58vh;
+    top: 38%;
+  }
+
+  .ingresa {
+    width: 65%;
+    height: 58vh;
+    top: 13%;
+  }
+
+  .centralizados {
+    top: 58%;
+  }
+
+  .btn {
+    width: 19rem;
+    height: 6rem;
+    margin-left: -9rem;
+  }
+}
+
+
+
+
+/* @media (max-width: 576px) {
+  .titulo {
+    width: 90%;
     height: 120%;
     top: 42%;
   }
@@ -279,10 +356,10 @@ strong {
     height: 3.5rem;
     margin-left: -6rem;
   }
-}
+} */
 
 /* Pantallas medianas: tablets entre 577px y 992px */
-@media (min-width: 577px) and (max-width: 992px) {
+/* @media (min-width: 577px) and (max-width: 992px) {
   .titulo {
     width: 85%;
     height: 180%;
@@ -304,10 +381,10 @@ strong {
     height: 4rem;
     margin-left: -7rem;
   }
-}
+} */
 
 /* Pantallas grandes: desktops desde 993px en adelante */
-@media (min-width: 993px) {
+/* @media (min-width: 993px) {
   .titulo {
     width: 80%;
     height: 250%;
@@ -329,6 +406,6 @@ strong {
     height: 4rem;
     margin-left: -7.5rem;
   }
-}
+} */
 
   
