@@ -39,4 +39,12 @@ export class AppComponent {
   navigateToLogin(): void {
     this.router.navigate(['/login']);
   }
+
+  menuAbierto: boolean = false;
+
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+  }
+  
+
 }
