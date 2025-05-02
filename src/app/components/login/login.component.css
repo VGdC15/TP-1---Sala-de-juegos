@@ -27,6 +27,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 20px;
     padding: 40px;
+    margin: 10%;
     width: 100%;
     max-width: 400px;
     box-shadow: 0 0 20px rgb(200, 27, 253);
@@ -70,7 +71,7 @@ input[type="text"], input[type="password"] {
     margin-top: 5px;
 }
   
-  /* Link de registro */
+/* Link de registro */
 .registro-link {
     font-size: 0.9rem;
     margin: 10px 0;
@@ -82,7 +83,7 @@ input[type="text"], input[type="password"] {
     text-decoration: underline;
 }
   
-  /* Botones */
+/* Botones */
 .botones {
     display: flex;
     flex-direction: column;
@@ -112,13 +113,13 @@ button:hover {
 .password-wrapper {
     position: relative;
     width: 100%;
-  }
+}
   
-  .password-wrapper input {
-    padding-right: 40px; /* espacio para el botón */
-  }
+.password-wrapper input {
+    padding-right: 40px; 
+}
   
-  .toggle-password {
+.toggle-password {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -128,6 +129,6 @@ button:hover {
     cursor: pointer;
     color: rgb(200, 27, 253);
     font-size: 1.1rem;
-  }
+}
   
   
