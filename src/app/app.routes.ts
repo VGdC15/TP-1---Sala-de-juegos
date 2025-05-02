@@ -9,32 +9,65 @@ import { PreguntadosComponent } from './pages/preguntados/preguntados.component'
 import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 import { authGuard } from './guards/auth.guard';
 import { JuegosComponent } from './components/juegos/juegos.component';
- 
-export const routes: Routes = [
-        {"path": "home", component: HomeComponent},
-        {"path": "juegos", 
-                canActivateChild:[authGuard],
-                //lazy loading
-                loadComponent: () => import("./components/juegos/juegos.component").then((modulo) => modulo.JuegosComponent),       
-                children:[
-                        {"path": '', redirectTo: 'home', pathMatch: 'full' },
-                        {"path": "preguntados", component: PreguntadosComponent},
-                        {"path": "ahorcado", component : AhorcadoComponent},
-                        {"path": "mayor-menor", component: MayorMenorComponent},
-                        {"path": "juego-propio", component: JuegoPropioComponent},
-                ]
-        },
-        {"path": "login", component : LoginComponent},  
-        {"path": "registro", component : RegistroComponent},
 
-        {"path": "quien-soy", 
-                //lazy loading
-                loadComponent: () => import("./components/quien-soy/quien-soy.component").then((modulo) => modulo.QuienSoyComponent),
-                canActivate:[authGuard],
+export const routes: Routes = [
+        { path: "home", component: HomeComponent },
+      
+        {
+          path: "juegos",
+          canActivate: [authGuard],
+          loadComponent: () =>
+            import("./components/juegos/juegos.component").then(
+              (modulo) => modulo.JuegosComponent
+            ),
         },
+      
+        { path: "juegos/ahorcado", component: AhorcadoComponent, canActivate: [authGuard] },
+        { path: "juegos/mayor-menor", component: MayorMenorComponent, canActivate: [authGuard] },
+        { path: "juegos/preguntados", component: PreguntadosComponent, canActivate: [authGuard] },
+        { path: "juegos/juego-propio", component: JuegoPropioComponent, canActivate: [authGuard] },
+      
+        { path: "login", component: LoginComponent },
+        { path: "registro", component: RegistroComponent },
+      
+        {
+          path: "quien-soy",
+          loadComponent: () =>
+            import("./components/quien-soy/quien-soy.component").then(
+              (modulo) => modulo.QuienSoyComponent
+            ),
+          canActivate: [authGuard],
+        },
+      
+        { path: "", redirectTo: "home", pathMatch: "full" },
+        { path: "**", redirectTo: "/home" },
+      ];
+ 
+// export const routes: Routes = [
+//         {"path": "home", component: HomeComponent},
+//         {"path": "juegos", 
+//                 canActivateChild:[authGuard],
+//                 //lazy loading
+//                 loadComponent: () => import("./components/juegos/juegos.component").then((modulo) => modulo.JuegosComponent),       
+//                 children:[
+//                         {"path": '', redirectTo: 'home', pathMatch: 'full' },
+//                         {"path": "preguntados", component: PreguntadosComponent},
+//                         {"path": "ahorcado", component : AhorcadoComponent},
+//                         {"path": "mayor-menor", component: MayorMenorComponent},
+//                         {"path": "juego-propio", component: JuegoPropioComponent},
+//                 ]
+//         },
+//         {"path": "login", component : LoginComponent},  
+//         {"path": "registro", component : RegistroComponent},
+
+//         {"path": "quien-soy", 
+//                 //lazy loading
+//                 loadComponent: () => import("./components/quien-soy/quien-soy.component").then((modulo) => modulo.QuienSoyComponent),
+//                 canActivate:[authGuard],
+//         },
         
         
-        {"path": '', redirectTo: 'home', pathMatch: 'full' },
-        {"path": '**', redirectTo: '/home' }
+//         {"path": '', redirectTo: 'home', pathMatch: 'full' },
+//         {"path": '**', redirectTo: '/home' }
         
-];
+// ];
