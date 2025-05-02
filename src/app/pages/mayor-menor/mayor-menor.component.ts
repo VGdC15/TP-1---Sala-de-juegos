@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CartasService } from '../../services/cartas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -17,12 +18,38 @@ export class MayorMenorComponent implements OnInit {
   private previousValue = 0;
   vidas = signal(3);
 
-  ngOnInit() {
+  ngOnInit(): void {
+
+    Swal.fire({
+      title: '¿Cómo se juega?',
+      html: `
+        <p style="text-align:center; color:#f8f8f2">
+        - Se mostrará una carta al azar.<br>
+        - Debés adivinar si la próxima carta será Mayor, Menor o Igual en valor numérico.<br>
+        - Si acertás:<br>
+          Ganás 1 punto por elegir Mayor o Menor correctamente.<br>
+          Ganás 2 puntos si acertás que es Igual.<br>
+        - El valor de las cartas es:<br>
+          A = 1<br>
+          2 al 10 = su valor<br>
+          J = 11, Q = 12, K = 13<br>
+        - ¡Buena suerte!<br>
+        </p>
+      `,
+      icon: 'info',
+      confirmButtonText: '¡A jugar!',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonColor: 'rgb(200, 27, 253)', 
+      iconColor: 'orange' 
+    });
+
     this.cartasService.crearBaraja().subscribe(res => {
       this.cartasService.idBaraja = res.deck_id;
       this.sacarCartaInicial();
     });
   }
+
 
   sacarCartaInicial() {
     this.cartasService.sacarCarta().subscribe(res => {

@@ -160,5 +160,20 @@ h1 {
     transform: rotate(-30deg);
     transform-origin: right center;
   }
+
+  .custom-swal-popup {
+    background-color: #1e1e2f !important;
+    color: #f8f8f2 !important;
+    border-radius: 1rem;
+  }
   
+  .custom-swal-button {
+    background-color: rgb(200, 27, 253) !important;
+    color: white !important;
+    border: none;
+  }
+  
+  .custom-swal-icon {
+    color: orange !important;
+  }
   

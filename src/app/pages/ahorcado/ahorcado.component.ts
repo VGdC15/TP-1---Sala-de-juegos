@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ahorcado',
@@ -26,6 +27,25 @@ export class AhorcadoComponent {
   letrasErradas = signal<Set<string>>(new Set());
   errores = signal(0);
   estadoJuego = signal<'jugando' | 'ganado' | 'perdido'>('jugando');
+
+  ngOnInit(): void {
+    Swal.fire({
+      title: '¿Cómo se juega?',
+      html: `
+        <p style="text-align:center; color:#f8f8f2">
+        - Tenés que adivinar la palabra oculta letra por letra.<br>
+        - Cada error suma una parte del dibujo del ahorcado.<br>
+        - ¡Pensá bien cada letra y mucha suerte!
+        </p>
+      `,
+      icon: 'info',
+      confirmButtonText: '¡A jugar!',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonColor: 'rgb(200, 27, 253)', 
+      iconColor: 'orange' 
+    });
+  }
 
   seleccionarLetra(letra: string) {
     if (this.estadoJuego() !== 'jugando') return;
