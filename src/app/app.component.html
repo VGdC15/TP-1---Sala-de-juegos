@@ -2,8 +2,21 @@
   <button routerLink="/home">Home</button>
 
   @if (!isLoggedIn()) {
-    <button routerLink="/login">Login</button>
-    <button routerLink="/registro">Registro</button>
+    <button
+    class="btn"
+    routerLink="/login"
+    [class.ocultar]="isLogin()"
+  >
+    Login
+  </button>
+
+  <button
+    class="btn"
+    routerLink="/registro"
+    [class.ocultar]="isLogin() || isRegistro()"
+  >
+    Registro
+  </button>
   }
  
   @if (isLoggedIn()) {

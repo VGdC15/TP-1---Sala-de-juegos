@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 
@@ -17,11 +17,15 @@ export class AppComponent {
   // inicia url actual
   currentUrl = signal(this.router.url);
   isHome = computed(() => this.currentUrl() === '/home');
+  isLogin = computed(() => this.currentUrl() === '/login');
+  isRegistro = computed(() => this.currentUrl() === '/registro');
 
   // actualiza signal cuando cambia la URL
   constructor() {
-    this.router.events.subscribe(() => {
-      this.currentUrl.set(this.router.url);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl.set(this.router.url);
+      }
     });
   }
 
