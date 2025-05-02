@@ -1,4 +1,24 @@
 <div class="home-container">
   <div class="titulo"></div>
   <div class="portada-retro"></div>
+  <div class="ingresa"></div>
+</div>
+
+<div class="auth-buttons" [class.centralizados]="isHome()">
+  <button
+    type="button"
+    class="btn"
+    (click)="navigateToLogin()"
+    [hidden]="!isHome()"
+  >
+    <strong>INGRESÁ</strong>
+    <div id="container-stars">
+      <div id="stars"></div>
+    </div>
+    <div id="glow">
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+  </button>
+
 </div>

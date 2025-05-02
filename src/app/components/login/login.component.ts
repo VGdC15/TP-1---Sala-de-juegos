@@ -42,7 +42,7 @@ export class LoginComponent {
     
       try {
         await this.auth.login(email, password);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/juegos']);
       } catch (error) {
         alert('Error de login: Usuario o contraseña incorrectos.');
       }

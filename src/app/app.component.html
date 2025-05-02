@@ -1,4 +1,4 @@
-<nav>
+<nav [class.ocultar]="isHome()">
   <button routerLink="/home">Home</button>
 
   @if (!isLoggedIn()) {
@@ -15,4 +15,5 @@
 </nav>
 
 <router-outlet />
+
 

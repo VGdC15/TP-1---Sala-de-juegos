@@ -9,7 +9,7 @@ import { PreguntadosComponent } from './pages/preguntados/preguntados.component'
 import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 import { authGuard } from './guards/auth.guard';
 import { JuegosComponent } from './components/juegos/juegos.component';
-
+ 
 export const routes: Routes = [
         {"path": "home", component: HomeComponent},
         {"path": "juegos", 
