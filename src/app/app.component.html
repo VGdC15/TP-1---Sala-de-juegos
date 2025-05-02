@@ -1,32 +1,80 @@
-<nav [class.ocultar]="isHome()">
-  <button routerLink="/home">Home</button>
+<!-- <nav [class.ocultar]="isHome()" class="nav-container">
+  <button class="nav-btn" routerLink="/home">Home</button>
 
   @if (!isLoggedIn()) {
-    <button
-    class="btn"
-    routerLink="/login"
-    [class.ocultar]="isLogin()"
-  >
-    Login
-  </button>
+    <button 
+      class="nav-btn"
+      routerLink="/login"
+      [class.ocultar]="isLogin()"
+    >
+      Login
+    </button>
 
-  <button
-    class="btn"
-    routerLink="/registro"
-    [class.ocultar]="isLogin() || isRegistro()"
-  >
-    Registro
-  </button>
+    <button
+      class="nav-btn"
+      routerLink="/registro"
+      [class.ocultar]="isLogin() || isRegistro()"
+    >
+      Registro
+    </button>
   }
- 
+
   @if (isLoggedIn()) {
-    <button routerLink="/juegos">Juegos</button>
-    <button routerLink="/quien-soy">Acerca de mí</button>
-    <button (click)="logout()">Cerrar sesión</button>
-    <span>Bienvenido/a {{ auth.usuario()?.email }}</span>
+    <button class="nav-btn" routerLink="/juegos">Juegos</button>
+    <button class="nav-btn" routerLink="/quien-soy">Acerca de mí</button>
+    <button class="nav-btn" (click)="logout()">Cerrar sesión</button>
+    <span class="usuario-texto">Bienvenido/a {{ auth.usuario()?.email }}</span>
   }
 </nav>
 
+<router-outlet /> -->
+
+<nav [class.ocultar]="isHome()" class="nav-container">
+  <div class="nav-logo"></div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn" routerLink="/home">
+      <span id="container-stars"><span id="stars"></span></span>
+      <span id="glow"><span class="circle"></span><span class="circle"></span></span>
+      <strong>Home</strong>
+    </button>
+
+    @if (!isLoggedIn()) {
+      <button class="nav-btn" routerLink="/login" [class.ocultar]="isLogin()">
+        <span id="container-stars"><span id="stars"></span></span>
+        <span id="glow"><span class="circle"></span><span class="circle"></span></span>
+        <strong>Login</strong>
+      </button>
+
+      <button class="nav-btn" routerLink="/registro" [class.ocultar]="isLogin() || isRegistro()">
+        <span id="container-stars"><span id="stars"></span></span>
+        <span id="glow"><span class="circle"></span><span class="circle"></span></span>
+        <strong>Registro</strong>
+      </button>
+    }
+
+    @if (isLoggedIn()) {
+      <button class="nav-btn" routerLink="/juegos">
+        <span id="container-stars"><span id="stars"></span></span>
+        <span id="glow"><span class="circle"></span><span class="circle"></span></span>
+        <strong>Juegos</strong>
+      </button>
+
+      <button class="nav-btn" routerLink="/quien-soy">
+        <span id="container-stars"><span id="stars"></span></span>
+        <span id="glow"><span class="circle"></span><span class="circle"></span></span>
+        <strong>Acerca de mí</strong>
+      </button>
+
+      <button class="nav-btn" (click)="logout()">
+        <span id="container-stars"><span id="stars"></span></span>
+        <span id="glow"><span class="circle"></span><span class="circle"></span></span>
+        <strong>Cerrar sesión</strong>
+      </button>
+
+      <span class="usuario-texto">Bienvenido/a {{ auth.usuario()?.email }}</span>
+    }
+  </div>
+</nav>
+
 <router-outlet />
-
-
