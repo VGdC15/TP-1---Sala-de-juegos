@@ -28,19 +28,19 @@
         <button class="hamburguesa-icono" (click)="toggleMenu()">☰</button>
     
         <div class="hamburguesa-opciones" [class.visible]="menuAbierto">
-          <button class="nav-btn" routerLink="/juegos">
+          <button class="nav-btn" routerLink="/juegos" (click)="toggleMenu()">
             <span id="container-stars"><span id="stars"></span></span>
             <span id="glow"><span class="circle"></span><span class="circle"></span></span>
             <strong>Juegos</strong>
           </button>
-    
-          <button class="nav-btn" routerLink="/quien-soy">
+     
+          <button class="nav-btn" routerLink="/quien-soy" (click)="toggleMenu()">
             <span id="container-stars"><span id="stars"></span></span>
             <span id="glow"><span class="circle"></span><span class="circle"></span></span>
             <strong>Bío</strong>
           </button>
     
-          <button class="nav-btn" (click)="logout()">
+          <button class="nav-btn" (click)="logout(); toggleMenu()">
             <span id="container-stars"><span id="stars"></span></span>
             <span id="glow"><span class="circle"></span><span class="circle"></span></span>
             <strong>Cerrar sesión</strong>

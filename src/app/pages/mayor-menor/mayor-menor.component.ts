@@ -41,7 +41,8 @@ export class MayorMenorComponent implements OnInit {
       background: '#1e1e2f',
       color: '#f8f8f2',
       confirmButtonColor: 'rgb(200, 27, 253)', 
-      iconColor: 'orange' 
+      iconColor: 'orange',
+      width: '420px'
     });
 
     this.cartasService.crearBaraja().subscribe(res => {
