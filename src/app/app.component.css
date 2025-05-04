@@ -4,7 +4,7 @@
     justify-content: space-between; 
     align-items: center;
     gap: 1rem;
-    padding: 0.1rem 1.8rem; /* Reduce el alto total */
+    padding: 0.1rem 1.8rem; 
     background-color: #111;
     position: sticky;
     top: 0;
@@ -14,7 +14,7 @@
   
 
 .nav-logo {
-    width: 20rem; /* más angosto */
+    width: 20rem; 
     height: 6rem;
     background-image: url('/saladejuegos.png'); 
     background-size: contain;
@@ -149,7 +149,7 @@
 
 /* TEXTO USUARIO */
 .usuario-texto {
-    color: #fe53bb;
+    color: rgb(200, 27, 253);
     font-weight: bold;
     margin-left: 1rem;
     font-size: 1rem;
@@ -225,7 +225,7 @@ to {
 .hamburguesa-icono {
     background-color: transparent;
     border: none;
-    color: #fe53bb;
+    color: rgb(200, 27, 253);
     font-size: 2rem;
     cursor: pointer;
     text-shadow: 0 0 4px #8f51ea;
