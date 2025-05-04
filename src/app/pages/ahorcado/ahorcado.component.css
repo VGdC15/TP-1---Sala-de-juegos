@@ -13,6 +13,7 @@ body {
   align-items: center;
 }
 
+
 /* Contenedor general */
 .filtro-opaco {
   background-color: rgba(0, 0, 0, 0.7); 
@@ -88,9 +89,6 @@ h2 {
   cursor: not-allowed;
 }
 
-.letras button:hover:not(:disabled) {
-  background-color: #45a049;
-}
 
 .estado-juego {
   text-align: center;
@@ -293,6 +291,21 @@ h2 {
   outline: none;
 }
 
+.pushable:disabled .front {
+  background: #747373; 
+  color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.pushable:disabled .edge {
+  background: #888;
+}
+
+.pushable:disabled .shadow {
+  background: #bbb;
+}
+
+
 /*PEQUEÑAS*/
 @media screen and (max-width: 600px) {
   body {
@@ -310,6 +323,27 @@ h2 {
     margin-bottom: 0%;
     margin-top: 3%;
     font-size: 2rem;
+  }
+
+  .tiempo {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  .puntaje{
+    position: absolute;
+    top: 14%;
+    right: 15%;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+  
   }
 
   .letras {
@@ -360,6 +394,27 @@ h2 {
     margin-right: 15%;
     margin-bottom: 0%;
     margin-top: 1%;
+  }
+
+  .tiempo {
+    position: absolute;
+    top: 13%;
+    right: 26%;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  .puntaje{
+    position: absolute;
+    top: 16%;
+    right: 26%;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+  
   }
 
   .filtro-opaco {
@@ -413,6 +468,27 @@ h2 {
     margin-right: 15%;
     margin-bottom: 0%;
     margin-top: 3%;
+  }
+
+  .tiempo {
+    position: absolute;
+    top: 14%;
+    right: 29%;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  .puntaje{
+    position: absolute;
+    top: 17%;
+    right: 29%;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+  
   }
 
   .ahorcado {

@@ -28,7 +28,12 @@ export class AhorcadoComponent {
   errores = signal(0);
   estadoJuego = signal<'jugando' | 'ganado' | 'perdido'>('jugando');
 
+  intervalo: any;
+  puntaje = signal(0);
+  tiempo = signal(0);
+
   ngOnInit(): void {
+    this.iniciarJuego();
     Swal.fire({
       title: '¿Cómo se juega?',
       html: `
@@ -54,6 +59,7 @@ export class AhorcadoComponent {
     if (this.palabraSecreta().includes(letra)) {
       this.letrasAdivinadas().add(letra);
       this.letrasAdivinadas.set(new Set(this.letrasAdivinadas()));
+      this.puntaje.update(p => p + 100);
       this.verificarGanador();
     } else {
       this.letrasErradas().add(letra);
@@ -68,6 +74,7 @@ export class AhorcadoComponent {
     const aciertos = this.letrasAdivinadas();
     if ([...todasLetras].every(letra => aciertos.has(letra))) {
       this.estadoJuego.set('ganado');
+      this.terminarJuego();
       this.guardarResultado();
     }
   }
@@ -75,20 +82,52 @@ export class AhorcadoComponent {
   verificarPerdedor() {
     if (this.errores() >= 6) { 
       this.estadoJuego.set('perdido');
+      this.terminarJuego();
       this.guardarResultado();
     }
   }
 
   guardarResultado() {
-    console.log('Guardando resultado...');
+    const mensaje =
+      this.estadoJuego() === 'ganado'
+        ? `<strong>¡Ganaste!</strong><br><br>Puntaje: ${this.puntaje()}<br>Tiempo: ${this.tiempo()}`
+        : `<strong>Perdiste.</strong><br><br>La palabra era: ${this.palabraSecreta()}`;
+  
+    Swal.fire({
+      title: 'Resultado',
+      html: `<div style="text-align:center; font-size: 16px;">${mensaje}</div>`,
+      icon: this.estadoJuego() === 'ganado' ? 'success' : 'error',
+      confirmButtonText: 'Aceptar',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonColor: 'rgb(200, 27, 253)',
+      iconColor: this.estadoJuego() === 'ganado' ? 'limegreen' : 'crimson',
+      width: '420px'
+    });
   }
+  
 
   elegirPalabraRandom() {
     const indice = Math.floor(Math.random() * this.palabrasDisponibles.length);
     return this.palabrasDisponibles[indice];
   }
 
+  iniciarJuego() {
+    this.tiempo.set(0);
+    this.puntaje.set(0);
+
+    if (this.intervalo) clearInterval(this.intervalo);
+
+    this.intervalo = setInterval(() => {
+      this.tiempo.update(t => t + 1);
+    }, 1000);
+  }
+
+  terminarJuego() {
+    clearInterval(this.intervalo);
+    const penalidad = 5;
+    const nuevoPuntaje = Math.max(0, 1000 - this.tiempo() * penalidad);
+    this.puntaje.set(nuevoPuntaje);
+  }
+
 }
-
-
-
