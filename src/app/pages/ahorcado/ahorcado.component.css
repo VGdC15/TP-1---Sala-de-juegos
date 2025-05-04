@@ -300,6 +300,10 @@ h2 {
     width: 100%;
   }
 
+  .contenedor-juego {
+    gap: 2%;
+  }
+
   h1 {
     text-align: end;
     margin-right: 12%;
@@ -310,7 +314,7 @@ h2 {
 
   .letras {
     grid-template-columns: repeat(6, 1fr); 
-    max-width: 80%; 
+    max-width: 72%; 
     padding: 0;
     margin-bottom: 0%;
   }
