@@ -293,6 +293,7 @@ h2 {
   outline: none;
 }
 
+/*PEQUEÑAS*/
 @media screen and (max-width: 600px) {
   body {
     position: absolute;
@@ -324,13 +325,13 @@ h2 {
   }
 
   .instrucciones {
-    width: 90%; /* más adaptable en móviles */
+    width: 90%; 
     font-size: 1rem;
   }
 
   .ahorcado {
-    margin-left: 12%; /* pegado al borde izquierdo */
-    max-width: 10px; /* más chico en móviles */
+    margin-left: 12%;
+    max-width: 10px;
   }
 
   .filtro-opaco{
@@ -343,7 +344,7 @@ h2 {
   }
 }
 
-/* 📱 MEDIANAS (tablets o pantallas pequeñas en horizontal) */
+/* MEDIANAS  */
 @media screen and (min-width: 601px) and (max-width: 1024px) {
   body {
     position: absolute;
@@ -389,7 +390,7 @@ h2 {
   }
 }
 
-/* 🖥️ GRANDES (notebooks y monitores) */
+/* GRANDES */
 @media screen and (min-width: 1025px) {
   body {
     position: absolute;
@@ -426,7 +427,7 @@ h2 {
   }
 
   .letras {
-    grid-template-columns: repeat(8, 1fr); /* letras más distribuidas */
+    grid-template-columns: repeat(8, 1fr); 
     max-width: 78%;
     padding: 0 30px;
   }
