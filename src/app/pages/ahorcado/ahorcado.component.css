@@ -319,7 +319,7 @@ h2 {
 
   h1 {
     text-align: end;
-    margin-right: 12%;
+    margin-right: 8%;
     margin-bottom: 0%;
     margin-top: 3%;
     font-size: 2rem;
@@ -327,8 +327,8 @@ h2 {
 
   .tiempo {
     position: absolute;
-    top: 15%;
-    right: 15%;
+    top: 17%;
+    right: 10%;
     color: white;
     padding: 10px;
     border-radius: 10px;
@@ -337,8 +337,8 @@ h2 {
   
   .puntaje{
     position: absolute;
-    top: 18%;
-    right: 15%;
+    top: 20%;
+    right: 10%;
     color: white;
     padding: 10px;
     border-radius: 10px;
