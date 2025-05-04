@@ -1,179 +1,438 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("../../../../public/juegos.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: sans-serif;
+  min-height: 100vh;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor general */
+.filtro-opaco {
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #9b59b6, 0 0 30px #9b59b6, 0 0 45px #9b59b6;
+  width: 90%;
+  overflow: auto;
+  max-width: 100%;
+  color: white;
+}
+
 h1 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 2.5rem;
-    color: #333;
-  }
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: #ffffff;
+}
   
-  h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.instrucciones{
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin: 0 auto;
+  width: 50%;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.contenedor-juego {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px; 
+  margin-top: 30px;
+}
+
+.palabra {
+  margin-right: 20%;
+  margin-top: 210px;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.8px;
+}
+
+.letras {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); 
+  gap: 10px;
+  max-width: 600px;
+  margin: 30px auto;
+  justify-items: center;
+}
+
+.letras button {
+  padding: 8px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.letras button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.letras button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.estado-juego {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+
+/*DIBUJO DE AHORCADO*/
+.ahorcado {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.poste {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  width: 10px;
+  height: 300px;
+  background-color: #ffffff;
+}
+
+.cuerda {
+  position: absolute;
+  top: 0;
+  left: 55px;
+  width: 100px;
+  height: 10px;
+  background-color: #ffffff;
+}
+
+.cabeza {
+  position: absolute;
+  top: 10px;
+  left: 120px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 5px solid rgb(200, 27, 253);
+}
+
+.torso {
+  position: absolute;
+  top: 50px;
+  left: 137px;
+  width: 5px;
+  height: 70px;
+  background-color: rgb(200, 27, 253);
+}
+
+.brazo-izquierdo {
+  position: absolute;
+  top: 60px;
+  left: 137px;
+  width: 40px;
+  height: 5px;
+  background-color: rgb(200, 27, 253);
+  transform: rotate(-30deg);
+  transform-origin: left center;
+}
+
+.brazo-derecho {
+  position: absolute;
+  top: 60px;
+  left: 102px;
+  width: 40px;
+  height: 5px;
+  background-color: rgb(200, 27, 253);
+  transform: rotate(30deg);
+  transform-origin: right center;
+}
+
+.pierna-izquierda {
+  position: absolute;
+  top: 120px;
+  left: 137px;
+  width: 40px;
+  height: 5px;
+  background-color: rgb(200, 27, 253);
+  transform: rotate(30deg);
+  transform-origin: left center;
+}
+
+.pierna-derecha {
+  position: absolute;
+  top: 120px;
+  left: 102px;
+  width: 40px;
+  height: 5px;
+  background-color: rgb(200, 27, 253);
+  transform: rotate(-30deg);
+  transform-origin: right center;
+}
+
+/*SWAL*/
+.custom-swal-popup {
+  background-color: #1e1e2f !important;
+  color: #f8f8f2 !important;
+  border-radius: 1rem;
+}
+
+.custom-swal-button {
+  background-color: rgb(200, 27, 253) !important;
+  color: white !important;
+  border: none;
+}
+
+.custom-swal-icon {
+  color: orange !important;
+}
+
+
+/*BOTON DE ABECEDARIO*/
+.pushable {
+  position: relative;
+  background: transparent;
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+  outline-offset: 4px;
+  outline-color: deeppink;
+  transition: filter 250ms;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  max-width: 100%;
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: hsl(226, 25%, 69%);
+  border-radius: 8px;
+  filter: blur(2px);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    hsl(248, 39%, 39%) 0%,
+    hsl(248, 39%, 49%) 8%,
+    hsl(248, 39%, 39%) 92%,
+    hsl(248, 39%, 29%) 100%
+  );
+}
+
+.front {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  background: hsl(248, 53%, 58%);
+  padding: 4px 8px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.75rem;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.pushable:hover {
+  filter: brightness(110%);
+}
+
+.pushable:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.pushable:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    position: absolute;
+    width: 100%;
   }
-  
-  .instrucciones{
-    background-color: #f0f0f0;
-    padding: 20px;
-    margin: 0 auto;
-    width: 50%;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    line-height: 1.6;
+
+  h1 {
+    text-align: end;
+    margin-right: 12%;
+    margin-bottom: 0%;
+    margin-top: 3%;
+    font-size: 2rem;
+  }
+
+  .letras {
+    grid-template-columns: repeat(6, 1fr); 
+    max-width: 80%; 
+    padding: 0 10px;
+    margin-bottom: 0%;
+  }
+
+  .palabra {
+    padding-top: 50%;
+    padding-right: 16%;
+    margin: 5%; 
+    font-size: 1.5rem; 
+    white-space: nowrap;     
     text-align: center;
+  }
+
+  .instrucciones {
+    width: 90%; /* más adaptable en móviles */
+    font-size: 1rem;
+  }
+
+  .ahorcado {
+    margin-left: 12%; /* pegado al borde izquierdo */
+    max-width: 10px; /* más chico en móviles */
+  }
+
+  .filtro-opaco{
+    margin: 0;
+    padding: 0;
   }
 
   .contenedor-juego {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px; 
-    margin-top: 30px;
+    gap: 5%;
   }
-  
-  .palabra {
-    margin-right: 20%;
-    text-align: center;
-    font-size: 2rem;
-    letter-spacing: 8px;
-  }
-  
-  .letras {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr); 
-    gap: 10px;
-    max-width: 600px;
-    margin: 30px auto;
-    justify-items: center;
-  }
-  
-  .letras button {
-    padding: 10px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .letras button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .letras button:hover:not(:disabled) {
-    background-color: #45a049;
-  }
-  
-  .estado-juego {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 30px;
+}
+
+/* 📱 MEDIANAS (tablets o pantallas pequeñas en horizontal) */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  body {
+    position: absolute;
+    width: 100%;
   }
 
-  /*DIBUJO DE AHORCADO*/
+  h1 {
+    text-align: end;
+    margin-right: 15%;
+    margin-bottom: 0%;
+    margin-top: 1%;
+  }
+
+  .filtro-opaco {
+    width: 75%;
+    margin: 0 auto;
+  }
+
   .ahorcado {
-    position: relative;
-    width: 200px;
-    height: 300px;
-    margin-left: 20%;
-  }
-  
-  .poste {
-    position: absolute;
-    bottom: 0;
-    left: 50px;
-    width: 10px;
-    height: 300px;
-    background-color: #333;
-  }
-  
-  .cuerda {
-    position: absolute;
-    top: 0;
-    left: 55px;
-    width: 100px;
-    height: 10px;
-    background-color: #333;
-  }
-  
-  .cabeza {
-    position: absolute;
-    top: 10px;
-    left: 120px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 5px solid #333;
-  }
-  
-  .torso {
-    position: absolute;
-    top: 50px;
-    left: 137px;
-    width: 5px;
-    height: 70px;
-    background-color: #333;
-  }
-  
-  .brazo-izquierdo {
-    position: absolute;
-    top: 60px;
-    left: 137px;
-    width: 40px;
-    height: 5px;
-    background-color: #333;
-    transform: rotate(-30deg);
-    transform-origin: left center;
-  }
-  
-  .brazo-derecho {
-    position: absolute;
-    top: 60px;
-    left: 102px;
-    width: 40px;
-    height: 5px;
-    background-color: #333;
-    transform: rotate(30deg);
-    transform-origin: right center;
-  }
-  
-  .pierna-izquierda {
-    position: absolute;
-    top: 120px;
-    left: 137px;
-    width: 40px;
-    height: 5px;
-    background-color: #333;
-    transform: rotate(30deg);
-    transform-origin: left center;
-  }
-  
-  .pierna-derecha {
-    position: absolute;
-    top: 120px;
-    left: 102px;
-    width: 40px;
-    height: 5px;
-    background-color: #333;
-    transform: rotate(-30deg);
-    transform-origin: right center;
+    margin-left: 18%;
+    max-width: 40px;
   }
 
-  .custom-swal-popup {
-    background-color: #1e1e2f !important;
-    color: #f8f8f2 !important;
-    border-radius: 1rem;
+  .palabra {
+    margin: 0;
+    padding-right: 25%;
+    padding-top: 30%;
+    font-size: 1.6rem;
+    white-space: nowrap;
+    text-align: center;
+    
   }
-  
-  .custom-swal-button {
-    background-color: rgb(200, 27, 253) !important;
-    color: white !important;
-    border: none;
+
+  .letras {
+    grid-template-columns: repeat(7, 1fr);
+    max-width: 75%;
+    padding: 0 20px;
   }
-  
-  .custom-swal-icon {
-    color: orange !important;
+
+  .instrucciones {
+    width: 80%;
+    font-size: 1.1rem;
   }
-  
+}
+
+/* 🖥️ GRANDES (notebooks y monitores) */
+@media screen and (min-width: 1025px) {
+  body {
+    position: absolute;
+    width: 100%;
+  }
+
+  .filtro-opaco {
+    width: 60%;
+    height: 5%;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: end;
+    margin-right: 15%;
+    margin-bottom: 0%;
+    margin-top: 3%;
+  }
+
+  .ahorcado {
+    margin-left: 22%;
+    margin-top: 0;
+    width: 5%;
+  }
+
+  .palabra {
+    margin: 0;
+    padding-right: 25%;
+    padding-top: 30%;
+    font-size: 2rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .letras {
+    grid-template-columns: repeat(8, 1fr); /* letras más distribuidas */
+    max-width: 78%;
+    padding: 0 30px;
+  }
+
+  .instrucciones {
+    width: 70%;
+    font-size: 1.2rem;
+  }
+}

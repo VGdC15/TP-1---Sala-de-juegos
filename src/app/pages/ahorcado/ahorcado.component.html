@@ -1,63 +1,68 @@
-<h1>Juego del Ahorcado</h1>
+<body>
+  <div class="filtro-opaco">
+    <h1>Ahorcado</h1>
 
-<div class="contenedor-juego">
-  <!-- DIBUJO DE AHORCADO-->
-  <div class="ahorcado">
-    <div class="poste"></div>
-    <div class="cuerda"></div>
-  
-    @if (errores() > 0) {
-      <div class="cabeza"></div>
-    }
-    @if (errores() > 1) {
-      <div class="torso"></div>
-    }
-    @if (errores() > 2) {
-      <div class="brazo-izquierdo"></div>
-    }
-    @if (errores() > 3) {
-      <div class="brazo-derecho"></div>
-    }
-    @if (errores() > 4) {
-      <div class="pierna-izquierda"></div>
-    }
-    @if (errores() > 5) {
-      <div class="pierna-derecha"></div>
-    }
-  </div>
-  
-  <div class="palabra">
-    @for (letra of palabraSecreta().split(''); track letra) {
-      <span>
-        @if (letrasAdivinadas().has(letra)) {
-          {{ letra }}
-        } @else {
-          _
+    <div class="contenedor-juego">
+      <!-- DIBUJO DE AHORCADO-->
+      <div class="ahorcado">
+        <div class="poste"></div>
+        <div class="cuerda"></div>
+      
+        @if (errores() > 0) {
+          <div class="cabeza"></div>
         }
-      </span>
-    }
-  </div>
+        @if (errores() > 1) {
+          <div class="torso"></div>
+        }
+        @if (errores() > 2) {
+          <div class="brazo-izquierdo"></div>
+        }
+        @if (errores() > 3) {
+          <div class="brazo-derecho"></div>
+        }
+        @if (errores() > 4) {
+          <div class="pierna-izquierda"></div>
+        }
+        @if (errores() > 5) {
+          <div class="pierna-derecha"></div>
+        }
+      </div>
+      
+      <div class="palabra">
+        @for (letra of palabraSecreta().split(''); track letra) {
+          <span>
+            @if (letrasAdivinadas().has(letra)) {
+              {{ letra }}
+            } @else {
+              _
+            }
+          </span>
+        }
+      </div>
 
-</div>
+    </div>
 
-
-  <!-- BOTONES DE LETRAS-->
-  <div class="letras">
-    @for (letra of abecedario; track letra) {
-      <button 
-        (click)="seleccionarLetra(letra)"
-        [disabled]="letrasAdivinadas().has(letra) || letrasErradas().has(letra)"
-      >
-        {{ letra }}
-      </button>
-    }
+    <!-- BOTONES DE LETRAS-->
+    <div class="letras">
+      @for (letra of abecedario; track letra) {
+        <button 
+          class="pushable"
+          (click)="seleccionarLetra(letra)"
+          [disabled]="letrasAdivinadas().has(letra) || letrasErradas().has(letra)"
+        >
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front"> {{ letra }} </span>
+        </button>
+      }
+    </div>
+          
+    <div class="estado-juego">
+      @if (estadoJuego() === 'ganado') {
+        <p>¡Ganaste! 🎉</p>
+      } @else if (estadoJuego() === 'perdido') {
+        <p>¡Perdiste! 😭</p>
+      }
+    </div>
   </div>
-  
-  <div class="estado-juego">
-    @if (estadoJuego() === 'ganado') {
-      <p>¡Ganaste! 🎉</p>
-    } @else if (estadoJuego() === 'perdido') {
-      <p>¡Perdiste! 😭</p>
-    }
-  </div>
-  
+</body> 

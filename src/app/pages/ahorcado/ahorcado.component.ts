@@ -35,7 +35,7 @@ export class AhorcadoComponent {
         <p style="text-align:center; color:#f8f8f2">
         - Tenés que adivinar la palabra oculta letra por letra.<br>
         - Cada error suma una parte del dibujo del ahorcado.<br>
-        - ¡Pensá bien cada letra y mucha suerte!
+        ¡Pensá bien cada letra y mucha suerte!
         </p>
       `,
       icon: 'info',
