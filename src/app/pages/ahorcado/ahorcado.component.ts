@@ -38,9 +38,10 @@ export class AhorcadoComponent {
       title: '¿Cómo se juega?',
       html: `
         <p style="text-align:center; color:#f8f8f2">
-        - Tenés que adivinar la palabra oculta letra por letra.<br>
-        - Cada error suma una parte del dibujo del ahorcado.<br>
-        ¡Pensá bien cada letra y mucha suerte!
+          - Tenés que adivinar la palabra oculta letra por letra.<br>
+          - Cada error suma una parte del dibujo del ahorcado.<br>
+          - Cuanto más rápido respondas,<br>¡más puntaje sumás!<br>
+          ¡Pensá bien cada letra y mucha suerte!
         </p>
       `,
       icon: 'info',
@@ -88,23 +89,66 @@ export class AhorcadoComponent {
   }
 
   guardarResultado() {
-    const mensaje =
-      this.estadoJuego() === 'ganado'
-        ? `<strong>¡Ganaste!</strong><br><br>Puntaje: ${this.puntaje()}<br>Tiempo: ${this.tiempo()}`
-        : `<strong>Perdiste.</strong><br><br>La palabra era: ${this.palabraSecreta()}`;
-  
-    Swal.fire({
-      title: 'Resultado',
-      html: `<div style="text-align:center; font-size: 16px;">${mensaje}</div>`,
-      icon: this.estadoJuego() === 'ganado' ? 'success' : 'error',
-      confirmButtonText: 'Aceptar',
-      background: '#1e1e2f',
-      color: '#f8f8f2',
-      confirmButtonColor: 'rgb(200, 27, 253)',
-      iconColor: this.estadoJuego() === 'ganado' ? 'limegreen' : 'crimson',
-      width: '420px'
-    });
+    if (this.estadoJuego() === 'ganado') {
+      Swal.fire({
+        title: '¡Ganaste!',
+        html: `<div style="text-align:center; font-size: 16px;">
+                 Puntaje: ${this.puntaje()}<br>
+                 Tiempo: ${this.tiempo()} segundos
+               </div>`,
+        icon: 'success',
+        confirmButtonText: 'Seguir jugando',
+        background: '#1e1e2f',
+        color: '#f8f8f2',
+        confirmButtonColor: 'rgb(27, 253, 130)',
+        iconColor: 'limegreen',
+        width: '420px'
+      }).then(result => {
+        if (result.isConfirmed) {
+          this.reiniciarJuego(true); // continuar jugando
+        } 
+      });
+    } else {
+      Swal.fire({
+        title: 'Perdiste',
+        html: `<div style="text-align:center; font-size: 16px;">
+                 La palabra era: <strong>${this.palabraSecreta()}</strong><br>
+                 Puntaje: ${this.puntaje()}<br>
+                 Tiempo: ${this.tiempo()} segundos
+               </div>`,
+        icon: 'error',
+        confirmButtonText: 'Volver a jugar',
+        background: '#1e1e2f',
+        color: '#f8f8f2',
+        confirmButtonColor: 'rgb(200, 27, 253)',
+        iconColor: 'crimson',
+        width: '420px'
+      }).then(() => {
+        this.reiniciarJuego(false); // siempre reinicia completo al perder
+      });
+    }
   }
+  
+  
+  reiniciarJuego(continuar: boolean) {
+    this.palabraSecreta.set(this.elegirPalabraRandom());
+    this.letrasAdivinadas.set(new Set());
+    this.letrasErradas.set(new Set());
+    this.errores.set(0);
+    this.estadoJuego.set('jugando');
+  
+    if (!continuar) {
+      // Reiniciar puntaje y tiempo
+      this.puntaje.set(0);
+      this.tiempo.set(0);
+    }
+  
+    clearInterval(this.intervalo);
+    this.intervalo = setInterval(() => {
+      this.tiempo.update(t => t + 1);
+    }, 1000);
+  }
+  
   
 
   elegirPalabraRandom() {
