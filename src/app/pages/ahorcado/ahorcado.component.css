@@ -39,16 +39,6 @@ h2 {
   margin-bottom: 10px;
 }
 
-.instrucciones{
-  background-color: #f0f0f0;
-  padding: 20px;
-  margin: 0 auto;
-  width: 50%;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  text-align: center;
-}
 
 .contenedor-juego {
   display: flex;

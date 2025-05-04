@@ -1,34 +1,40 @@
-<div class="contenedor">
-    <h1>Mayor o Menor</h1>
-
-    <p>Vidas:
-      <span>{{ vidas() >= 1 ? '❤️' : '' }}</span>
-      <span>{{ vidas() >= 2 ? '❤️' : '' }}</span>
-      <span>{{ vidas() >= 3 ? '❤️' : '' }}</span>
-    </p>
-    
+<body>
+  <div class="contenedor">
+      <h1>Mayor o Menor</h1>
+      <p>Vidas:
+        <span>{{ vidas() >= 1 ? '❤️' : '' }}</span>
+        <span>{{ vidas() >= 2 ? '❤️' : '' }}</span>
+        <span>{{ vidas() >= 3 ? '❤️' : '' }}</span>
+      </p>
       
-  
-    <div [hidden]="!imagen()">
-      <img [src]="imagen()" alt="Carta actual">
-    </div>
-  
-    <p>Puntaje: {{ puntaje() }}</p>
-  
-    <div class="botones" [hidden]="vidas() <= 0">
-      <button (click)="adivinar(true)">Mayor</button>
-      <button (click)="adivinar(true, true)">Igual</button>
-      <button (click)="adivinar(false)">Menor</button>
-    </div>
-  
-    <p>{{ resultado() }}</p>
-
-    <div [hidden]="vidas() !== 0" class="fin-juego">
-      <h2>PERDISTE 😢</h2>
-      <p>Puntaje final: {{ puntaje() }}</p>
-      <button (click)="reiniciarJuego()">Volver a jugar</button>
-    </div>
+      <div [hidden]="!imagen()">
+        <img [src]="imagen()" alt="Carta actual">
+      </div>
     
-  </div>
-  
+      <p>Puntaje: {{ puntaje() }}</p>
+    
+      <div class="botones" [hidden]="vidas() <= 0">
+        <button class="pushable" (click)="adivinar(true)">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">Mayor</span>
+        </button>
+      
+        <button class="pushable" (click)="adivinar(true, true)">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">Igual</span>
+        </button>
+      
+        <button class="pushable" (click)="adivinar(false)">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">Menor</span>
+        </button>
+      </div>
+    
+      <p>{{ resultado() }}</p>
+      
+    </div>
+</body> 
 
