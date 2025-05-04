@@ -327,7 +327,7 @@ h2 {
 
   .tiempo {
     position: absolute;
-    top: 10%;
+    top: 15%;
     right: 15%;
     color: white;
     padding: 10px;
@@ -337,7 +337,7 @@ h2 {
   
   .puntaje{
     position: absolute;
-    top: 14%;
+    top: 18%;
     right: 15%;
     color: white;
     padding: 10px;
