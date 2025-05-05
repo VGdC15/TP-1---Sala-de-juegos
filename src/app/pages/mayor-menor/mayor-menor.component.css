@@ -175,12 +175,28 @@ p {
 
 
 .fin-juego {
-text-align: center;
-margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .fin-juego h2 {
-color: red;
+    color: red;
+}
+
+/* Media query para pantallas medianas (768px o más) */
+@media (min-width: 768px) {
+    .contenedor {
+        width: 45%; 
+        margin: 5%; 
+    }
+}
+
+/* Media query para pantallas grandes (1024px o más) */
+@media (min-width: 1024px) {
+    .contenedor {
+        width: 30%; 
+        margin: 3%; 
+    }
 }
   
   
