@@ -29,7 +29,7 @@ export class ChatComponent {
         const { data: usuarios, error: errorUsuarios } = await this.supabase.supabase
           .from('usuarios')
           .select('id, nombre')
-          .eq('uuid', uuid) 
+          .eq('id', uuid) 
           .single();
   
         if (usuarios) {
@@ -70,11 +70,11 @@ export class ChatComponent {
     const mensaje: Mensaje = {
       mensaje: this.nuevoMensaje,
       created_at: new Date(),
-      usuarios: [{
-        id: this.usuarioActualId,
-        nombre: this.usuarioActualNombre,
-        created_at: new Date()
-      }]
+      // usuarios: [{
+      //   id: this.usuarioActualId,
+      //   nombre: this.usuarioActualNombre,
+      //   // created_at: new Date()
+      // }]
     };
 
     this.supabase.crear(mensaje, this.usuarioActualId).then(() => {

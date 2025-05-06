@@ -49,7 +49,17 @@ export class AuthService {
     }
 
     this.usuario.set(data.user);
+    this.crearUsuarioDB(data.user!.id, email, "Agus");
+
     return data.user;
+  }
+
+  private async crearUsuarioDB(uid: string, email: string, nombre:string) {
+    const { data, error } = await this.supabase.from("usuarios").insert({
+      id: uid,
+      nombre: nombre,
+      email: email
+    });
   }
 
 }
