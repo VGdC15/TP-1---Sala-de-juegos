@@ -51,6 +51,7 @@ export class RegistroComponent implements OnInit{
     const {email, nombre, apellido, edad, password} = this.formulario.value;
 
     const usuario = new Usuario(
+
       email,
       nombre,
       apellido,
