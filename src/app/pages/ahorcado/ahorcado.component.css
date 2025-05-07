@@ -311,7 +311,7 @@ h2 {
     text-align: end;
     margin-right: 8%;
     margin-bottom: 0%;
-    margin-top: 3%;
+    margin-top: 4%;
     font-size: 2rem;
   }
 
@@ -383,12 +383,12 @@ h2 {
     text-align: end;
     margin-right: 15%;
     margin-bottom: 0%;
-    margin-top: 1%;
+    margin-top: 2%;
   }
 
   .tiempo {
     position: absolute;
-    top: 13%;
+    top: 19%;
     right: 26%;
     color: white;
     padding: 10px;
@@ -398,7 +398,7 @@ h2 {
   
   .puntaje{
     position: absolute;
-    top: 16%;
+    top: 22%;
     right: 26%;
     color: white;
     padding: 10px;
@@ -457,12 +457,12 @@ h2 {
     text-align: end;
     margin-right: 15%;
     margin-bottom: 0%;
-    margin-top: 3%;
+    margin-top: 4%;
   }
 
   .tiempo {
     position: absolute;
-    top: 14%;
+    top: 22%;
     right: 29%;
     color: white;
     padding: 10px;
@@ -472,7 +472,7 @@ h2 {
   
   .puntaje{
     position: absolute;
-    top: 17%;
+    top: 25%;
     right: 29%;
     color: white;
     padding: 10px;

@@ -26,11 +26,6 @@ export class SupabaseService {
   }
   
 
-  // async crear(mensaje: Mensaje, id_usuario: number){
-  //   await this.supabase.from('chat').insert({mensaje: mensaje, id_usuario: id_usuario});
-    
-  // }
-
   async traer() {
     const { data } = await this.supabase
       .from("chat")
@@ -38,7 +33,5 @@ export class SupabaseService {
     
     return data as Mensaje[];
   }
-  
-
 
 }

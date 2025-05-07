@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, ɵsetAllowDuplicateNgModuleIdsForTest } from '@angular/core';
+import { Injectable, signal, computed} from '@angular/core';
 import { SupabaseClient, User } from '@supabase/supabase-js';
 import { createClient } from '@supabase/supabase-js';
 
