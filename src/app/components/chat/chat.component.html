@@ -1,14 +1,16 @@
-<div id="messages-container">
-    @for (m of chat(); track m.id){
-        <div>
-            <p>{{ m.usuarios?.[0]?.nombre }}</p>
-            <p>{{ m.created_at }}</p>
-            <p>{{ m.mensaje }}</p>
-        </div>
-    }
-</div>
+<div class="chat-container">
+    <div id="messages-container">
+        @for (m of chat(); track m.id){
+            <div class="filtro-opaco mensaje">
+                <p class="nombre">{{ m.usuarios?.[0]?.nombre }}</p>
+                <p class="fecha">{{ m.created_at }}</p>
+                <p class="contenido">{{ m.mensaje }}</p>
+            </div>
+        }
+    </div>
 
-<div>
-    <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribí tu mensaje" />
-    <button (click)="enviarMensaje()">Enviar</button>
+    <div class="input-envio">
+        <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribí tu mensaje" />
+        <button (click)="enviarMensaje()">Enviar</button>
+    </div>
 </div>

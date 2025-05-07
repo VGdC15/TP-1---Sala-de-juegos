@@ -1,0 +1,90 @@
+.chat-container {
+    background-image: url('../../../../public/juegos.jpg'); 
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    position: relative;
+}
+
+#messages-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/* Estilo del contenedor de cada mensaje */
+.filtro-opaco.mensaje {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(200, 27, 253, 0.4);
+    color: #fff;
+}
+
+/* Nombre, fecha y mensaje */
+.nombre {
+    font-weight: bold;
+    color: rgb(200, 27, 253);
+}
+
+.fecha {
+    font-size: 0.75rem;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+.contenido {
+    font-size: 1rem;
+    color: #fff;
+}
+
+/* Input y botón */
+.input-envio {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.input-envio input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #faf9f9;
+    color: rgb(200, 27, 253);
+    box-shadow: 0 0 5px rgba(200, 27, 253, 0.5) inset;
+}
+
+.input-envio button {
+    background-color: rgb(2, 2, 2);
+    border: 2px solid rgb(200, 27, 253);
+    color: rgb(200, 27, 253);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 2px rgb(200, 27, 253);
+}
+
+.input-envio button:hover {
+    background-color: rgb(200, 27, 253);
+    color: #ffffff;
+    box-shadow: 0 0 5px rgb(200, 27, 253), 0 0 8px rgb(200, 27, 253);
+}
