@@ -9,6 +9,11 @@ import { PreguntadosComponent } from './pages/preguntados/preguntados.component'
 import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 import { authGuard } from './guards/auth.guard';
 import { JuegosComponent } from './components/juegos/juegos.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
+import { ResultadosAhorcadoComponent } from './components/resultados-ahorcado/resultados-ahorcado.component';
+import { ResultadosMayormenorComponent } from './components/resultados-mayormenor/resultados-mayormenor.component';
+import { ResultadosPreguntadosComponent } from './components/resultados-preguntados/resultados-preguntados.component';
+import { ResultadosBatallanavalComponent } from './components/resultados-batallanaval/resultados-batallanaval.component';
 
 export const routes: Routes = [
         { path: "home", component: HomeComponent },
@@ -47,7 +52,19 @@ export const routes: Routes = [
             ),
           canActivate: [authGuard],
         },
-      
+        
+        {
+          path: "resultados",
+          component: ResultadosComponent,
+          canActivate: [authGuard],
+          children: [
+            { path: "ahorcado", component: ResultadosAhorcadoComponent },
+            { path: "mayormenor", component: ResultadosMayormenorComponent },
+            { path: "preguntados", component: ResultadosPreguntadosComponent },
+            { path: "batallanaval", component: ResultadosBatallanavalComponent }
+          ]
+        },
+
         { path: "", redirectTo: "home", pathMatch: "full" },
         { path: "**", redirectTo: "/home" },
       ];
