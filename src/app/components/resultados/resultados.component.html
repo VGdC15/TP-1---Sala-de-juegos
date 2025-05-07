@@ -1,1 +1,29 @@
-<p>resultados works!</p>
+<div class="resultados-container">
+    <div class="overlay"></div>
+    <div class="resultados-card">
+      <h1 class="titulo-neon">Sala de Puntajes</h1>
+  
+      <a class="card" [routerLink]="'resultados-ahorcado'">
+        <img src="assets/juegos/juego1.jpg" alt="Ahorcado" />
+        <h4>Puntaje Ahorcado</h4>
+      </a>
+  
+      <a class="card" [routerLink]="'resultados-mayormenor'">
+        <img src="assets/juegos/juego2.jpg" alt="Mayor & Menor" />
+        <h4>Puntaje Mayor & Menor</h4>
+      </a>
+  
+      <a class="card" [routerLink]="'resultados-preguntados'">
+        <img src="assets/juegos/juego3.jpg" alt="Preguntados" />
+        <h4>Puntaje Preguntados</h4>
+      </a>
+  
+      <a class="card" [routerLink]="'resultados-batallanaval'">
+        <img src="assets/juegos/juego3.jpg" alt="juego-propio" />
+        <h4>Puntaje Batalla Naval</h4>
+      </a>
+    </div>
+  </div>
+  
+  <router-outlet />
+  
