@@ -58,10 +58,10 @@ export const routes: Routes = [
           component: ResultadosComponent,
           canActivate: [authGuard],
           children: [
-            { path: "ahorcado", component: ResultadosAhorcadoComponent },
-            { path: "mayormenor", component: ResultadosMayormenorComponent },
-            { path: "preguntados", component: ResultadosPreguntadosComponent },
-            { path: "batallanaval", component: ResultadosBatallanavalComponent }
+            { path: "resultados-ahorcado", component: ResultadosAhorcadoComponent },
+            { path: "resultados-mayormenor", component: ResultadosMayormenorComponent },
+            { path: "resultados-preguntados", component: ResultadosPreguntadosComponent },
+            { path: "resultados-batallanaval", component: ResultadosBatallanavalComponent }
           ]
         },
 
