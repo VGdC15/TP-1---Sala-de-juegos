@@ -60,7 +60,7 @@
 }
   
   
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="number"] {
     margin-bottom: 2%;
     width: 100%;
     padding: 8px;

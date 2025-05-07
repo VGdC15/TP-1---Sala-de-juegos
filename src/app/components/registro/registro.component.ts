@@ -33,7 +33,7 @@ export class RegistroComponent implements OnInit{
 
   //Forms
   formulario?: FormGroup;
-
+ 
   ngOnInit(){
     this.formulario = new FormGroup({
       email: new FormControl("", {validators: [Validators.minLength(3), Validators.required ]}),

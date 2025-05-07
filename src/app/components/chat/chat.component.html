@@ -1,8 +1,8 @@
 <div id="messages-container">
     @for (m of chat(); track m.id){
         <div>
-            <p>{{ m.created_at }}</p>
             <p>{{ m.usuarios?.[0]?.nombre }}</p>
+            <p>{{ m.created_at }}</p>
             <p>{{ m.mensaje }}</p>
         </div>
     }
@@ -12,7 +12,3 @@
     <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribí tu mensaje" />
     <button (click)="enviarMensaje()">Enviar</button>
 </div>
-  
-
-
-
