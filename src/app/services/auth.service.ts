@@ -1,4 +1,4 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, ɵsetAllowDuplicateNgModuleIdsForTest } from '@angular/core';
 import { SupabaseClient, User } from '@supabase/supabase-js';
 import { createClient } from '@supabase/supabase-js';
 
@@ -38,7 +38,7 @@ export class AuthService {
     this.usuario.set(null);
   }
 
-  async guardarUsuarioAuth(email: string, password: string) {
+  async guardarUsuarioAuth(email: string, password: string, nombre: string, apellido: string, edad: string) {
     const { data, error } = await this.supabase.auth.signUp({
       email,
       password
@@ -49,16 +49,18 @@ export class AuthService {
     }
 
     this.usuario.set(data.user);
-    this.crearUsuarioDB(data.user!.id, email, "Agus");
+    this.crearUsuarioDB(data.user!.id, email, nombre, apellido, edad);
 
     return data.user;
   }
 
-  private async crearUsuarioDB(uid: string, email: string, nombre:string) {
+  private async crearUsuarioDB(uid: string, email: string, nombre:string, apellido:string, edad: string) {
     const { data, error } = await this.supabase.from("usuarios").insert({
       id: uid,
       nombre: nombre,
-      email: email
+      email: email,
+      apellido: apellido,
+      edad: edad
     });
   }
 

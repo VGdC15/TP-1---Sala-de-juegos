@@ -61,10 +61,10 @@ export class RegistroComponent implements OnInit{
     this.errorRegistro = '';
 
     try {
-      const respuesta = await this.auth.guardarUsuarioAuth(email, password);
+      const respuesta = await this.auth.guardarUsuarioAuth(email, password, nombre, apellido, edad);
       this.agregarUsuarioDb(usuario);
       this.borrarForm();
-      this.router.navigate(['/home']);
+      this.router.navigate(['/juegos']);
     } catch (error: any) {
       if (error.message?.includes("User already registered") || error.code === '23505') {
         this.errorRegistro = 'El usuario ya se encuentra registrado.';

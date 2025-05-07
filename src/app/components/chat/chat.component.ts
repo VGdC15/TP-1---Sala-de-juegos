@@ -70,11 +70,6 @@ export class ChatComponent {
     const mensaje: Mensaje = {
       mensaje: this.nuevoMensaje,
       created_at: new Date(),
-      // usuarios: [{
-      //   id: this.usuarioActualId,
-      //   nombre: this.usuarioActualNombre,
-      //   // created_at: new Date()
-      // }]
     };
 
     this.supabase.crear(mensaje, this.usuarioActualId).then(() => {
