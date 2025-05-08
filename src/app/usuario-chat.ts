@@ -1,6 +1,6 @@
 export interface UsuarioChat {
     //id: number;
     id: string;
-    nombre: string;
+    email: string;
     //created_at: Date,
 }

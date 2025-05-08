@@ -22,6 +22,9 @@ export class AuthService {
     //verifica si ya hay sesión
     this.supabase.auth.getUser().then(({ data: { user } }) => {
       this.usuario.set(user);
+      if (user) {
+        sessionStorage.setItem('email', user.email ?? '');
+      }
     });
   }
 
@@ -31,6 +34,7 @@ export class AuthService {
       throw error;
     }
     this.usuario.set(data.user);
+    sessionStorage.setItem('email', data.user?.email ?? '');
   }
 
   async logout() {

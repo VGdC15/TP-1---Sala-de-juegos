@@ -9,6 +9,7 @@ export class SupabaseService {
   supabase: SupabaseClient;
   canal:RealtimeChannel;
 
+
   constructor() {
     this.supabase = createClient(
       "https://hrisasayvkqyawprtuuj.supabase.co", 
@@ -29,9 +30,13 @@ export class SupabaseService {
   async traer() {
     const { data } = await this.supabase
       .from("chat")
-      .select("id, mensaje, created_at, usuarios (id, nombre)");
-    
+      .select("id, mensaje, created_at, usuarios (id, email)");
+    console.log(data);
     return data as Mensaje[];
   }
 
+
 }
+  
+
+
