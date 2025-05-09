@@ -17,12 +17,12 @@
     flex-grow: 1;
     overflow-y: auto;
     padding-right: 10px;
+    padding-bottom: 80px; 
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-left: 5%;
     margin-right: 5%;
-    
 }
 
 .mensaje-propio {
@@ -67,10 +67,15 @@
 .input-envio {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
-    margin-left: 5%;
-    margin-right: 12%;
     align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 5%;
+    background-color: rgba(0, 0, 0, 0.8); 
+    z-index: 10;
+    box-sizing: border-box;
 }
 
 .input-envio input[type="text"] {
