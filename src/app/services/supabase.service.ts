@@ -25,7 +25,6 @@ export class SupabaseService {
       id_usuario: id_usuario
     });
   }
-  
 
   async traer() {
     const { data } = await this.supabase

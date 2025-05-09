@@ -18,14 +18,22 @@ export class AuthService {
       "https://hrisasayvkqyawprtuuj.supabase.co", 
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyaXNhc2F5dmtxeWF3cHJ0dXVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNzYxMTgsImV4cCI6MjA2MDk1MjExOH0.CW47baPNw7YVSBjGB1NbDkhkhtr4JEIQ30mXXjtVTz4"
     );
+    this.supabase.auth.getSession().then(({data}) =>{
+      const sesionUsuario = data.session?.user ?? null;
+      this.usuario.set(sesionUsuario);
+    })
 
-    //verifica si ya hay sesión
-    this.supabase.auth.getUser().then(({ data: { user } }) => {
-      this.usuario.set(user);
-      if (user) {
-        sessionStorage.setItem('email', user.email ?? '');
+    this.supabase.auth.onAuthStateChange(async(event, session) =>{
+      if(session === null){
+        this.usuario.set(null);
+
+      }else {
+        const sesionUsuario = session.user;
+        this.usuario.set(sesionUsuario);
       }
-    });
+    })
+
+
   }
 
   async login(email: string, password: string) {
@@ -34,7 +42,6 @@ export class AuthService {
       throw error;
     }
     this.usuario.set(data.user);
-    sessionStorage.setItem('email', data.user?.email ?? '');
   }
 
   async logout() {

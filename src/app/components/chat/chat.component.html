@@ -2,8 +2,8 @@
 
     <div id="messages-container">
         @for (m of chat(); track m.id){
-            <div class="filtro-opaco mensaje">
-                <p class="nombre">{{ m.usuarios?.[0]?.email || emailUsuario }}</p>
+            <div class="filtro-opaco mensaje" [class.mensaje-propio]="m.usuarios!.email === emailUsuario()">
+                <p class="nombre">{{ m.usuarios!.email}}</p>
                 <p class="fecha">{{ m.created_at }}</p>
                 <p class="contenido">{{ m.mensaje }}</p>
             </div>

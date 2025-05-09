@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -9,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class AhorcadoComponent {
   abecedario = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  auth = inject(AuthService);
 
   palabrasDisponibles = [
     'INCREIBLE', 'PRIMAVERA', 'CASCADA', 'AVENTURA', 'EXPERIENCIA', 'ENIGMA', 'MISTERIO',
@@ -105,7 +107,7 @@ export class AhorcadoComponent {
         width: '420px'
       }).then(result => {
         if (result.isConfirmed) {
-          this.reiniciarJuego(true); // continuar jugando
+          this.reiniciarJuego(true); 
         } 
       });
     } else {
@@ -124,7 +126,7 @@ export class AhorcadoComponent {
         iconColor: 'crimson',
         width: '420px'
       }).then(() => {
-        this.reiniciarJuego(false); // siempre reinicia completo al perder
+        this.reiniciarJuego(false); 
       });
     }
   }

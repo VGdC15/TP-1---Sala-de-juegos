@@ -2,6 +2,7 @@ import { Component, inject, signal, OnDestroy } from '@angular/core';
 import { SupabaseService } from '../../services/supabase.service';
 import { Mensaje } from '../../clase/mensaje';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,18 +13,16 @@ import { FormsModule } from '@angular/forms';
 export class ChatComponent implements OnDestroy {
   supabase = inject(SupabaseService);
   chat = signal<Mensaje[]>([]);
+  auth = inject(AuthService);
 
   nuevoMensaje: string = '';
-  usuarioActualId: string = '';
-  usuarioActualNombre: string = '';
-  emailUsuario: string = ''; 
+  usuarioActualId = signal<string>('');
+  emailUsuario = signal<string>('');
 
   private subscripcion: any; 
 
   constructor() {
-    // Obtener el email desde sessionStorage
-    const email = sessionStorage.getItem('email');
-    this.emailUsuario = email ?? 'No identificado';
+    const usuario = this.auth.usuario(); 
 
     // Obtener usuario logueado
     this.supabase.supabase.auth.getUser().then(async ({ data, error }) => {
@@ -37,8 +36,26 @@ export class ChatComponent implements OnDestroy {
           .single();
 
         if (usuarios) {
-          this.usuarioActualId = usuarios.id;
-          this.usuarioActualNombre = usuarios.email ?? 'Sin nombre';
+          this.usuarioActualId.set(usuarios.id);
+          this.emailUsuario.set(usuario?.email ?? 'Sin email');
+
+          // Si hay una suscripción activa, la desconectamos antes de volver a suscribirnos
+          if (this.subscripcion) {
+            this.subscripcion.unsubscribe();
+          }
+
+          // Escuchar nuevos mensajes
+          this.subscripcion = this.supabase.canal.on("postgres_changes", {
+            event: "INSERT",
+            schema: 'public',
+            table: 'chat'
+          }, (payload) => {
+            const array: Mensaje[] = this.chat();
+            array.push(payload.new as Mensaje);
+            this.chat.set([...array]);
+          });
+
+          this.subscripcion.subscribe();
         } else {
           console.error("No se encontró el usuario en la tabla usuarios", errorUsuarios);
         }
@@ -53,19 +70,6 @@ export class ChatComponent implements OnDestroy {
         this.chat.set([...response]);
       }
     });
-
-    // Escuchar nuevos mensajes
-    this.subscripcion = this.supabase.canal.on("postgres_changes", {
-      event: "INSERT",
-      schema: 'public',
-      table: 'chat'
-    }, (payload) => {
-      const array: Mensaje[] = this.chat();
-      array.push(payload.new as Mensaje);
-      this.chat.set([...array]);
-    });
-
-    this.subscripcion.subscribe();
   }
 
   enviarMensaje() {
@@ -74,10 +78,10 @@ export class ChatComponent implements OnDestroy {
     const mensaje: Mensaje = {
       mensaje: this.nuevoMensaje,
       created_at: new Date(),
-      usuarios: [{ id: this.usuarioActualId, email: this.emailUsuario }], 
+      usuarios: { id: this.usuarioActualId(), email: this.emailUsuario() },
     };
   
-    this.supabase.crear(mensaje, this.usuarioActualId).then(() => {
+    this.supabase.crear(mensaje, this.usuarioActualId()).then(() => {
       this.nuevoMensaje = '';
       this.supabase.traer().then((response) => {
 
@@ -90,6 +94,8 @@ export class ChatComponent implements OnDestroy {
 
   //Cierra suscripción
   ngOnDestroy(): void {
-    this.supabase.canal.unsubscribe();
+    if (this.subscripcion) {
+      this.subscripcion.unsubscribe();  
+    }
   }
 }
