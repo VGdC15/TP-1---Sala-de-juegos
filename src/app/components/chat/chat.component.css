@@ -20,8 +20,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-left: 12%;
-    margin-right: 12%;
+    margin-left: 7%;
+    margin-right: 7%;
     
 }
 
@@ -70,6 +70,7 @@
     margin-top: 10px;
     margin-left: 12%;
     margin-right: 12%;
+    align-items: center;
 }
 
 .input-envio input[type="text"] {
@@ -78,7 +79,7 @@
     border: none;
     border-radius: 8px;
     outline: none;
-    font-size: 1rem;
+    font-size: 1.1rem;
     background-color: #faf9f9;
     color: rgb(200, 27, 253);
     box-shadow: 0 0 5px rgba(200, 27, 253, 0.5) inset;
