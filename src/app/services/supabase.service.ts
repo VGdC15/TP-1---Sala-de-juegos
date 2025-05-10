@@ -18,6 +18,7 @@ export class SupabaseService {
     this.canal = this.supabase.channel("table-db-changes");
   }
 
+  // PARA CHAT
   async crear(mensaje: Mensaje, id_usuario: string){
     await this.supabase.from('chat').insert({
       mensaje: mensaje.mensaje,
@@ -34,6 +35,37 @@ export class SupabaseService {
     return data as Mensaje[];
   }
 
+  //PARA PUNTAJES
+  async guardarPuntaje(
+    juego: 'puntajeAhorcado' | 'puntajeMayormenor' | 'puntajePreguntados' | 'puntajeBatallanaval',
+    puntaje: number,
+    email: string,
+    tiempo: string
+  ) {
+    const { error } = await this.supabase.from(juego).insert({
+      puntaje,
+      email,
+      tiempo
+    });
+  
+    if (error) {
+      console.error(`Error al guardar puntaje en ${juego}:`, error);
+    }
+  }
+  
+  async obtenerPuntajes(juego: string) {
+    const { data, error } = await this.supabase
+      .from(juego)
+      .select('*')
+      .order('puntaje', { ascending: false }); //puede ser por 'tiempo' VERRRR
+  
+    if (error) {
+      console.error(`Error al obtener puntajes de ${juego}:`, error);
+      return [];
+    }
+  
+    return data;
+  }
 
 }
   

@@ -4,7 +4,7 @@ import { Mensaje } from '../../clase/mensaje';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
-@Component({
+@Component({ 
   selector: 'app-chat',
   imports: [FormsModule],
   templateUrl: './chat.component.html',

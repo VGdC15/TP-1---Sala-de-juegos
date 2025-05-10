@@ -1,16 +1,18 @@
 import { Component, signal, inject } from '@angular/core';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-ahorcado',
   standalone: true,
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.css'
-})
+}) 
 export class AhorcadoComponent {
   abecedario = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   auth = inject(AuthService);
+  supabase = inject(SupabaseService);
 
   palabrasDisponibles = [
     'INCREIBLE', 'PRIMAVERA', 'CASCADA', 'AVENTURA', 'EXPERIENCIA', 'ENIGMA', 'MISTERIO',
@@ -29,6 +31,7 @@ export class AhorcadoComponent {
   letrasErradas = signal<Set<string>>(new Set());
   errores = signal(0);
   estadoJuego = signal<'jugando' | 'ganado' | 'perdido'>('jugando');
+  puntajeGuardado = false;
 
   intervalo: any;
   puntaje = signal(0);
@@ -113,21 +116,23 @@ export class AhorcadoComponent {
     } else {
       Swal.fire({
         title: 'Perdiste',
-        html: `<div style="text-align:center; font-size: 16px;">
-                 La palabra era: <strong>${this.palabraSecreta()}</strong><br>
-                 Puntaje: ${this.puntaje()}<br>
-                 Tiempo: ${this.tiempo()} segundos
-               </div>`,
+        html: `<div id="guardar-btn" style="text-align:center; font-size: 16px;">
+                La palabra era: <strong>${this.palabraSecreta()}</strong><br>
+                Puntaje: ${this.puntaje()}<br>
+                Tiempo: ${this.tiempo()} segundos<br><br>
+              </div>`,
         icon: 'error',
         confirmButtonText: 'Volver a jugar',
         background: '#1e1e2f',
         color: '#f8f8f2',
         confirmButtonColor: 'rgb(200, 27, 253)',
         iconColor: 'crimson',
-        width: '420px'
+        width: '420px',
       }).then(() => {
-        this.reiniciarJuego(false); 
+        this.guardarPuntaje();
+        this.reiniciarJuego(false);
       });
+      
     }
   }
   
@@ -151,8 +156,34 @@ export class AhorcadoComponent {
     }, 1000);
   }
   
+  guardarPuntaje() {
+    if (this.puntajeGuardado) return;
+    const usuario = this.auth.usuario(); 
   
+    if (!usuario || !usuario.email) {
+      console.error("No hay usuario logueado o falta el email");
+      return;
+    }
+  
+    const puntaje = this.puntaje();
+    const tiempo = this.tiempo().toString();
+    const email = usuario.email; 
+  
+    this.supabase.guardarPuntaje('puntajeAhorcado', puntaje, email, tiempo);
+    this.puntajeGuardado = true;
 
+    Swal.fire({
+      title: '¡Puntaje guardado!',
+      icon: 'success',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonColor: 'rgb(27, 253, 130)',
+      iconColor: 'limegreen',
+      timer: 1500,
+      showConfirmButton: false
+    });
+  }
+  
   elegirPalabraRandom() {
     const indice = Math.floor(Math.random() * this.palabrasDisponibles.length);
     return this.palabrasDisponibles[indice];
