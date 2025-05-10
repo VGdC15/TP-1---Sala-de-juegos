@@ -1,6 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CartasService } from '../../services/cartas.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -11,9 +13,14 @@ import Swal from 'sweetalert2';
 })
 export class MayorMenorComponent implements OnInit {
   private cartasService = inject(CartasService);
+  auth = inject(AuthService);
+  supabase = inject(SupabaseService);
+
+  puntajeGuardado = false;
 
   imagen = signal('');
   puntaje = signal(0);
+  tiempo = signal(0);
   resultado = signal('');
   private previousValue = 0;
   vidas = signal(3);
@@ -96,13 +103,12 @@ export class MayorMenorComponent implements OnInit {
           iconColor: 'orange',
           width: '420px'
         }).then(() => {
+          this.guardarPuntaje();
           this.reiniciarJuego();
         });
       }
     });
   }
-  
-  
 
   valorNumerico(valor: string): number {
     if (!isNaN(Number(valor))) return Number(valor);
@@ -113,6 +119,34 @@ export class MayorMenorComponent implements OnInit {
       case 'KING': return 13;
       default: return 0;
     }
+  }
+
+  guardarPuntaje() {
+    if (this.puntajeGuardado) return;
+
+    const usuario = this.auth.usuario();
+    if (!usuario || !usuario.email) {
+      console.error("No hay usuario logueado o falta el email");
+      return;
+    }
+
+    const puntaje = this.puntaje();
+    const tiempo = '0';
+    const email = usuario.email;
+
+    this.supabase.guardarPuntaje('puntajeMayormenor', puntaje, email, tiempo);
+    this.puntajeGuardado = true;
+
+    Swal.fire({
+      title: '¡Puntaje guardado!',
+      icon: 'success',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonColor: 'rgb(27, 253, 130)',
+      iconColor: 'limegreen',
+      timer: 1500,
+      showConfirmButton: false
+    });
   }
 
   reiniciarJuego() {

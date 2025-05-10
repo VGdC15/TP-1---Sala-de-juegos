@@ -49,7 +49,7 @@ export class SupabaseService {
     });
   
     if (error) {
-      console.error(`Error al guardar puntaje en ${juego}:`, error);
+      console.error(`Error al guardar puntaje en ${juego}:`, error.message || error.details || JSON.stringify(error));
     }
   }
   
