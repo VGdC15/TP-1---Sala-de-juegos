@@ -1,1 +1,27 @@
-<p>preguntados works!</p>
+<!-- CONTENEDOR DE CONFIGURACIÓN DEL JUEGO -->
+<div [hidden]="juegoIniciado()">
+    <h2>Elegí categoría y dificultad</h2>
+  
+    <select [value]="categoriaSeleccionada()" (change)="categoriaSeleccionada.set($any($event.target).value)">
+      <option [value]="null">-- Categoría --</option>
+    </select>
+  
+    <select [value]="dificultadSeleccionada()" (change)="dificultadSeleccionada.set($any($event.target).value)">
+      <option value="easy">Fácil</option>
+      <option value="medium">Media</option>
+      <option value="hard">Difícil</option>
+    </select>
+  
+    <button (click)="iniciarJuego()">Comenzar</button>
+  </div>
+  
+  <!-- CONTENEDOR DEL JUEGO -->
+  <div [hidden]="!juegoIniciado()">
+    <h2 [innerHTML]="preguntaActual()?.question || ''"></h2>
+  
+    <ul #opcionesContainer></ul>
+  
+    <p>Puntaje: {{ puntaje() }}</p>
+    <p>Pregunta {{ indice() + 1 }} de 10</p>
+  </div>
+  
