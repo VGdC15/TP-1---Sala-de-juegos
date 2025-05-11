@@ -87,11 +87,11 @@
 /* Pantallas pequeñas: 1 card por fila */
 @media (max-width: 576px) {
   .card {
-    width: 100%;
+    width: 120%;
     max-width: 300px;
   }
   .juegos-container {
-    padding-top: 140%;
+    padding-top: 150%;
     overflow-y: auto;
   }
 }
