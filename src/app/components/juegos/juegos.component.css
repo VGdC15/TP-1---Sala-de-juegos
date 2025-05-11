@@ -91,13 +91,17 @@
     max-width: 300px;
   }
   .juegos-container {
-    padding-top: 100%; 
+    padding-top: 140%;
     overflow-y: auto;
   }
 }
 
 /* Pantallas medianas: 2x2 */
 @media (min-width: 577px) and (max-width: 991px) {
+  .juegos-container {
+    padding-top: 17%;
+    overflow-y: auto;
+  }
   .card {
     width: calc(50% - 20px);
   }
