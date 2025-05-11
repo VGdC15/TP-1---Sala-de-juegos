@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0; 
   padding: 0;
   background-image: url("../../../../public/juegos.jpg");
   background-size: cover;
@@ -301,6 +301,7 @@ h2 {
   body {
     position: absolute;
     width: 100%;
+    padding-top: 30%;
   }
 
   .contenedor-juego {
@@ -321,6 +322,7 @@ h2 {
     right: 10%;
     color: white;
     padding: 10px;
+    padding-top: 16%;
     border-radius: 10px;
     font-weight: bold;
   }
@@ -331,6 +333,7 @@ h2 {
     right: 10%;
     color: white;
     padding: 10px;
+    padding-top: 18%;
     border-radius: 10px;
     font-weight: bold;
   
@@ -377,18 +380,19 @@ h2 {
   body {
     position: absolute;
     width: 100%;
+    padding-top: 14%;
   }
 
   h1 {
     text-align: end;
     margin-right: 15%;
     margin-bottom: 0%;
-    margin-top: 2%;
+    margin-top: 3%;
   }
 
   .tiempo {
     position: absolute;
-    top: 19%;
+    top: 30%;
     right: 26%;
     color: white;
     padding: 10px;
@@ -398,7 +402,7 @@ h2 {
   
   .puntaje{
     position: absolute;
-    top: 22%;
+    top: 34%;
     right: 26%;
     color: white;
     padding: 10px;
@@ -444,6 +448,8 @@ h2 {
   body {
     position: absolute;
     width: 100%;
+    padding-top: 10%;
+    padding-bottom: 2%;
   }
 
   .filtro-opaco {
@@ -457,12 +463,12 @@ h2 {
     text-align: end;
     margin-right: 15%;
     margin-bottom: 0%;
-    margin-top: 4%;
+    margin-top: 15%;
   }
 
   .tiempo {
     position: absolute;
-    top: 22%;
+    top: 34%;
     right: 29%;
     color: white;
     padding: 10px;
@@ -472,7 +478,7 @@ h2 {
   
   .puntaje{
     position: absolute;
-    top: 25%;
+    top: 38%;
     right: 29%;
     color: white;
     padding: 10px;
