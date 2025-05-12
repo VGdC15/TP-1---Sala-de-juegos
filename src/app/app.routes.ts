@@ -6,7 +6,6 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { AhorcadoComponent } from './pages/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './pages/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './pages/preguntados/preguntados.component';
-import { JuegoPropioComponent } from './pages/juego-propio/juego-propio.component';
 import { authGuard } from './guards/auth.guard';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
@@ -14,6 +13,7 @@ import { ResultadosAhorcadoComponent } from './components/resultados-ahorcado/re
 import { ResultadosMayormenorComponent } from './components/resultados-mayormenor/resultados-mayormenor.component';
 import { ResultadosPreguntadosComponent } from './components/resultados-preguntados/resultados-preguntados.component';
 import { ResultadosBatallanavalComponent } from './components/resultados-batallanaval/resultados-batallanaval.component';
+import { BatallaNavalComponent } from './pages/batalla-naval/batalla-naval.component';
 
 export const routes: Routes = [
         { path: "home", component: HomeComponent },
@@ -30,7 +30,7 @@ export const routes: Routes = [
         { path: "juegos/ahorcado", component: AhorcadoComponent, canActivate: [authGuard] },
         { path: "juegos/mayor-menor", component: MayorMenorComponent, canActivate: [authGuard] },
         { path: "juegos/preguntados", component: PreguntadosComponent, canActivate: [authGuard] },
-        { path: "juegos/juego-propio", component: JuegoPropioComponent, canActivate: [authGuard] },
+        { path: "juegos/batalla-naval", component: BatallaNavalComponent, canActivate: [authGuard] },
       
         { path: "login", component: LoginComponent },
         { path: "registro", component: RegistroComponent },
