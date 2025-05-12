@@ -45,7 +45,7 @@
     
                 <div class="form-group">
                     <label>Edad:</label>
-                    <input type="number" formControlName="edad" />
+                    <input type="number" formControlName="edad" min="5" max="90"/>
                     @if (formulario.get('edad')?.touched && formulario.get('edad')?.errors) {
                     <div class="error-msg">
                         {{ getErrorMensaje('edad', 'required') }}

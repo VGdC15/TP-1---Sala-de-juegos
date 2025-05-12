@@ -39,7 +39,7 @@ export class RegistroComponent implements OnInit{
       email: new FormControl("", {validators: [Validators.minLength(3), Validators.required ]}),
       nombre: new FormControl("", {validators: [Validators.minLength(3), Validators.maxLength(15), Validators.required ]}),
       apellido: new FormControl("", {validators: [Validators.minLength(3), Validators.maxLength(15), Validators.required ]}),
-      edad: new FormControl("", {validators: [Validators.min(4), Validators.maxLength(70), Validators.required ]}),
+      edad: new FormControl("", {validators: [Validators.min(0), Validators.max(70), Validators.required ]}),
       password: new FormControl("", {validators: [Validators.minLength(6), Validators.maxLength(15), Validators.required ]}),
 
     })
