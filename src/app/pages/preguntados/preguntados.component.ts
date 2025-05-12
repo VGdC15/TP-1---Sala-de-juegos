@@ -116,7 +116,22 @@ export class PreguntadosComponent{
 
     } catch (error) {
       console.error('Error al obtener preguntas:', error);
-      Swal.fire('Ocurrió un error al cargar las preguntas', '', 'error');
+      Swal.fire({
+        title: 'Ocurrió un error al cargar las preguntas',
+        html: `
+          <p style="text-align:center; color:#f8f8f2">
+            Por favor, intentá nuevamente.
+          </p>
+        `,
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        background: '#1e1e2f',
+        color: '#f8f8f2',
+        confirmButtonColor: 'rgb(200, 27, 253)',
+        iconColor: 'red',
+        width: '420px'
+      });
+      
     }
   }
 

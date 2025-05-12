@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #fff;
+
     flex-direction: column;
 }
 
@@ -65,8 +65,22 @@ body {
 .preguntados-contenedor p {
     margin-top: 1rem;
     font-size: 1rem;
-    color: white;
+
 }
+
+.puntos-tiempo{
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+    font-weight: 600;
+    color: #9b59b6;
+}
+
+.faltante{
+    font-weight: 600;
+    color: #9b59b6;
+}
+
 
 /*BOTONES*/
 .pushable {
