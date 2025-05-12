@@ -27,6 +27,11 @@ export class PreguntadosComponent{
   categoriaSeleccionada = signal<number | null>(null);
   dificultadSeleccionada = signal<string>('easy');
 
+  timer: any;
+  segundosRestantes = signal(60);
+  tiempoTotalAcumulado = signal(0);
+
+
   @ViewChild('opcionesContainer') opcionesContainer?: ElementRef<HTMLUListElement>;
 
   ngOnInit() {
@@ -116,6 +121,9 @@ export class PreguntadosComponent{
   }
 
   async cargarPregunta() {
+    clearInterval(this.timer);
+    this.segundosRestantes.set(60);
+
     const pregunta = this.preguntas()[this.indice()];
     const opciones = [...pregunta.incorrect_answers, pregunta.correct_answer];
     this.opciones.set(this.mezclar(opciones));
@@ -123,43 +131,25 @@ export class PreguntadosComponent{
 
     await new Promise(resolve => setTimeout(resolve, 0));
     this.renderizarOpciones();
+
+    this.iniciarTemporizador();
   }
 
   responder(opcion: string) {
+    clearInterval(this.timer);
+    const tiempoUsado = 60 - this.segundosRestantes();
+    this.tiempoTotalAcumulado.update(t => t + tiempoUsado);
+  
     const correcta = this.preguntaActual()?.correct_answer;
     if (opcion === correcta) {
       this.puntaje.update(p => p + 100);
     } else {
       this.puntaje.update(p => p - 5);
     }
-
-    if (this.indice() + 1 < this.preguntas().length) {
-      this.indice.update(i => i + 1);
-      this.cargarPregunta();
-    } else {
-      Swal.fire({
-        title: 'Juego terminado',
-        html: `
-          <p style="text-align:center; color:#f8f8f2">
-            Tu puntaje final es: <strong>${this.puntaje()}</strong>
-            Tiempo: <strong>${this.tiempo()}</strong>
-          </p>
-        `,
-        icon: 'success',
-        confirmButtonText: 'Jugar otra vez',
-        background: '#1e1e2f',
-        color: '#f8f8f2',
-        confirmButtonColor: 'rgb(200, 27, 253)',
-        iconColor: 'orange',
-        width: '420px'
-      }).then(() => {
-        this.juegoIniciado.set(false);
-        this.preguntas.set([]);
-        this.preguntaActual.set(null);
-        this.opciones.set([]);
-      });
-    }
+  
+    this.pasarASiguientePregunta();
   }
+  
 
   async renderizarOpciones() {
     const ul = this.opcionesContainer?.nativeElement;
@@ -185,4 +175,55 @@ export class PreguntadosComponent{
   mezclar(array: string[]) {
     return array.sort(() => Math.random() - 0.5);
   }
+
+  iniciarTemporizador() {
+    this.timer = setInterval(() => {
+      const restante = this.segundosRestantes();
+      if (restante > 0) {
+        this.segundosRestantes.set(restante - 1);
+      } else {
+        clearInterval(this.timer);
+        this.tiempoTotalAcumulado.update(t => t + 60); // suma 60 si no respondió
+        this.pasarASiguientePregunta();
+      }
+    }, 1000);
+  }
+
+  pasarASiguientePregunta() {
+    if (this.indice() + 1 < this.preguntas().length) {
+      this.indice.update(i => i + 1);
+      this.cargarPregunta();
+    } else {
+      this.terminarJuego();
+    }
+  }
+
+  terminarJuego() {
+    clearInterval(this.timer);
+    Swal.fire({
+      title: 'Juego terminado',
+      html: `
+        <p style="text-align:center; color:#f8f8f2">
+          Tu puntaje final es: <strong>${this.puntaje()}</strong><br>
+          Tiempo total: <strong>${this.tiempoTotalAcumulado()} segundos</strong>
+        </p>
+      `,
+      icon: 'success',
+      confirmButtonText: 'Jugar otra vez',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonColor: 'rgb(200, 27, 253)',
+      iconColor: 'orange',
+      width: '420px'
+    }).then(() => {
+      this.juegoIniciado.set(false);
+      this.preguntas.set([]);
+      this.preguntaActual.set(null);
+      this.opciones.set([]);
+      this.tiempoTotalAcumulado.set(0);
+    });
+  }
+  
+  
+  
 }
