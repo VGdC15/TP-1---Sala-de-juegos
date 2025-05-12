@@ -1,27 +1,47 @@
-<!-- CONTENEDOR DE CONFIGURACIÓN DEL JUEGO -->
-<div [hidden]="juegoIniciado()">
+  <!-- CONTENEDOR DE CONFIGURACIÓN DEL JUEGO -->
+<body>
+  <div class="preguntados-contenedor" [hidden]="juegoIniciado()">
     <h2>Elegí categoría y dificultad</h2>
-  
-    <select [value]="categoriaSeleccionada()" (change)="categoriaSeleccionada.set($any($event.target).value)">
-      <option [value]="null">-- Categoría --</option>
-    </select>
-  
-    <select [value]="dificultadSeleccionada()" (change)="dificultadSeleccionada.set($any($event.target).value)">
-      <option value="easy">Fácil</option>
-      <option value="medium">Media</option>
-      <option value="hard">Difícil</option>
-    </select>
-  
-    <button (click)="iniciarJuego()">Comenzar</button>
-  </div>
-  
+    <div class="categoria-dificultad">
+
+      <select class="categoria" [value]="categoriaSeleccionada()" (change)="categoriaSeleccionada.set($any($event.target).value)">
+        <option [value]="null">-- Categoría --</option>
+      </select>
+    
+      <select [value]="dificultadSeleccionada()" (change)="dificultadSeleccionada.set($any($event.target).value)">
+        <option value="easy">Fácil</option>
+        <option value="medium">Media</option>
+        <option value="hard">Difícil</option>
+      </select>
+    </div>
+      <button class="pushable" (click)="iniciarJuego()">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front">Comenzar</span>
+      </button>
+    </div>
+    
   <!-- CONTENEDOR DEL JUEGO -->
-  <div [hidden]="!juegoIniciado()">
+  <div class="preguntados-contenedor" [hidden]="!juegoIniciado()">
     <h2 [innerHTML]="preguntaActual()?.question || ''"></h2>
-  
-    <ul #opcionesContainer></ul>
-  
-    <p>Puntaje: {{ puntaje() }}</p>
-    <p>Pregunta {{ indice() + 1 }} de 10</p>
-  </div>
-  
+
+    <ul #opcionesContainer style="list-style: none; padding: 0; margin: 0;">
+      <li>
+        <button>Opción 1</button>
+      </li>
+      <li>
+        <button>Opción 2</button>
+      </li>
+      <li>
+        <button>Opción 3</button>
+      </li>
+      <li>
+        <button>Opción 4</button>
+      </li>
+    </ul>
+    
+      <p>Puntaje: {{ puntaje() }}</p>
+      <p>Pregunta {{ indice() + 1 }} de 10</p>
+    </div>
+    
+</body>
