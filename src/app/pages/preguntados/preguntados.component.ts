@@ -3,6 +3,8 @@ import { PreguntadosService } from '../../services/preguntados.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -19,18 +21,22 @@ export class PreguntadosComponent{
   preguntaActual = signal<any | null>(null);
   indice = signal(0);
   puntaje = signal(0);
-  tiempo = signal(0);
   opciones = signal<string[]>([]);
   juegoIniciado = signal(false);
-  
 
   categoriaSeleccionada = signal<number | null>(null);
   dificultadSeleccionada = signal<string>('easy');
 
+  //control de tiempo
+  tiempo = signal(0);
   timer: any;
   segundosRestantes = signal(60);
   tiempoTotalAcumulado = signal(0);
 
+  //guardado en db
+  auth = inject(AuthService);
+  supabase = inject(SupabaseService);
+  puntajeGuardado = false;
 
   @ViewChild('opcionesContainer') opcionesContainer?: ElementRef<HTMLUListElement>;
 
@@ -231,6 +237,7 @@ export class PreguntadosComponent{
       iconColor: 'orange',
       width: '420px'
     }).then(() => {
+      this.guardarPuntaje();
       this.juegoIniciado.set(false);
       this.preguntas.set([]);
       this.preguntaActual.set(null);
@@ -239,6 +246,32 @@ export class PreguntadosComponent{
     });
   }
   
+    guardarPuntaje() {
+      if (this.puntajeGuardado) return;
+      const usuario = this.auth.usuario(); 
+    
+      if (!usuario || !usuario.email) {
+        console.error("No hay usuario logueado o falta el email");
+        return;
+      }
+    
+      const puntaje = this.puntaje();
+      const tiempo = this.tiempoTotalAcumulado().toString();
+      const email = usuario.email; 
+    
+      this.supabase.guardarPuntaje('puntajePreguntados', puntaje, email, tiempo);
+      this.puntajeGuardado = true;
   
+      Swal.fire({
+        title: '¡Puntaje guardado!',
+        icon: 'success',
+        background: '#1e1e2f',
+        color: '#f8f8f2',
+        confirmButtonColor: 'rgb(27, 253, 130)',
+        iconColor: 'limegreen',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
   
 }
