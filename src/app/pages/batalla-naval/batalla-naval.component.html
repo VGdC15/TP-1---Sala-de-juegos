@@ -1,14 +1,18 @@
 <body>
-    <div class="encabezado">
+    
+    <div class="encabezado-contenedor">
         <h1>Batalla Naval</h1>
+        <div class="encabezado-izquierda">
+          <p>Mis barcos: {{ barcosJugadorRestantes() }}</p>
+          <p>Me faltan hundir: {{ barcosBotRestantes() }}</p>
+        </div>
         <section class="puntajes">
-        <p>Jugador: {{ puntajeJugador() }}</p>
-        <p>Bot: {{ puntajeBot() }}</p>
+          <p>Mis puntos: {{ puntajeJugador() }}</p>
+          <p>Enemigo: {{ puntajeBot() }}</p>
         </section>
     </div>
-
-    <p>Barcos restantes (Jugador): {{ barcosJugadorRestantes() }}</p>
-    <p>Barcos restantes (Bot): {{ barcosBotRestantes() }}</p>
+    
+    <div id="mensaje-batalla" class="mensaje-batalla"></div>
 
     <div class="tableros">
     <section class="tablero">
@@ -30,7 +34,7 @@
     </section>
 
     <section class="tablero">
-        <h2>Tablero del Bot</h2>
+        <h2>Enemigo</h2>
         <div class="grid">
         @for (fila of tableroBot; track fila; let i = $index) {
             <div class="fila">
@@ -46,8 +50,6 @@
         }
         </div>
     </section>
-
-    <div id="mensaje-batalla" class="mensaje-batalla"></div>
 
     </div>
 </body>

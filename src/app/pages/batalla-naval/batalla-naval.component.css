@@ -17,86 +17,81 @@ body {
     margin-top: 5%;
     gap: 2rem;
     flex-wrap: wrap;
-  }
+}
   
-  /* Sección de cada tablero */
-  .tablero {
+/* Sección de cada tablero */
+.tablero {
     background-color: #1e1e2f;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 0 10px #0005;
     color: #f8f8f2;
     width: fit-content;
-  }
+}
   
-  /* Título del tablero */
-  .tablero h2 {
+/* Título del tablero */
+.tablero h2 {
     text-align: center;
     margin-bottom: 1rem;
-  }
+}
   
-  /* Grilla de celdas */
-  .grid {
+/* Grilla de celdas */
+.grid {
     display: flex;
     flex-direction: column;
     gap: 2px;
-  }
+}
   
-  /* Fila de celdas */
-  .fila {
+/* Fila de celdas */
+.fila {
     display: flex;
     gap: 2px;
-  }
+}
   
-  /* Celda individual */
-  .celda {
+/* Celda individual */
+.celda {
     width: 30px;
     height: 30px;
     background-color: #282a36;
     border: 1px solid #44475a;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
   
-  /* Estados visuales */
-  .celda.barco {
+/* Estados visuales */
+.celda.barco {
     background-color: #6272a4; /* Barco visible solo en el tablero del jugador */
-  }
+}
   
-  .celda.impacto {
+.celda.impacto {
     background-color: #ff5555; /* Rojo para impacto */
     background-image: url('/assets/explosion.svg');
     background-size: cover;
-  }
+}
   
-  .celda.agua {
+.celda.agua {
     background-color: #8be9fd; /* Celeste para agua */
     background-image: url('/assets/splash.svg');
     background-size: cover;
-  }
+}
   
-  /* Puntajes */
-  .puntajes {
-    text-align: end;
+/* Puntajes */
+.puntajes {
+    text-align: right;
     font-size: 1.2rem;
     color: #f8f8f2;
-    margin-top: 20%;
-  }
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
   
-  h1 {
+h1 {
     text-align: star;
     color: #f8f8f2;
-    margin-top: 20%;
-  }
+}
 
-  .encabezado{
-    display: flex;
-    margin-left: 8%;
-    margin-right: 8%;
-    gap: 35%;
-  }
   
-  .mensaje-batalla {
+.mensaje-batalla {
     margin-top: 1rem;
     font-size: 1.2rem;
     color: #f8f8f2;
@@ -105,9 +100,253 @@ body {
     border-radius: 8px;
     text-align: center;
     display: none;
+}
+  
+.mensaje-batalla.visible {
+    display: block;
+}
+
+.encabezado-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #9b59b6, 0 0 30px #9b59b6, 0 0 45px #9b59b6;
+    color: white;
+    flex-wrap: wrap;
+
+}
+  
+.encabezado-izquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 11%;
+}
+  
+.encabezado-izquierda h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #f8f8f2;
+}
+
+/* Teléfonos pequeños (hasta 576px) */
+@media (max-width: 576px) {
+    .encabezado-contenedor {
+      padding: 0.5rem 1rem;
+      margin-left: 3%;
+      margin-right: 3%;
+      margin-top: 25%;
+      gap: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+    }
+  
+    .encabezado-izquierda {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    .puntajes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      margin-top: 2%;
+      color: #9b59b6;
+    }
+  
+    .encabezado-contenedor p {
+      margin: 0; 
+      font-size: 0.9rem; 
+    }
+    
+    .tablero {
+        margin-bottom: 5%;
+    }
+  
+}
+  
+  
+  /* Teléfonos medianos (577px a 767px) */
+@media (min-width: 577px) and (max-width: 767px) {
+    .encabezado-contenedor {
+      display: flex;
+      align-items: flex-start;
+      padding: 0.8rem 1.5rem;
+      margin-left: 3%;
+      margin-right: 3%;
+      margin-top: 18%;
+      gap: 0.5rem;
+    }
+  
+    .encabezado-izquierda {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    .puntajes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      margin-top: 1%;
+      color: #9b59b6;
+    }
+  
+    .encabezado-contenedor p {
+      margin: 0;
+      font-size: 1rem;
+    }
+  
+    .tableros {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tablero {
+        margin-bottom: 5%;
+    }
+  
+    .celda {
+      width: 24px;
+      height: 24px;
+    }
+}
+  
+  
+/* Tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .encabezado-contenedor {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.5rem 2rem;
+      margin-left: 3%;
+      margin-right: 3%;
+      margin-top: 15%;
+      gap: 0.5rem;
+    }
+  
+    .encabezado-izquierda {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    .puntajes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+      margin-top: 1%;
+      color: #9b59b6;
+    }
+  
+    .encabezado-contenedor p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+  
+    .tableros {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+  
+    .tablero {
+      margin-bottom: 5%;
+    }
+  
+    .celda {
+      width: 28px;
+      height: 28px;
+    }
   }
   
-  .mensaje-batalla.visible {
-    display: block;
-  }
+  
+/* Escritorio (1024px en adelante) */
+@media (min-width: 1024px) {
+    .encabezado-contenedor {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.5rem 3rem;
+      margin-left: 3%;
+      margin-right: 3%;
+      margin-top: 13%;
+      gap: 1.5rem;
+    }
+  
+    .encabezado-izquierda {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    .puntajes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0;
+      text-align: left;
+    }
+  
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      margin-top: 1%;
+      color: #9b59b6;
+    }
+  
+    .encabezado-contenedor p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+  
+    .tableros {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+  
+    .tablero {
+      margin-bottom: 5%;
+    }
+  
+    .celda {
+      width: 30px;
+      height: 30px;
+    }
+}
+  
+  
   
