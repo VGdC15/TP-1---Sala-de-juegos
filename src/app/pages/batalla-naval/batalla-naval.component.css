@@ -1,0 +1,79 @@
+/* Contenedor principal */
+.tableros {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Sección de cada tablero */
+  .tablero {
+    background-color: #1e1e2f;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0005;
+    color: #f8f8f2;
+    width: fit-content;
+  }
+  
+  /* Título del tablero */
+  .tablero h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Grilla de celdas */
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  /* Fila de celdas */
+  .fila {
+    display: flex;
+    gap: 2px;
+  }
+  
+  /* Celda individual */
+  .celda {
+    width: 30px;
+    height: 30px;
+    background-color: #282a36;
+    border: 1px solid #44475a;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estados visuales */
+  .celda.barco {
+    background-color: #6272a4; /* Barco visible solo en el tablero del jugador */
+  }
+  
+  .celda.impacto {
+    background-color: #ff5555; /* Rojo para impacto */
+    background-image: url('/assets/explosion.svg');
+    background-size: cover;
+  }
+  
+  .celda.agua {
+    background-color: #8be9fd; /* Celeste para agua */
+    background-image: url('/assets/splash.svg');
+    background-size: cover;
+  }
+  
+  /* Puntajes */
+  .puntajes {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #f8f8f2;
+    margin-top: 1rem;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #f8f8f2;
+    margin-bottom: 0.5rem;
+  }
+  

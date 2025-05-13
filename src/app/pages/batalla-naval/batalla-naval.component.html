@@ -1,1 +1,47 @@
-<p>batalla-naval works!</p>
+<h1>Batalla Naval</h1>
+
+<section class="puntajes">
+  <p>Jugador: {{ puntajeJugador() }}</p>
+  <p>Bot: {{ puntajeBot() }}</p>
+</section>
+
+<div class="tableros">
+  <section class="tablero">
+    <h2>Tu Tablero</h2>
+    <div class="grid">
+      @for (fila of tableroJugador; track fila) {
+        <div class="fila">
+            @for (celda of fila; track celda) {
+            <div
+              class="celda"
+              [class.barco]="celda.tieneBarco"
+              [class.impacto]="celda.fueAtacada && celda.tieneBarco"
+              [class.agua]="celda.fueAtacada && !celda.tieneBarco"
+            ></div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="tablero">
+    <h2>Tablero del Bot</h2>
+    <div class="grid">
+      @for (fila of tableroBot; track fila; let i = $index) {
+        <div class="fila">
+          @for (celda of fila; track celda; let j = $index) {
+            <div
+              class="celda"
+              [class.impacto]="celda.fueAtacada && celda.tieneBarco"
+              [class.agua]="celda.fueAtacada && !celda.tieneBarco"
+              (click)="jugarTurno(i, j)"
+            ></div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+  
+  
+</div>
+

@@ -3,6 +3,4 @@ export class Mensaje {
     created_at?: Date;
     mensaje?: string;
     usuarios?: any;
-
-
 }
