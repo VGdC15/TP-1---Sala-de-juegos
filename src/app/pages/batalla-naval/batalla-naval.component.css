@@ -96,3 +96,18 @@ body {
     gap: 35%;
   }
   
+  .mensaje-batalla {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #f8f8f2;
+    background-color: #1e1e2f;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+  }
+  
+  .mensaje-batalla.visible {
+    display: block;
+  }
+  

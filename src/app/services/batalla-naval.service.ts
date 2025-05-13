@@ -82,31 +82,35 @@ export class BatallaService {
 
   atacarCelda(tablero: Celda[][], barcos: Barco[], x: number, y: number): string {
     const celda = tablero[x][y];
-
+  
     if (celda.fueAtacada) {
       return 'ya-atacada';
     }
-
+  
     celda.fueAtacada = true;
-
+  
     if (celda.tieneBarco) {
-      this.verificarHundimiento(celda, barcos);
-      return 'impacto';
+      const fueHundido = this.verificarHundimiento(celda, barcos, tablero);
+      return fueHundido ? 'hundido' : 'impacto';
     }
-
+  
     return 'agua';
   }
+  
 
-  verificarHundimiento(celda: Celda, barcos: Barco[]): void {
+  verificarHundimiento(celda: Celda, barcos: Barco[], tablero: Celda[][]): boolean {
     for (let barco of barcos) {
       if (barco.coordenadas.some(coord => coord.x === celda.x && coord.y === celda.y)) {
-        const hundido = barco.coordenadas.every(coord => {
-          return this.obtenerCelda(coord.x, coord.y, barcos === this.barcosJugador ? this.tableroJugador : this.tableroBot).fueAtacada;
-        });
-        barco.hundido = hundido;
+        const hundido = barco.coordenadas.every(coord => tablero[coord.x][coord.y].fueAtacada);
+        if (!barco.hundido && hundido) {
+          barco.hundido = true;
+          return true;
+        }
       }
     }
+    return false;
   }
+  
 
   obtenerCelda(x: number, y: number, tablero: Celda[][]): Celda {
     return tablero[x][y];

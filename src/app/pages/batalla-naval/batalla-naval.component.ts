@@ -20,30 +20,52 @@ export class BatallaNavalComponent implements OnInit {
   aciertosConsecutivos = signal(0);
   ultimoBarcoGolpeadoId: string | null = null;
 
+  barcosJugadorRestantes = signal(0);
+  barcosBotRestantes = signal(0);
+
   constructor(private batallaService: BatallaService) {}
 
   ngOnInit(): void {
     this.tableroJugador = this.batallaService.tableroJugador;
     this.tableroBot = this.batallaService.tableroBot;
+
+    this.barcosJugadorRestantes.set(this.batallaService.barcosJugador.length);
+    this.barcosBotRestantes.set(this.batallaService.barcosBot.length);
+
+    Swal.fire({
+      title: '¡Comienza la Batalla!',
+      html: `
+        <p style="color:#f8f8f2">Tus barcos: ${this.barcosJugadorRestantes()}</p>
+        <p style="color:#f8f8f2">Barcos del bot: ${this.barcosBotRestantes()}</p>
+      `,
+      icon: 'info',
+      background: '#1e1e2f',
+      color: '#f8f8f2',
+      confirmButtonText: '¡A luchar!',
+      confirmButtonColor: 'rgb(200, 27, 253)',
+      iconColor: 'orange',
+      width: '420px'
+    });
+
   }
 
   jugarTurno(x: number, y: number): void {
     if (this.turno !== 'jugador') return;
-
+  
     const celda = this.tableroBot[x][y];
     if (celda.fueAtacada) return;
-
+  
     const resultado = this.batallaService.atacarCelda(this.tableroBot, this.batallaService.barcosBot, x, y);
-
-    if (resultado === 'impacto') {
+  
+    if (resultado === 'impacto' || resultado === 'hundido') {
       this.puntajeJugador.set(this.puntajeJugador() + 100);
-
+  
       const barcoImpactado = this.batallaService.barcosBot.find(barco =>
         barco.coordenadas.some(coord => coord.x === x && coord.y === y)
       );
-
+  
       const barcoId = barcoImpactado ? JSON.stringify(barcoImpactado.coordenadas) : null;
-
+  
       if (this.ultimoBarcoGolpeadoId === barcoId) {
         this.aciertosConsecutivos.update(valor => valor + 1);
         if (this.aciertosConsecutivos() > 1) {
@@ -53,20 +75,38 @@ export class BatallaNavalComponent implements OnInit {
         this.aciertosConsecutivos.set(1);
         this.ultimoBarcoGolpeadoId = barcoId;
       }
-      
+  
+      if (resultado === 'hundido') {
+        this.barcosBotRestantes.update(n => n - 1);
+  
+        // Mostrar mensaje en HTML
+        const mensajeDiv = document.getElementById('mensaje-batalla');
+        if (mensajeDiv) {
+          mensajeDiv.innerHTML = `🚢 ¡Hundiste un barco enemigo! Quedan ${this.barcosBotRestantes()} por hundir.`;
+          mensajeDiv.classList.add('visible');
+  
+          // Ocultar luego de unos segundos
+          setTimeout(() => {
+            mensajeDiv.classList.remove('visible');
+            mensajeDiv.innerHTML = '';
+          }, 4000);
+        }
+      }
+  
     } else {
       this.aciertosConsecutivos.set(0);
       this.ultimoBarcoGolpeadoId = null;
     }
-
+  
     if (this.juegoTerminado()) {
       this.mostrarResultadoFinal();
       return;
     }
-
+  
     this.turno = 'bot';
     setTimeout(() => this.turnoBot(), 1000);
   }
+  
 
   turnoBot(): void {
     const { x, y, resultado } = this.batallaService.turnoBot();
@@ -111,7 +151,32 @@ export class BatallaNavalComponent implements OnInit {
       confirmButtonColor: 'rgb(200, 27, 253)',
       iconColor: 'orange',
       width: '420px'
+    }).then(() => {
+      this.reiniciarJuego();
     });
   }
+
+  reiniciarJuego(): void {
+    this.batallaService.barcosJugador = [];
+    this.batallaService.barcosBot = [];
+    this.batallaService.coordenadasAtacadasBot.clear();
+  
+    this.batallaService.inicializarTableros();
+    this.batallaService.colocarBarcos(this.batallaService.tableroJugador, this.batallaService.barcosJugador);
+    this.batallaService.colocarBarcos(this.batallaService.tableroBot, this.batallaService.barcosBot);
+  
+    this.tableroJugador = this.batallaService.tableroJugador;
+    this.tableroBot = this.batallaService.tableroBot;
+  
+    this.puntajeJugador.set(0);
+    this.puntajeBot.set(0);
+    this.turno = 'jugador';
+    this.aciertosConsecutivos.set(0);
+    this.ultimoBarcoGolpeadoId = null;
+  
+    this.barcosJugadorRestantes.set(this.batallaService.barcosJugador.length);
+    this.barcosBotRestantes.set(this.batallaService.barcosBot.length);
+  }
+  
 }
 
