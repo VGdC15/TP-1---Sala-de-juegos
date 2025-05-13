@@ -43,7 +43,7 @@ export class BatallaService {
   }
 
   colocarBarcos(tablero: Celda[][], listaBarcos: Barco[]): void {
-    const tamañosBarcos = [4, 3, 3, 2, 2]; // ejemplo
+    const tamañosBarcos = [4, 3, 3, 2, 2]; 
 
     for (let tamaño of tamañosBarcos) {
       let colocado = false;
@@ -118,13 +118,13 @@ export class BatallaService {
     return tablero[x][y];
   }
 
-  turnoBot(): { x: number, y: number, resultado: string } {
+  resolverTurnoBot(): { x: number, y: number, resultado: string } {
     let x: number, y: number, clave: string;
   
     if (this.modoAcecho && this.coordenadasPendientes.length > 0) {
       // Modo ACECHO
       const siguiente = this.coordenadasPendientes.shift();
-      if (!siguiente) return this.turnoBot(); 
+      if (!siguiente) return this.resolverTurnoBot(); 
   
       x = siguiente.x;
       y = siguiente.y;
@@ -132,7 +132,7 @@ export class BatallaService {
   
       // Si ya fue atacada, probar otra
       if (this.coordenadasAtacadasBot.has(clave)) {
-        return this.turnoBot();
+        return this.resolverTurnoBot();
       }
     } else {
       // Modo CAZA (aleatorio)
@@ -158,6 +158,8 @@ export class BatallaService {
   
     return { x, y, resultado };
   }
+
+
 
   agregarAdyacentes(x: number, y: number): void {
     const direcciones = [

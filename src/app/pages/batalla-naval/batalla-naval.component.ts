@@ -23,6 +23,10 @@ export class BatallaNavalComponent implements OnInit {
   barcosJugadorRestantes = signal(0);
   barcosBotRestantes = signal(0);
 
+  aciertosBotConsecutivos = signal(0);
+  ultimoBarcoGolpeadoBotId: string | null = null;
+
+
   constructor(private batallaService: BatallaService) {}
 
   ngOnInit(): void {
@@ -109,20 +113,55 @@ export class BatallaNavalComponent implements OnInit {
   
 
   turnoBot(): void {
-    const { x, y, resultado } = this.batallaService.turnoBot();
-
-    if (resultado === 'impacto') {
-      this.puntajeBot.set(this.puntajeBot() + 10);
-
+    const { x, y, resultado } = this.batallaService.resolverTurnoBot();
+  
+    if (resultado === 'impacto' || resultado === 'hundido') {
+      this.puntajeBot.set(this.puntajeBot() + 100);
+  
+      const barcoImpactado = this.batallaService.barcosJugador.find(barco =>
+        barco.coordenadas.some(coord => coord.x === x && coord.y === y)
+      );
+  
+      const barcoId = barcoImpactado ? JSON.stringify(barcoImpactado.coordenadas) : null;
+  
+      if (this.ultimoBarcoGolpeadoBotId === barcoId) {
+        this.aciertosBotConsecutivos.update(valor => valor + 1);
+        if (this.aciertosBotConsecutivos() > 1) {
+          this.puntajeBot.set(this.puntajeBot() + 100); // bono por combo
+        }
+      } else {
+        this.aciertosBotConsecutivos.set(1);
+        this.ultimoBarcoGolpeadoBotId = barcoId;
+      }
+  
+      if (resultado === 'hundido') {
+        this.barcosJugadorRestantes.update(n => n - 1);
+  
+        const mensajeDiv = document.getElementById('mensaje-batalla');
+        if (mensajeDiv) {
+          mensajeDiv.innerHTML = `💥 ¡El Enemigo hundió uno de tus barcos! Te quedan ${this.barcosJugadorRestantes()} barcos.`;
+          mensajeDiv.classList.add('visible');
+  
+          setTimeout(() => {
+            mensajeDiv.classList.remove('visible');
+            mensajeDiv.innerHTML = '';
+          }, 4000);
+        }
+      }
+    } else {
+      this.aciertosBotConsecutivos.set(0);
+      this.ultimoBarcoGolpeadoBotId = null;
     }
-
+  
     if (this.juegoTerminado()) {
       this.mostrarResultadoFinal();
       return;
     }
-
+  
     this.turno = 'jugador';
   }
+  
+  
 
   juegoTerminado(): boolean {
     const todosHundidos = (barcos: Barco[]) => barcos.every((barco: Barco) => barco.hundido);
@@ -176,7 +215,12 @@ export class BatallaNavalComponent implements OnInit {
   
     this.barcosJugadorRestantes.set(this.batallaService.barcosJugador.length);
     this.barcosBotRestantes.set(this.batallaService.barcosBot.length);
+
+    this.aciertosBotConsecutivos.set(0);
+    this.ultimoBarcoGolpeadoBotId = null;
+
   }
+  
   
 }
 
