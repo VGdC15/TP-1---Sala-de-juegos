@@ -1,8 +1,20 @@
-/* Contenedor principal */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../../../../public/juegos.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    display: flex;
+    min-height: 100vh;
+    color: #fff;
+    flex-direction: column;
+}
+
 .tableros {
     display: flex;
     justify-content: space-around;
-    margin-top: 2rem;
+    margin-top: 5%;
     gap: 2rem;
     flex-wrap: wrap;
   }
@@ -65,15 +77,22 @@
   
   /* Puntajes */
   .puntajes {
-    text-align: center;
+    text-align: end;
     font-size: 1.2rem;
     color: #f8f8f2;
-    margin-top: 1rem;
+    margin-top: 20%;
   }
   
   h1 {
-    text-align: center;
+    text-align: star;
     color: #f8f8f2;
-    margin-bottom: 0.5rem;
+    margin-top: 20%;
+  }
+
+  .encabezado{
+    display: flex;
+    margin-left: 8%;
+    margin-right: 8%;
+    gap: 35%;
   }
   
