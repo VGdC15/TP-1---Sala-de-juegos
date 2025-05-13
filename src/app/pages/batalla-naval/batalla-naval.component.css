@@ -24,9 +24,10 @@ body {
     background-color: #1e1e2f;
     padding: 1rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px #0005;
+    box-shadow: 0 0 15px #9b59b6, 0 0 30px #9b59b6, 0 0 45px #9b59b6;
     color: #f8f8f2;
     width: fit-content;
+
 }
   
 /* Título del tablero */
@@ -138,7 +139,7 @@ h1 {
       padding: 0.5rem 1rem;
       margin-left: 3%;
       margin-right: 3%;
-      margin-top: 25%;
+      margin-top: 28%;
       gap: 0.5rem;
       display: flex;
       align-items: flex-start;
@@ -187,7 +188,7 @@ h1 {
       padding: 0.8rem 1.5rem;
       margin-left: 3%;
       margin-right: 3%;
-      margin-top: 18%;
+      margin-top: 20%;
       gap: 0.5rem;
     }
   
