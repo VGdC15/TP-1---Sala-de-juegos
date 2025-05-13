@@ -93,19 +93,25 @@ h1 {
 
   
 .mensaje-batalla {
-    margin-top: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #44475a;;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
     font-size: 1.2rem;
-    color: #f8f8f2;
-    background-color: #1e1e2f;
-    padding: 10px;
-    border-radius: 8px;
     text-align: center;
-    display: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
   
 .mensaje-batalla.visible {
-    display: block;
+    opacity: 1;
 }
+  
 
 .encabezado-contenedor {
     display: flex;
@@ -176,6 +182,10 @@ h1 {
     .tablero {
         margin-bottom: 5%;
     }
+
+    .mensaje-batalla {
+        top: 70%; 
+    }
   
 }
   
@@ -234,6 +244,10 @@ h1 {
       width: 24px;
       height: 24px;
     }
+
+    .mensaje-batalla {
+        top: 45%; 
+    }
 }
   
   
@@ -291,6 +305,10 @@ h1 {
       width: 28px;
       height: 28px;
     }
+
+    .mensaje-batalla {
+        top: 55%; 
+    }
   }
   
   
@@ -347,6 +365,10 @@ h1 {
     .celda {
       width: 30px;
       height: 30px;
+    }
+
+    .mensaje-batalla {
+        top: 60%; 
     }
 }
   
