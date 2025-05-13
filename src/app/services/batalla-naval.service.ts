@@ -14,6 +14,8 @@ export class BatallaService {
   barcosJugador: Barco[] = [];
   barcosBot: Barco[] = [];
 
+  modoAcecho: boolean = false;
+  coordenadasPendientes: { x: number, y: number }[] = [];
   coordenadasAtacadasBot: Set<string> = new Set(); // para evitar que el bot repita ataques
 
   constructor() {
@@ -117,17 +119,67 @@ export class BatallaService {
   }
 
   turnoBot(): { x: number, y: number, resultado: string } {
-    let x, y, clave;
-
-    do {
-      x = Math.floor(Math.random() * this.tamañoTablero);
-      y = Math.floor(Math.random() * this.tamañoTablero);
+    let x: number, y: number, clave: string;
+  
+    if (this.modoAcecho && this.coordenadasPendientes.length > 0) {
+      // Modo ACECHO
+      const siguiente = this.coordenadasPendientes.shift();
+      if (!siguiente) return this.turnoBot(); 
+  
+      x = siguiente.x;
+      y = siguiente.y;
       clave = `${x},${y}`;
-    } while (this.coordenadasAtacadasBot.has(clave));
-
+  
+      // Si ya fue atacada, probar otra
+      if (this.coordenadasAtacadasBot.has(clave)) {
+        return this.turnoBot();
+      }
+    } else {
+      // Modo CAZA (aleatorio)
+      do {
+        x = Math.floor(Math.random() * this.tamañoTablero);
+        y = Math.floor(Math.random() * this.tamañoTablero);
+        clave = `${x},${y}`;
+      } while (this.coordenadasAtacadasBot.has(clave));
+    }
+  
+    // Atacar
     this.coordenadasAtacadasBot.add(clave);
     const resultado = this.atacarCelda(this.tableroJugador, this.barcosJugador, x, y);
-
+  
+    // Lógica de modoAcecho
+    if (resultado === 'impacto') {
+      this.modoAcecho = true;
+      this.agregarAdyacentes(x, y);
+    } else if (resultado === 'hundido') {
+      this.modoAcecho = false;
+      this.coordenadasPendientes = [];
+    }
+  
     return { x, y, resultado };
   }
+
+  agregarAdyacentes(x: number, y: number): void {
+    const direcciones = [
+      { dx: -1, dy: 0 },
+      { dx: 1, dy: 0 },
+      { dx: 0, dy: -1 },
+      { dx: 0, dy: 1 }
+    ];
+  
+    for (const dir of direcciones) {
+      const nx = x + dir.dx;
+      const ny = y + dir.dy;
+  
+      if (
+        nx >= 0 && nx < this.tamañoTablero &&
+        ny >= 0 && ny < this.tamañoTablero &&
+        !this.coordenadasAtacadasBot.has(`${nx},${ny}`)
+      ) {
+        this.coordenadasPendientes.push({ x: nx, y: ny });
+      }
+    }
+  }
+  
+  
 }
