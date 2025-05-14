@@ -136,17 +136,6 @@ export class MayorMenorComponent implements OnInit {
 
     this.supabase.guardarPuntaje('puntajeMayormenor', puntaje, email, tiempo);
     this.puntajeGuardado = true;
-
-    Swal.fire({
-      title: '¡Puntaje guardado!',
-      icon: 'success',
-      background: '#1e1e2f',
-      color: '#f8f8f2',
-      confirmButtonColor: 'rgb(27, 253, 130)',
-      iconColor: 'limegreen',
-      timer: 1500,
-      showConfirmButton: false
-    });
   }
 
   reiniciarJuego() {

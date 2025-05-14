@@ -1,8 +1,10 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { BatallaService } from '../../services/batalla-naval.service';
 import { Celda } from '../../clase/celda';
 import { Barco } from '../../clase/barco';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-batalla-naval',
@@ -13,7 +15,7 @@ export class BatallaNavalComponent implements OnInit {
   tableroJugador: Celda[][] = [];
   tableroBot: Celda[][] = [];
 
-  puntajeJugador = signal(0);
+  puntaje = signal(0);
   puntajeBot = signal(0);  
 
   turno = signal<'jugador' | 'bot'>('jugador');
@@ -26,12 +28,17 @@ export class BatallaNavalComponent implements OnInit {
   aciertosBotConsecutivos = signal(0);
   ultimoBarcoGolpeadoBotId: string | null = null;
 
+  //guardado en supabase
+  auth = inject(AuthService);
+  supabase = inject(SupabaseService);
+  puntajeGuardado = false;
+  tiempo = signal(0);
 
   constructor(private batallaService: BatallaService) {}
 
   ngOnInit(): void {
     this.reiniciarJuego();
-    
+
     this.tableroJugador = this.batallaService.tableroJugador;
     this.tableroBot = this.batallaService.tableroBot;
 
@@ -64,7 +71,7 @@ export class BatallaNavalComponent implements OnInit {
     const resultado = this.batallaService.atacarCelda(this.tableroBot, this.batallaService.barcosBot, x, y);
   
     if (resultado === 'impacto' || resultado === 'hundido') {
-      this.puntajeJugador.set(this.puntajeJugador() + 100);
+      this.puntaje.set(this.puntaje() + 100);
   
       const barcoImpactado = this.batallaService.barcosBot.find(barco =>
         barco.coordenadas.some(coord => coord.x === x && coord.y === y)
@@ -75,7 +82,7 @@ export class BatallaNavalComponent implements OnInit {
       if (this.ultimoBarcoGolpeadoId === barcoId) {
         this.aciertosConsecutivos.update(valor => valor + 1);
         if (this.aciertosConsecutivos() > 1) {
-          this.puntajeJugador.set(this.puntajeJugador() + 100); // bono por combo
+          this.puntaje.set(this.puntaje() + 100); // bono por combo
         }
       } else {
         this.aciertosConsecutivos.set(1);
@@ -109,14 +116,9 @@ export class BatallaNavalComponent implements OnInit {
       return;
     }
 
-    // const delay = Math.floor(Math.random() * 5000) + 4000; 
-    // setTimeout(() => {
-    //   this.turnoBot(); 
-    // }, delay);
     this.turno.set('bot');
     const tiempoEspera = Math.floor(Math.random() * 2000) + 1000; // entre 1000 y 3000 ms
     setTimeout(() => this.turnoBot(), tiempoEspera);
-    //setTimeout(() => this.turnoBot(), 2500);
 
   }
   
@@ -186,6 +188,8 @@ export class BatallaNavalComponent implements OnInit {
       mensaje = '¡Hundiste todos los barcos enemigos!';
       titulo = '¡Ganaste la batalla naval!';
       icono = 'success';
+
+      this.guardarPuntaje();
     } else if (this.barcosJugadorRestantes() === 0) {
       // Perdió el jugador
       mensaje = 'El enemigo hundió todos tus barcos.';
@@ -199,7 +203,7 @@ export class BatallaNavalComponent implements OnInit {
       title: titulo,
       html: `
         <p style="text-align:center; color:#f8f8f2">${mensaje}</p>
-        <p style="text-align:center; color:#f8f8f2">Tu puntaje: ${this.puntajeJugador()}</p>
+        <p style="text-align:center; color:#f8f8f2">Tu puntaje: ${this.puntaje()}</p>
         <p style="text-align:center; color:#f8f8f2">Puntaje del bot: ${this.puntajeBot()}</p>
       `,
       icon: icono,
@@ -229,7 +233,7 @@ export class BatallaNavalComponent implements OnInit {
     this.tableroJugador = this.batallaService.tableroJugador;
     this.tableroBot = this.batallaService.tableroBot;
   
-    this.puntajeJugador.set(0);
+    this.puntaje.set(0);
     this.puntajeBot.set(0);
     this.turno.set('jugador');
     this.aciertosConsecutivos.set(0);
@@ -243,6 +247,22 @@ export class BatallaNavalComponent implements OnInit {
 
   }
   
+  guardarPuntaje() {
+    if (this.puntajeGuardado) return;
+
+    const usuario = this.auth.usuario();
+    if (!usuario || !usuario.email) {
+      console.error("No hay usuario logueado o falta el email");
+      return;
+    }
+
+    const puntaje = this.puntaje();
+    const tiempo = '0';
+    const email = usuario.email;
+
+    this.supabase.guardarPuntaje('puntajeBatallanaval', puntaje, email, tiempo);
+    this.puntajeGuardado = true;
+  }
   
 }
 
