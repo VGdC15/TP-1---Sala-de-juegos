@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { RealtimeChannel, SupabaseClient, createClient } from '@supabase/supabase-js';
 import { Mensaje } from '../clase/mensaje';
+import { signal, Signal } from '@angular/core';
+import { ResultadoConTiempo } from '../clase/resultado-con-tiempo';
+import { ResultadoSimple } from '../clase/resultado-simple';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +12,8 @@ export class SupabaseService {
   supabase: SupabaseClient;
   canal:RealtimeChannel;
 
+  resultadosConTiempo = signal<ResultadoConTiempo[]>([]);
+  resultadosSimple = signal<ResultadoSimple[]>([]);
 
   constructor() {
     this.supabase = createClient(
@@ -65,6 +70,38 @@ export class SupabaseService {
     }
   
     return data;
+  }
+
+  //PARA LAS TABLAS DE PUNTAJE
+  async cargarTodosLosResultados() {
+    try {
+      // Juegos con tiempo
+      const [ahorcado, preguntados] = await Promise.all([
+        this.obtenerPuntajes('puntajeAhorcado'),
+        this.obtenerPuntajes('puntajePreguntados'),
+      ]);
+
+      const resultadosTiempo: ResultadoConTiempo[] = [
+        ...ahorcado.map((item: any) => new ResultadoConTiempo(item.email, item.puntaje, item.tiempo)),
+        ...preguntados.map((item: any) => new ResultadoConTiempo(item.email, item.puntaje, item.tiempo)),
+      ];
+      this.resultadosConTiempo.set(resultadosTiempo);
+
+      // Juegos simples
+      const [mayorMenor, batallaNaval] = await Promise.all([
+        this.obtenerPuntajes('puntajeMayormenor'),
+        this.obtenerPuntajes('puntajeBatallanaval'),
+      ]);
+
+      const resultadosSimple: ResultadoSimple[] = [
+        ...mayorMenor.map((item: any) => new ResultadoSimple(item.email, item.puntaje)),
+        ...batallaNaval.map((item: any) => new ResultadoSimple(item.email, item.puntaje)),
+      ];
+      this.resultadosSimple.set(resultadosSimple);
+
+    } catch (error) {
+      console.error('Error al cargar resultados:', error);
+    }
   }
 
 }
