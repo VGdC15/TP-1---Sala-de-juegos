@@ -169,31 +169,45 @@ export class BatallaNavalComponent implements OnInit {
   }
 
   mostrarResultadoFinal(): void {
-    const mensaje =
-      this.puntajeJugador > this.puntajeBot
-        ? '¡Ganaste la batalla naval!'
-        : this.puntajeJugador < this.puntajeBot
-        ? 'Perdiste.'
-        : 'Empate. Fue una batalla reñida.';
-
+    let mensaje = '';
+    let titulo = '';
+    let icono: 'success' | 'error';
+  
+    if (this.barcosBotRestantes() === 0) {
+      // Ganó el jugador
+      mensaje = '¡Hundiste todos los barcos enemigos!';
+      titulo = '¡Ganaste la batalla naval!';
+      icono = 'success';
+    } else if (this.barcosJugadorRestantes() === 0) {
+      // Perdió el jugador
+      mensaje = 'El enemigo hundió todos tus barcos.';
+      titulo = 'Perdiste la batalla naval.';
+      icono = 'error';
+    } else {
+      return;
+    }
+  
     Swal.fire({
-      title: 'Juego terminado',
+      title: titulo,
       html: `
         <p style="text-align:center; color:#f8f8f2">${mensaje}</p>
         <p style="text-align:center; color:#f8f8f2">Tu puntaje: ${this.puntajeJugador()}</p>
         <p style="text-align:center; color:#f8f8f2">Puntaje del bot: ${this.puntajeBot()}</p>
       `,
-      icon: 'success',
-      confirmButtonText: 'Aceptar',
+      icon: icono,
+      confirmButtonText: 'Volver a jugar',
       background: '#1e1e2f',
       color: '#f8f8f2',
       confirmButtonColor: 'rgb(200, 27, 253)',
-      iconColor: 'orange',
-      width: '420px'
+      iconColor: icono === 'success' ? 'limegreen' : 'crimson',
+      width: '420px',
+      allowOutsideClick: false,
+      allowEscapeKey: false
     }).then(() => {
       this.reiniciarJuego();
     });
   }
+  
 
   reiniciarJuego(): void {
     this.batallaService.barcosJugador = [];
