@@ -186,8 +186,8 @@ h1 {
     }
 }
 
-/* Teléfonos pequeños (hasta 576px) */
-@media (max-width: 576px) {
+/* Teléfonos pequeños (hasta 400px) */
+@media (max-width: 400px) {
     .encabezado-contenedor {
       padding: 0.5rem 1rem;
       margin-left: 3%;
