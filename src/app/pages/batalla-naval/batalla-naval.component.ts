@@ -30,6 +30,8 @@ export class BatallaNavalComponent implements OnInit {
   constructor(private batallaService: BatallaService) {}
 
   ngOnInit(): void {
+    this.reiniciarJuego();
+    
     this.tableroJugador = this.batallaService.tableroJugador;
     this.tableroBot = this.batallaService.tableroBot;
 
