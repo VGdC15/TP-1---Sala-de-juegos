@@ -34,7 +34,7 @@
     <!-- MENSAJE flotante -->
     <div id="mensaje-batalla" class="mensaje-batalla"></div>
 
-    <section class="tablero">
+    <section class="tablero" [class.bloqueado]="turno() === 'bot'">
         <h2>Enemigo</h2>
         <div class="grid">
         @for (fila of tableroBot; track fila; let i = $index) {

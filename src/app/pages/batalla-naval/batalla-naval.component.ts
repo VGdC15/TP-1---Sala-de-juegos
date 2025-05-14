@@ -16,7 +16,7 @@ export class BatallaNavalComponent implements OnInit {
   puntajeJugador = signal(0);
   puntajeBot = signal(0);  
 
-  turno = 'jugador'; // 'jugador' o 'bot'
+  turno = signal<'jugador' | 'bot'>('jugador');
   aciertosConsecutivos = signal(0);
   ultimoBarcoGolpeadoId: string | null = null;
 
@@ -40,7 +40,7 @@ export class BatallaNavalComponent implements OnInit {
       title: '¡Comienza la Batalla!',
       html: `
         <p style="color:#f8f8f2">Tus barcos: ${this.barcosJugadorRestantes()}</p>
-        <p style="color:#f8f8f2">Barcos del bot: ${this.barcosBotRestantes()}</p>
+        <p style="color:#f8f8f2">Barcos enemigos: ${this.barcosBotRestantes()}</p>
       `,
       icon: 'info',
       background: '#1e1e2f',
@@ -54,7 +54,7 @@ export class BatallaNavalComponent implements OnInit {
   }
 
   jugarTurno(x: number, y: number): void {
-    if (this.turno !== 'jugador') return;
+    if (this.turno() !== 'jugador') return;
   
     const celda = this.tableroBot[x][y];
     if (celda.fueAtacada) return;
@@ -106,9 +106,16 @@ export class BatallaNavalComponent implements OnInit {
       this.mostrarResultadoFinal();
       return;
     }
-  
-    this.turno = 'bot';
-    setTimeout(() => this.turnoBot(), 1000);
+
+    // const delay = Math.floor(Math.random() * 5000) + 4000; 
+    // setTimeout(() => {
+    //   this.turnoBot(); 
+    // }, delay);
+    this.turno.set('bot');
+    const tiempoEspera = Math.floor(Math.random() * 2000) + 1000; // entre 1000 y 3000 ms
+    setTimeout(() => this.turnoBot(), tiempoEspera);
+    //setTimeout(() => this.turnoBot(), 2500);
+
   }
   
 
@@ -158,9 +165,8 @@ export class BatallaNavalComponent implements OnInit {
       return;
     }
   
-    this.turno = 'jugador';
+    this.turno.set('jugador');
   }
-  
   
 
   juegoTerminado(): boolean {
@@ -223,7 +229,7 @@ export class BatallaNavalComponent implements OnInit {
   
     this.puntajeJugador.set(0);
     this.puntajeBot.set(0);
-    this.turno = 'jugador';
+    this.turno.set('jugador');
     this.aciertosConsecutivos.set(0);
     this.ultimoBarcoGolpeadoId = null;
   

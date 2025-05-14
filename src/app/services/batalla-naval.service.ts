@@ -160,7 +160,6 @@ export class BatallaService {
   }
 
 
-
   agregarAdyacentes(x: number, y: number): void {
     const direcciones = [
       { dx: -1, dy: 0 },

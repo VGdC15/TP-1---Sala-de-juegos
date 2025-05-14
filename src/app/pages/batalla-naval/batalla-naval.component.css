@@ -29,6 +29,13 @@ body {
     width: fit-content;
 
 }
+
+.tablero.bloqueado {
+    pointer-events: none; 
+    opacity: 0.4;         
+    filter: grayscale(60%); 
+    transition: all 0.3s ease-in-out;
+}
   
 /* Título del tablero */
 .tablero h2 {
