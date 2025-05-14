@@ -1,15 +1,34 @@
 <body>
+    <!-- <div class="encabezado-contenedor">
+        <h1>Batalla Naval</h1>
+
+            <div class="encabezado-izquierda">
+            <p>Mis barcos: {{ barcosJugadorRestantes() }}</p>
+            <p>Me faltan hundir: {{ barcosBotRestantes() }}</p>
+            </div>
+            <section class="puntajes">
+            <p>Mis puntos: {{ puntajeJugador() }}</p>
+            <p>Enemigo: {{ puntajeBot() }}</p>
+            </section>
+    </div> -->
+
     <div class="encabezado-contenedor">
         <h1>Batalla Naval</h1>
-        <div class="encabezado-izquierda">
-          <p>Mis barcos: {{ barcosJugadorRestantes() }}</p>
-          <p>Me faltan hundir: {{ barcosBotRestantes() }}</p>
+      
+        <div class="datos-puntajes">
+          <div class="encabezado-izquierda">
+            <p>Mis barcos: {{ barcosJugadorRestantes() }}</p>
+            <p>Me faltan hundir: {{ barcosBotRestantes() }}</p>
+          </div>
+      
+          <section class="puntajes">
+            <p>Mis puntos: {{ puntajeJugador() }}</p>
+            <p>Enemigo: {{ puntajeBot() }}</p>
+          </section>
         </div>
-        <section class="puntajes">
-          <p>Mis puntos: {{ puntajeJugador() }}</p>
-          <p>Enemigo: {{ puntajeBot() }}</p>
-        </section>
-    </div>
+      </div>
+      
+
 
     <div class="tableros">
     <section class="tablero">
