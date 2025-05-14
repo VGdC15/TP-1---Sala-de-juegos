@@ -47,6 +47,7 @@
     0 0 10px rgb(200, 27, 253),
     0 0 20px rgb(200, 27, 253);
   margin-bottom: 30px;
+
 }
 
 .card {
@@ -93,6 +94,9 @@
   .juegos-container {
     padding-top: 163%;
     overflow-y: auto;
+  }
+  .titulo-neon{
+    margin-top: -20%;
   }
 }
 

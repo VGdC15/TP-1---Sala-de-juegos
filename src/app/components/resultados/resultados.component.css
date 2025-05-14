@@ -94,6 +94,10 @@
       padding-top: 100%; 
       overflow-y: auto;
     }
+
+    .titulo-neon{
+      margin-top: 20%;
+    }
   }
   
   /* Pantallas medianas: 2x2 */
@@ -101,10 +105,17 @@
     .card {
       width: calc(50% - 20px);
     }
+
+    .titulo-neon{
+      margin-top: 20%;
+    }
   }
   
   /* Pantallas grandes: todas en fila */
   @media (min-width: 992px) {
+    .resultados-container{
+      position: absolute;
+    }
     .card {
       width: calc(25% - 20px);
     }
