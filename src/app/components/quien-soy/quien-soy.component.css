@@ -1,0 +1,41 @@
+.bio-section {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+    height: 100vh;
+    width: 100%;
+    background-image: url("../../../../public/fondo bio.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem 1rem;
+  }
+  
+  
+  /* Estilo de la card */
+  .bio-card {
+    background-color: rgba(20, 20, 20, 0.9);
+    width: 22rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(200, 27, 253, 0.5);
+    text-align: center;
+    padding-bottom: 1rem;
+    color:rgb(252, 252, 252);
+
+  }
+  
+  /* Contenido dentro de la card */
+  .bio-card .card-body {
+    padding: 1rem;
+  }
+  
+  /* Texto dentro de la card */
+  .bio-card .card-text {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  img {
+    box-shadow: 0 0 40px 10px rgba(212, 148, 231, 0.35);
+  }
+  
