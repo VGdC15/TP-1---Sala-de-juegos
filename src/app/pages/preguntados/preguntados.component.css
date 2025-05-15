@@ -81,6 +81,14 @@ body {
     color: #9b59b6;
 }
 
+.correcta .front {
+    background-color: #2ecc71 !important; 
+}
+
+.incorrecta .front {
+    background-color: #e74c3c !important; 
+}
+
 
 /*BOTONES*/
 .pushable {

@@ -32,28 +32,28 @@
 
     <ul style="list-style: none; padding: 0; margin: 0;">
       <li>
-        <button class="pushable" (click)="responder(opciones()[0])">
+        <button id="btn0" class="pushable" (click)="responder(opciones()[0], 0)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front">{{ opciones()[0] }}</span>
         </button>
       </li>
       <li>
-        <button class="pushable" (click)="responder(opciones()[1])">
+        <button id="btn1" class="pushable" (click)="responder(opciones()[1], 1)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front">{{ opciones()[1] }}</span>
         </button>
       </li>
       <li>
-        <button class="pushable" (click)="responder(opciones()[2])">
+        <button id="btn2" class="pushable" (click)="responder(opciones()[2], 2)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front">{{ opciones()[2] }}</span>
         </button>
       </li>
       <li>
-        <button class="pushable" (click)="responder(opciones()[3])">
+        <button id="btn3" class="pushable" (click)="responder(opciones()[3], 3)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
           <span class="front">{{ opciones()[3] }}</span>

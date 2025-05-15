@@ -23,6 +23,7 @@ export class PreguntadosComponent{
   puntaje = signal(0);
   opciones = signal<string[]>([]);
   juegoIniciado = signal(false);
+  bloquearOpciones = false;
 
   categoriaSeleccionada = signal<number | null>(null);
   dificultadSeleccionada = signal<string>('easy');
@@ -151,19 +152,41 @@ export class PreguntadosComponent{
     this.iniciarTemporizador();
   }
 
-  responder(opcion: string) {
+  responder(opcion: string, indiceBtn: number) {
+    this.bloquearOpciones = true;
     clearInterval(this.timer);
     const tiempoUsado = 60 - this.segundosRestantes();
     this.tiempoTotalAcumulado.update(t => t + tiempoUsado);
   
     const correcta = this.preguntaActual()?.correct_answer;
+    const botones = [
+      document.getElementById('btn0'),
+      document.getElementById('btn1'),
+      document.getElementById('btn2'),
+      document.getElementById('btn3'),
+    ];
+  
     if (opcion === correcta) {
       this.puntaje.update(p => p + 100);
+      botones[indiceBtn]?.classList.add('correcta');
     } else {
       this.puntaje.update(p => p - 5);
+      botones[indiceBtn]?.classList.add('incorrecta');
+      const indexCorrecta = this.opciones().findIndex(op => op === correcta);
+      if (indexCorrecta !== -1) {
+        botones[indexCorrecta]?.classList.add('correcta');
+      }
     }
   
-    this.pasarASiguientePregunta();
+    setTimeout(() => {
+      // Limpiar clases
+      botones.forEach(btn => {
+        btn?.classList.remove('correcta', 'incorrecta');
+      });
+  
+      this.bloquearOpciones = false;
+      this.pasarASiguientePregunta();
+    }, 1500); // Espera 1.5 segundos
   }
   
   
