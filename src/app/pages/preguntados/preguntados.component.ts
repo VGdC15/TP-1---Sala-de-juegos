@@ -38,8 +38,6 @@ export class PreguntadosComponent{
   supabase = inject(SupabaseService);
   puntajeGuardado = false;
 
-  @ViewChild('opcionesContainer') opcionesContainer?: ElementRef<HTMLUListElement>;
-
   ngOnInit() {
     Swal.fire({
       title: 'PREGUNTADOS',
@@ -144,15 +142,12 @@ export class PreguntadosComponent{
   async cargarPregunta() {
     clearInterval(this.timer);
     this.segundosRestantes.set(60);
-
+  
     const pregunta = this.preguntas()[this.indice()];
     const opciones = [...pregunta.incorrect_answers, pregunta.correct_answer];
     this.opciones.set(this.mezclar(opciones));
     this.preguntaActual.set(pregunta);
-
-    await new Promise(resolve => setTimeout(resolve, 0));
-    this.renderizarOpciones();
-
+  
     this.iniciarTemporizador();
   }
 
@@ -171,27 +166,6 @@ export class PreguntadosComponent{
     this.pasarASiguientePregunta();
   }
   
-
-  async renderizarOpciones() {
-    const ul = this.opcionesContainer?.nativeElement;
-    if (!ul) return;
-  
-    ul.innerHTML = ''; // Limpiar
-  
-    await new Promise(resolve => setTimeout(resolve, 0));
-  
-    for (const opcion of this.opciones()) {
-      const li = document.createElement('li');
-      const btn = document.createElement('button');
-  
-      btn.classList.add('opciones');
-      btn.innerHTML = opcion;
-      btn.addEventListener('click', () => this.responder(opcion));
-  
-      li.appendChild(btn);
-      ul.appendChild(li);
-    }
-  }
   
   mezclar(array: string[]) {
     return array.sort(() => Math.random() - 0.5);

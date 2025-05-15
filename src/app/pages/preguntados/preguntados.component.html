@@ -30,18 +30,34 @@
 
     <h2 [innerHTML]="preguntaActual()?.question || ''"></h2>
 
-    <ul #opcionesContainer style="list-style: none; padding: 0; margin: 0;">
+    <ul style="list-style: none; padding: 0; margin: 0;">
       <li>
-        <button>Opción 1</button>
+        <button class="pushable" (click)="responder(opciones()[0])">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">{{ opciones()[0] }}</span>
+        </button>
       </li>
       <li>
-        <button>Opción 2</button>
+        <button class="pushable" (click)="responder(opciones()[1])">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">{{ opciones()[1] }}</span>
+        </button>
       </li>
       <li>
-        <button>Opción 3</button>
+        <button class="pushable" (click)="responder(opciones()[2])">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">{{ opciones()[2] }}</span>
+        </button>
       </li>
       <li>
-        <button>Opción 4</button>
+        <button class="pushable" (click)="responder(opciones()[3])">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">{{ opciones()[3] }}</span>
+        </button>
       </li>
     </ul>
       
