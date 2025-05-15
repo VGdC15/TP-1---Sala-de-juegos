@@ -1,14 +1,30 @@
-<h2>Quién soy?</h2> 
-
 <section class="bio-section">
-  <div class="bio-card">
-    <img [src]="datos?.avatar_url" class="card-img-top rounded-circle mx-auto mt-3" 
-         style="width: 100px; height: 100px; object-fit: cover;" />
-    <div class="card-body">
-      <p class="card-text"><strong>Usuario:</strong> {{ datos?.login }}</p>
-      <p class="card-text"><strong>Nombre:</strong> {{ datos?.name }}</p>
-      <p class="card-text"><strong>Bio:</strong> {{ datos?.bio }}</p>
-      <p class="card-text"><strong>Repos públicos:</strong> {{ datos?.public_repos }}</p>
+  <div class="cards-container">
+    <!-- Card de datos de GitHub -->
+    <div class="bio-card">
+      <img [src]="datos?.avatar_url" class="card-img-top rounded-circle mx-auto mt-3"
+           style="width: 100px; height: 100px; object-fit: cover;" />
+      <div class="card-body">
+        <p class="card-text"><strong>Usuario:</strong> {{ datos?.login }}</p>
+        <p class="card-text"><strong>Nombre:</strong> {{ datos?.name }}</p>
+        <p class="card-text"><strong>Bio:</strong> {{ datos?.bio }}</p>
+        <p class="card-text"><strong>Repos públicos:</strong> {{ datos?.public_repos }}</p>
+      </div>
+    </div>
+
+    <!-- Card del juego Batalla Naval -->
+    <div class="bio-card">
+      <div class="card-body">
+        <h3 class="title">Juego Propio:</h3>
+        <h5 class="card-title">⚓ Batalla Naval ⚓</h5>
+        <br/>
+        <p class="card-text">
+          Es un juego clásico de estrategia donde el objetivo es hundir los barcos del oponente
+          adivinando sus ubicaciones en un tablero. ⚓¡Cada disparo cuenta!⚓
+        </p>
+        <br/>
+        <p>🌊🌊🌊🚢🌊🌊🌊</p>
+      </div>
     </div>
   </div>
 </section>

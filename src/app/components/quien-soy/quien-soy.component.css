@@ -1,7 +1,14 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+  
+/* Sección con fondo */
 .bio-section {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centra verticalmente */
+    align-items: center;
     height: 100vh;
     width: 100%;
     background-image: url("../../../../public/fondo bio.jpg");
@@ -9,33 +16,62 @@
     background-position: center;
     background-repeat: no-repeat;
     padding: 2rem 1rem;
-  }
+}
   
+/* Contenedor de las cards */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 26%;
+}
   
-  /* Estilo de la card */
-  .bio-card {
+/* Estilo general de las cards */
+.bio-card {
     background-color: rgba(20, 20, 20, 0.9);
     width: 22rem;
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(200, 27, 253, 0.5);
+    box-shadow: 0 0 20px rgba(200, 27, 253, 0.6);
     text-align: center;
     padding-bottom: 1rem;
-    color:rgb(252, 252, 252);
-
-  }
+    color: rgb(252, 252, 252);
+}
   
-  /* Contenido dentro de la card */
-  .bio-card .card-body {
+  /* Cuerpo de la card */
+.bio-card .card-body {
     padding: 1rem;
-  }
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
   
-  /* Texto dentro de la card */
-  .bio-card .card-text {
+/* Texto de la card */
+.bio-card .card-text {
     margin: 0.5rem 0;
     font-size: 1rem;
-  }
-
-  img {
-    box-shadow: 0 0 40px 10px rgba(212, 148, 231, 0.35);
-  }
+}
   
+/* Imagen con sombra */
+img {
+    box-shadow: 0 0 40px 10px rgba(212, 148, 231, 0.35);
+}
+  
+@media (min-width: 768px) and (max-width: 991px) {
+    .cards-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15%;
+    }
+}
+  
+  
+@media (min-width: 992px) {
+    .cards-container {
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: 2%;
+    }
+}
