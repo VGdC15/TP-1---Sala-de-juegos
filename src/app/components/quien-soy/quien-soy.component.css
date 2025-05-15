@@ -59,9 +59,9 @@ img {
   
 @media (min-width: 768px) and (max-width: 991px) {
     .cards-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
       margin-top: 15%;
     }
 }
