@@ -28,35 +28,35 @@
       <p>Puntaje: {{ puntaje() }}</p>
     </div>
 
-    <h2 [innerHTML]="preguntaActual()?.question || ''"></h2>
-
+    <h2 [innerHTML]="preguntaTraducida() || ''"></h2>
+    
     <ul style="list-style: none; padding: 0; margin: 0;">
       <li>
         <button id="btn0" class="pushable" (click)="responder(opciones()[0], 0)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
-          <span class="front">{{ opciones()[0] }}</span>
+          <span class="front">{{ opcionesTraducidas()[0] }}</span>
         </button>
       </li>
       <li>
         <button id="btn1" class="pushable" (click)="responder(opciones()[1], 1)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
-          <span class="front">{{ opciones()[1] }}</span>
+          <span class="front">{{ opcionesTraducidas()[1] }}</span>
         </button>
       </li>
       <li>
         <button id="btn2" class="pushable" (click)="responder(opciones()[2], 2)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
-          <span class="front">{{ opciones()[2] }}</span>
+          <span class="front">{{ opcionesTraducidas()[2] }}</span>
         </button>
       </li>
       <li>
         <button id="btn3" class="pushable" (click)="responder(opciones()[3], 3)" [disabled]="bloquearOpciones">
           <span class="shadow"></span>
           <span class="edge"></span>
-          <span class="front">{{ opciones()[3] }}</span>
+          <span class="front">{{ opcionesTraducidas()[3] }}</span>
         </button>
       </li>
     </ul>

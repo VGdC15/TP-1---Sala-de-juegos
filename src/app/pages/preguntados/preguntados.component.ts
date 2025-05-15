@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { SupabaseService } from '../../services/supabase.service';
+import { TraductorService } from '../../services/traductor.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -39,7 +40,12 @@ export class PreguntadosComponent{
   supabase = inject(SupabaseService);
   puntajeGuardado = false;
 
-  ngOnInit() {
+  //traductor
+  private traductor = inject(TraductorService);
+  preguntaTraducida = signal<string>('');
+  opcionesTraducidas = signal<string[]>([]);
+
+  async ngOnInit() {
     Swal.fire({
       title: 'PREGUNTADOS',
       html: `
@@ -60,11 +66,25 @@ export class PreguntadosComponent{
       iconColor: 'orange',
       width: '420px'
     });
+  
+    // Traer las categorías
+    const res = await firstValueFrom(this.preguntadosService.obtenerCategorias());
+    const categoriasOriginales: { id: number; name: string }[] = res.trivia_categories;
 
-    this.preguntadosService.obtenerCategorias().subscribe(res => {
-      this.categorias.set(res.trivia_categories);
-      this.renderizarCategorias();
-    });
+  
+    // Traducir los nombres al español
+    const categoriasTraducidas = await Promise.all(
+      categoriasOriginales.map(async cat => {
+        const nombreTraducido = await this.traductor.traducir(cat.name);
+        return {
+          id: cat.id,
+          name: nombreTraducido
+        };
+      })
+    );
+  
+    this.categorias.set(categoriasTraducidas);
+    this.renderizarCategorias();
   }
 
   async renderizarCategorias() {
@@ -145,12 +165,23 @@ export class PreguntadosComponent{
     this.segundosRestantes.set(60);
   
     const pregunta = this.preguntas()[this.indice()];
-    const opciones = [...pregunta.incorrect_answers, pregunta.correct_answer];
-    this.opciones.set(this.mezclar(opciones));
+    const opcionesOriginales = [...pregunta.incorrect_answers, pregunta.correct_answer];
+    const opcionesMezcladas = this.mezclar(opcionesOriginales);
+  
     this.preguntaActual.set(pregunta);
+    this.opciones.set(opcionesMezcladas);
+  
+    // Traducir pregunta
+    const preguntaTraducida = await this.traductor.traducir(pregunta.question);
+    this.preguntaTraducida.set(preguntaTraducida);
+  
+    // Traducir opciones
+    const opcionesTraducidas = await Promise.all(opcionesMezcladas.map(op => this.traductor.traducir(op)));
+    this.opcionesTraducidas.set(opcionesTraducidas);
   
     this.iniciarTemporizador();
   }
+  
 
   responder(opcion: string, indiceBtn: number) {
     this.bloquearOpciones = true;
