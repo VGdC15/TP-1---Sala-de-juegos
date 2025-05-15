@@ -1,81 +1,75 @@
 .resultados-container {
-    background-image: url('../../../../public/home\ 2.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  background-image: url('../../../../public/home\ 2.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
     
-  }
+}
   
-  .resultados-container .overlay {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1;
-  }
-  
-  .resultados-card {
-    padding: 40px;
-    width: 90%;
-    max-width: 1000px;
-    color: #fff;
-    position: relative;
-    z-index: 2;
-  
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .titulo-neon {
-    width: 100%;
-    text-align: center;
-    font-size: 2rem;
-    color: rgb(250, 250, 250);
-    text-shadow:
-      0 0 5px rgb(200, 27, 253),
-      0 0 10px rgb(200, 27, 253),
-      0 0 20px rgb(200, 27, 253);
-    margin-bottom: 30px;
-  }
-  
-  
-  /* Breakpoints */
-  
-  /* Pantallas pequeñas: 1 card por fila */
-  @media (max-width: 576px) {
-    .resultados-container {
-      padding-top: 100%; 
-      overflow-y: auto;
-    }
+.resultados-container .overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
 
-    .titulo-neon{
-      margin-top: 85%;
-    }
-  }
-  
-  /* Pantallas medianas: 2x2 */
-  @media (min-width: 577px) and (max-width: 991px) {
-    .titulo-neon{
-      margin-top: 20%;
-    }
-  }
-  
-  /* Pantallas grandes: todas en fila */
-  @media (min-width: 992px) {
-    .resultados-container{
-      position: absolute;
-    }
+.resultados-card {
+  padding: 40px;
+  width: 90%;
+  max-width: 1000px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.titulo-neon {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(250, 250, 250);
+  text-shadow:
+    0 0 5px rgb(200, 27, 253),
+    0 0 10px rgb(200, 27, 253),
+    0 0 20px rgb(200, 27, 253);
+  margin-bottom: 30px;
+}
+
+
+/* Breakpoints */
+
+/* Pantallas pequeñas: 1 card por fila */
+@media (max-width: 576px) {
+  .resultados-container {
+    padding-top: 100%; 
+    overflow-y: auto;
   }
+
+  .titulo-neon{
+    margin-top: 85%;
+  }
+}
+
+/* Pantallas medianas: 2x2 */
+@media (min-width: 577px) and (max-width: 991px) {
+  .titulo-neon{
+    margin-top: 20%;
+  }
+}
+  
+
   

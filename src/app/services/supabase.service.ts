@@ -57,20 +57,7 @@ export class SupabaseService {
       console.error(`Error al guardar puntaje en ${juego}:`, error.message || error.details || JSON.stringify(error));
     }
   }
-  
-  // async obtenerPuntajes(juego: string) {
-  //   const { data, error } = await this.supabase
-  //     .from(juego)
-  //     .select('*')
-  //     .order('puntaje', { ascending: false }); //puede ser por 'tiempo' VERRRR
-  
-  //   if (error) {
-  //     console.error(`Error al obtener puntajes de ${juego}:`, error);
-  //     return [];
-  //   }
-  
-  //   return data;
-  // }
+
   async obtenerPuntajesSinTiempo(juego: string) {
     const { data, error } = await this.supabase
       .from(juego)
