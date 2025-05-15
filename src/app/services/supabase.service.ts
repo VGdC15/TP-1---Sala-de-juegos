@@ -71,8 +71,24 @@ export class SupabaseService {
   
   //   return data;
   // }
+  async obtenerPuntajesSinTiempo(juego: string) {
+    const { data, error } = await this.supabase
+      .from(juego)
+      .select('*');
+  
+    if (error) {
+      console.error(`Error al obtener puntajes de ${juego}:`, error);
+      return [];
+    }
+  
+    // Ordenar por puntaje descendente y tomar los 5 primeros
+    return data
+      .sort((a, b) => b.puntaje - a.puntaje)
+      .slice(0, 5);
+  }
+  
 
-  async obtenerPuntajes(juego: string) {
+  async obtenerPuntajesConTiempo(juego: string) {
     const { data, error } = await this.supabase
       .from(juego)
       .select('*');
@@ -114,8 +130,8 @@ export class SupabaseService {
     try {
       // Juegos con tiempo
       const [ahorcado, preguntados] = await Promise.all([
-        this.obtenerPuntajes('puntajeAhorcado'),
-        this.obtenerPuntajes('puntajePreguntados'),
+        this.obtenerPuntajesConTiempo('puntajeAhorcado'),
+        this.obtenerPuntajesConTiempo('puntajePreguntados'),
       ]);
 
       const resultadosTiempo: ResultadoConTiempo[] = [
@@ -126,8 +142,8 @@ export class SupabaseService {
 
       // Juegos simples
       const [mayorMenor, batallaNaval] = await Promise.all([
-        this.obtenerPuntajes('puntajeMayormenor'),
-        this.obtenerPuntajes('puntajeBatallanaval'),
+        this.obtenerPuntajesSinTiempo('puntajeMayormenor'),
+        this.obtenerPuntajesSinTiempo('puntajeBatallanaval'),
       ]);
 
       const resultadosSimple: ResultadoSimple[] = [

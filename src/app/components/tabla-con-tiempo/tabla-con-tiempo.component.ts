@@ -17,7 +17,7 @@ export class TablaConTiempoComponent implements AfterViewInit {
   ) {}
 
   async ngAfterViewInit() {
-    const puntajes = await this.supabaseService.obtenerPuntajes(this.tabla);
+    const puntajes = await this.supabaseService.obtenerPuntajesConTiempo(this.tabla);
   
     for (let i = 0; i < 5; i++) {
       const item = puntajes[i]; // puede ser undefined

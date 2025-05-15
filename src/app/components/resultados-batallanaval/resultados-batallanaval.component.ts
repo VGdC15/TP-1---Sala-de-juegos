@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { TablaSimpleComponent } from '../tabla-simple/tabla-simple.component';
 
 @Component({
   selector: 'app-resultados-batallanaval',
-  imports: [],
+  imports: [TablaSimpleComponent],
   templateUrl: './resultados-batallanaval.component.html',
-  styleUrl: './resultados-batallanaval.component.css'
+  styleUrls: ['./resultados-batallanaval.component.css']
 })
 export class ResultadosBatallanavalComponent {
+  tablaNombre = 'puntajeBatallanaval';
 
 }
