@@ -58,19 +58,56 @@ export class SupabaseService {
     }
   }
   
+  // async obtenerPuntajes(juego: string) {
+  //   const { data, error } = await this.supabase
+  //     .from(juego)
+  //     .select('*')
+  //     .order('puntaje', { ascending: false }); //puede ser por 'tiempo' VERRRR
+  
+  //   if (error) {
+  //     console.error(`Error al obtener puntajes de ${juego}:`, error);
+  //     return [];
+  //   }
+  
+  //   return data;
+  // }
+
   async obtenerPuntajes(juego: string) {
     const { data, error } = await this.supabase
       .from(juego)
-      .select('*')
-      .order('puntaje', { ascending: false }); //puede ser por 'tiempo' VERRRR
+      .select('*');
   
     if (error) {
       console.error(`Error al obtener puntajes de ${juego}:`, error);
       return [];
     }
   
-    return data;
+    // Calcular eficiencia (puntaje / tiempo) y convertir tiempo string a número
+    const datosConEficiencia = data.map((item: any) => {
+      const segundos = this.convertirTiempoASegundos(item.tiempo);
+      const eficiencia = segundos > 0 ? item.puntaje / segundos : 0;
+      return { ...item, eficiencia };
+    });
+  
+    // Ordenar por eficiencia descendente y tomar los 5 primeros
+    return datosConEficiencia
+      .sort((a, b) => b.eficiencia - a.eficiencia)
+      .slice(0, 5);
   }
+  
+  private convertirTiempoASegundos(tiempo: any): number {
+    const tiempoStr = String(tiempo); 
+    const partes = tiempoStr.split(':');
+  
+    if (partes.length !== 2) return Number.MAX_SAFE_INTEGER; 
+  
+    const minutos = parseInt(partes[0], 10);
+    const segundos = parseInt(partes[1], 10);
+  
+    return minutos * 60 + segundos;
+  }
+  
+  
 
   //PARA LAS TABLAS DE PUNTAJE
   async cargarTodosLosResultados() {

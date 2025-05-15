@@ -10,18 +10,6 @@ import { CardComponent } from '../card/card.component';
   styleUrl: './resultados.component.css'
 })
 
-export class ResultadosComponent implements OnInit {
-  supabase = inject(SupabaseService);
+export class ResultadosComponent {
 
-  resultadosConTiempo = this.supabase.resultadosConTiempo;
-  resultadosSimple = this.supabase.resultadosSimple;
-
-  ngOnInit() {
-    this.supabase.cargarTodosLosResultados();
-
-    effect(() => {
-      console.log('Con tiempo:', this.resultadosConTiempo());
-      console.log('Sin tiempo:', this.resultadosSimple());
-    });
-  }
 }

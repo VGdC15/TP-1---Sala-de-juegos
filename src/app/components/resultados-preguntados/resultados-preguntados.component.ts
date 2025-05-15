@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { TablaConTiempoComponent } from '../tabla-con-tiempo/tabla-con-tiempo.component';
 
 @Component({
   selector: 'app-resultados-preguntados',
-  imports: [],
+  imports: [TablaConTiempoComponent],
   templateUrl: './resultados-preguntados.component.html',
   styleUrl: './resultados-preguntados.component.css'
 })
 export class ResultadosPreguntadosComponent {
+  tablaNombre = 'puntajePreguntados';
 
 }
