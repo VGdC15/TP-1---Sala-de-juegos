@@ -34,9 +34,9 @@
 /* Pantallas pequeñas: 1 card por fila */
 @media (max-width: 576px) {
     .card {
-      width: 70%;
+      width: 80%;
       height: auto;
-      margin-left: 15%;  
+      margin-left: 12%;  
     }
 }
   
