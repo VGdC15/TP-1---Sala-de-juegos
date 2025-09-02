@@ -1,10 +1,13 @@
 🎮 Sala de Juegos — Angular CLI
+
 Ahorcado · Mayor/Menor · Preguntados · Batalla Naval · Chat en tiempo real · Sala de puntajes
 
 🔗 Demo
+
 Live: https://tp-1-sala-de-juegos-seven.vercel.app/home
 
 ✨ Características
+
 Cuatro juegos integrados en una misma sala:
     Ahorcado (single/multiplayer opcional)
     Mayor / Menor (rápidas rondas de cartas)
