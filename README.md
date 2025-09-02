@@ -30,6 +30,8 @@
 | Vista               | Imagen |
 | ------------------- | ------ |
 | Home / Lobby        |        |
+| Ingreso             |        |
+| Juegos              |        |
 | Chat en tiempo real |        |
 | Sala de puntajes    |        |
 | Ahorcado            |        |
