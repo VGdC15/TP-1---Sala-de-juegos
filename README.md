@@ -81,8 +81,6 @@ ng serve -o
 
 ---
 
----
-
 ## 🕹️ Juegos (mini‑guía)
 
 * **Ahorcado:** ingresa letras, contador de intentos, reveal al finalizar.
