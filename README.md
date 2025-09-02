@@ -9,6 +9,7 @@ Live: https://tp-1-sala-de-juegos-seven.vercel.app/home
 ✨ Características
 
 Cuatro juegos integrados en una misma sala:
+
     Ahorcado (single/multiplayer opcional)
     Mayor / Menor (rápidas rondas de cartas)
     Preguntados/Trivia (categorías, temporizador, feedback)
