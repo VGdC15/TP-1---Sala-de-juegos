@@ -19,3 +19,7 @@ Cuatro juegos integrados en una misma sala:
     UI responsive
 
 ![Imagen de WhatsApp 2025-09-02 a las 19 02 00_ad688148](https://github.com/user-attachments/assets/ae572489-09fe-460d-a696-e8b8a3933745)
+![Imagen de WhatsApp 2025-09-02 a las 19 01 59_8e57c2e9](https://github.com/user-attachments/assets/13082d85-9213-42df-ac6c-dfbfac809bd0)
+![Imagen de WhatsApp 2025-09-02 a las 19 02 00_620be453](https://github.com/user-attachments/assets/bea77fcc-3644-4568-8dbc-44d92558b096)
+
+
