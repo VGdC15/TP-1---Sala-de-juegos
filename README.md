@@ -18,8 +18,21 @@ Cuatro juegos integrados en una misma sala:
     Sala de puntajes global y por juego.
     UI responsive
 
-![Imagen de WhatsApp 2025-09-02 a las 19 02 00_ad688148](https://github.com/user-attachments/assets/ae572489-09fe-460d-a696-e8b8a3933745)
-![Imagen de WhatsApp 2025-09-02 a las 19 01 59_8e57c2e9](https://github.com/user-attachments/assets/13082d85-9213-42df-ac6c-dfbfac809bd0)
-![Imagen de WhatsApp 2025-09-02 a las 19 02 00_620be453](https://github.com/user-attachments/assets/bea77fcc-3644-4568-8dbc-44d92558b096)
+🕹️ Juegos (mini‑guía)
 
+  Ahorcado: ingresa letras, contador de intentos, reveal al finalizar.
+  Mayor/Menor: predice si la siguiente carta será mayor o menor; rachas suman bonus.
+  Preguntados: categorías, temporizador, feedback inmediato, ranking por aciertos.
+  Batalla Naval: coloca barcos, turnos alternos, hits/misses y fin por hundimiento total.
+
+📦 Tech
+
+Frontend: Angular (CLI), TypeScript, RxJS, Angular Router, CSS
+
+🚀 Arranque rápido
+Requisitos
+
+Node 18+ (recomendado LTS)
+
+Angular CLI npm i -g @angular/cli
 
