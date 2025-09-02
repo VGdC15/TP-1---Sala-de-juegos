@@ -20,10 +20,10 @@ Cuatro juegos integrados en una misma sala:
 
 🕹️ Juegos (mini‑guía)
 
-  Ahorcado: ingresa letras, contador de intentos, reveal al finalizar.
-  Mayor/Menor: predice si la siguiente carta será mayor o menor; rachas suman bonus.
-  Preguntados: categorías, temporizador, feedback inmediato, ranking por aciertos.
-  Batalla Naval: coloca barcos, turnos alternos, hits/misses y fin por hundimiento total.
+    Ahorcado: ingresa letras, contador de intentos, reveal al finalizar.
+    Mayor/Menor: predice si la siguiente carta será mayor o menor; rachas suman bonus.
+    Preguntados: categorías, temporizador, feedback inmediato, ranking por aciertos.
+    Batalla Naval: coloca barcos, turnos alternos, hits/misses y fin por hundimiento total.
 
 📦 Tech
 
