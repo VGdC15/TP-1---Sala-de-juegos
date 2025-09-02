@@ -14,7 +14,7 @@
 
 * Cuatro juegos integrados en una **misma sala**:
 
-  * **Ahorcado** (single/multiplayer opcional)
+  * **Ahorcado** 
   * **Mayor / Menor** (rápidas rondas de cartas)
   * **Preguntados/Trivia** (categorías, temporizador, feedback)
   * **Batalla Naval** (tablero, colocación de barcos, turnos)
@@ -86,7 +86,7 @@ ng serve -o
 * **Ahorcado:** ingresa letras, contador de intentos, reveal al finalizar.
 * **Mayor/Menor:** predice si la siguiente carta será mayor o menor; rachas suman bonus.
 * **Preguntados:** categorías, temporizador, feedback inmediato, ranking por aciertos.
-* **Batalla Naval:** coloca barcos, turnos alternos, hits/misses y fin por hundimiento total.
+* **Batalla Naval:** turnos alternos, hits/misses y fin por hundimiento total.
 
 ---
 
