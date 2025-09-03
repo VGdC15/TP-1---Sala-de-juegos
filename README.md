@@ -28,16 +28,16 @@
 
 | Vista               | Imagen |
 |---------------------|--------|
-| Home / Lobby        | ![home](screenshots/home.png) |
-| Ingreso             | ![ingreso](screenshots/ingreso.png) |
-| Juegos              | ![juegos](screenshots/juegos.png) |
-| Chat en tiempo real | ![chat](screenshots/chat.png) |
-| Sala de puntajes    | ![scoreboard](screenshots/scoreboard.png) |
-| Ahorcado            | ![ahorcado](screenshots/ahorcado.png) |
-| Mayor / Menor       | ![mayor-menor](screenshots/mayor-menor.png) |
-| Preguntados         | ![preguntados](screenshots/preguntados.png) |
-| Batalla Naval       | ![batalla-naval](screenshots/batalla-naval.png) |
-| Bio                 | ![bio](screenshots/bio.png) |
+| Home / Lobby        | ![home](screenshots/home.jpg) |
+| Ingreso             | ![ingreso](screenshots/ingreso.jpg) |
+| Juegos              | ![juegos](screenshots/juegos.jpg) |
+| Chat en tiempo real | ![chat](screenshots/chat.jpg) |
+| Sala de puntajes    | ![scoreboard](screenshots/scoreboard.jpg) |
+| Ahorcado            | ![ahorcado](screenshots/ahorcado.jpg) |
+| Mayor / Menor       | ![mayor-menor](screenshots/mayor-menor.jpg) |
+| Preguntados         | ![preguntados](screenshots/preguntados.jpg) |
+| Batalla Naval       | ![batalla-naval](screenshots/batalla-naval.jpg) |
+| Bio                 | ![bio](screenshots/bio.jpg) |
 
 
 >
