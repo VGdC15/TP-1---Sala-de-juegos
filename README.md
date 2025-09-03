@@ -26,19 +26,19 @@
 
 ## 🖼️ Screenshots
 
-
 | Vista               | Imagen |
-| ------------------- | ------ |
-| Home / Lobby        |        |
-| Ingreso             |        |
-| Juegos              |        |
-| Chat en tiempo real |        |
-| Sala de puntajes    |        |
-| Ahorcado            |        |
-| Mayor / Menor       |        |
-| Preguntados         |        |
-| Batalla Naval       |        |
-| Bio                 |        |
+|---------------------|--------|
+| Home / Lobby        | ![home](screenshots/home.png) |
+| Ingreso             | ![ingreso](screenshots/ingreso.png) |
+| Juegos              | ![juegos](screenshots/juegos.png) |
+| Chat en tiempo real | ![chat](screenshots/chat.png) |
+| Sala de puntajes    | ![scoreboard](screenshots/scoreboard.png) |
+| Ahorcado            | ![ahorcado](screenshots/ahorcado.png) |
+| Mayor / Menor       | ![mayor-menor](screenshots/mayor-menor.png) |
+| Preguntados         | ![preguntados](screenshots/preguntados.png) |
+| Batalla Naval       | ![batalla-naval](screenshots/batalla-naval.png) |
+| Bio                 | ![bio](screenshots/bio.png) |
+
 
 >
 
