@@ -28,16 +28,16 @@
 
 | Vista               | Imagen |
 |---------------------|--------|
-| Home / Lobby        | <img src="screenshots/home.jpg" width="300"/> |
-| Ingreso             | <img src="screenshots/ingreso.jpg" width="300"/> |
-| Juegos              | <img src="screenshots/juegos.jpg" width="300"/> |
-| Chat en tiempo real | <img src="screenshots/chat.jpg" width="300"/> |
-| Sala de puntajes    | <img src="screenshots/scoreboard.jpg" width="300"/> |
-| Ahorcado            | <img src="screenshots/ahorcado.jpg" width="300"/> |
-| Mayor / Menor       | <img src="screenshots/mayor-menor.jpg" width="300"/> |
-| Preguntados         | <img src="screenshots/preguntados.jpg" width="300"/> |
-| Batalla Naval       | <img src="screenshots/batalla-naval.jpg" width="300"/> |
-| Bio                 | <img src="screenshots/bio.jpg" width="300"/> |
+| Home / Lobby        | <img src="screenshots/home.jpg" width="250"/> |
+| Ingreso             | <img src="screenshots/ingreso.jpg" width="250"/> |
+| Juegos              | <img src="screenshots/juegos.jpg" width="250"/> |
+| Chat en tiempo real | <img src="screenshots/chat.jpg" width="250"/> |
+| Sala de puntajes    | <img src="screenshots/scoreboard.jpg" width="250"/> |
+| Ahorcado            | <img src="screenshots/ahorcado.jpg" width="250"/> |
+| Mayor / Menor       | <img src="screenshots/mayor-menor.jpg" width="250"/> |
+| Preguntados         | <img src="screenshots/preguntados.jpg" width="250"/> |
+| Batalla Naval       | <img src="screenshots/batalla-naval.jpg" width="250"/> |
+| Bio                 | <img src="screenshots/bio.jpg" width="250"/> |
 
 
 >
